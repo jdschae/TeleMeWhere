@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Net;
+using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Click_Buttons : MonoBehaviour
 {
@@ -52,8 +54,10 @@ public class Click_Buttons : MonoBehaviour
 
         using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
         {
-            string json = "{\"username\":\"" + Input_Fields.username + "," +
-                          "\",\"password\":\"" + Input_Fields.password +"\"}";
+            Input_Fields user_inf = createCanvas.transform.GetChild(0).GetChild(5).GetComponent<Input_Fields>();
+            Input_Fields pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
+            string json = "{\"username\":\"" +user_inf.username + "," +
+                          "\",\"password\":\"" + pass_inf.password +"\"}";
 
             streamWriter.Write(json);
             streamWriter.Flush();
@@ -66,7 +70,7 @@ public class Click_Buttons : MonoBehaviour
             var result = streamReader.ReadToEnd();
         }
 
-        Application.LoadLevel(sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 
 }
