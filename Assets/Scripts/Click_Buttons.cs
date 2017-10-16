@@ -58,7 +58,7 @@ public class Click_Buttons : MonoBehaviour
             Input_Fields pass_inf;
             Input_Fields pass2_inf;
             Input_Fields email_inf;
-            if (signInCanvas.enabled)
+            if (createCanvas.enabled)
             {
                 user_inf = createCanvas.transform.GetChild(0).GetChild(5).GetComponent<Input_Fields>();
                 pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
