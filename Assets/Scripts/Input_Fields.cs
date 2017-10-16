@@ -4,6 +4,9 @@ using System.Collections;
 
 public class Input_Fields : MonoBehaviour
 {
+    //Keyboard Functionality
+    UnityEngine.TouchScreenKeyboard keyboard;
+    public static string keyboardText = "";
 
     //Input fields on the Create Account and Sign in Screens
     [SerializeField] public InputField _username_;
@@ -18,21 +21,42 @@ public class Input_Fields : MonoBehaviour
 
     public void UserInput()
     {
-        username = _username_.text;
+        KeyLoop();
+        //username = _username_.text;
+        username = keyboardText;
     }
 
     public void PassInput()
     {
-        password = _password_.text;
+        KeyLoop();
+        //password = _password_.text;
+        password = keyboardText;
     }
 
     public void Pass2Input()
     {
-        password2 = _password2_.text;
+        KeyLoop();
+        //password2 = _password2_.text;
+        password2 = keyboardText;
     }
 
     public void EmailInput()
     {
-        email = _email_.text;
+        KeyLoop();
+        //email = _email_.text;
+        email = keyboardText;
+    }
+
+    public void KeyLoop()
+    {
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, false, false);
+        if (TouchScreenKeyboard.visible == false && keyboard != null)
+        {
+            if (keyboard.done == true)
+            {
+                keyboardText = keyboard.text;
+                keyboard = null;
+            }
+        }
     }
 }
