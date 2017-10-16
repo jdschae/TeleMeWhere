@@ -52,7 +52,7 @@ public class Click_Buttons : MonoBehaviour
         httpWebRequest.ContentType = "application/json";
         httpWebRequest.Method = "POST";
 
-        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+        using (var stream = await Task.Factory.FromAsync<Stream>(request.BeginGetRequestStream, request.EndGetRequestStream, null))
         {
             Input_Fields user_inf;
             Input_Fields pass_inf;
@@ -75,10 +75,11 @@ public class Click_Buttons : MonoBehaviour
 
             streamWriter.Write(json);
             streamWriter.Flush();
-            streamWriter.Close();
+            streamWriter.Dispose();
         }
 
-        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+        HttpWebResponse httpResponse = await webrequest.GetResponseAsync();
         using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
         {
             var result = streamReader.ReadToEnd();
