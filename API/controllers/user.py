@@ -58,11 +58,8 @@ def create_route():
 						"VALUES(%s, %s, %s, %s)", (request_json['username'],
 						request_json['firstname'], request_json['lastname'],
 						pw_hash))
-	session['user'] = {
-		'username': request_json['username'],
-		'firstname': request_json['firstname'],
-		'lastname': request_json['lastname']
-	}
+	return jsonify(success = [{'message': "User created"}]), 200
+
 
 
 def encrypt_password(password):
