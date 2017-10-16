@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Net;
 
 public class Click_Buttons : MonoBehaviour
 {
@@ -45,6 +46,26 @@ public class Click_Buttons : MonoBehaviour
     //Used when clicking "Sign In" or "Create Account" to start session
     public void ChangeScene(string sceneName)
     {
+        var httpWebRequest = (HttpWebRequest)WebRequest.Create("localhost:3000/api/user/login");
+        httpWebRequest.ContentType = "application/json";
+        httpWebRequest.Method = "POST";
+
+        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+        {
+            string json = "{\"username\":\"" + Input_Fields.username + "," +
+                          "\",\"password\":\"" + Input_Fields.password +"\"}";
+
+            streamWriter.Write(json);
+            streamWriter.Flush();
+            streamWriter.Close();
+        }
+
+        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+        {
+            var result = streamReader.ReadToEnd();
+        }
+
         Application.LoadLevel(sceneName);
     }
 
