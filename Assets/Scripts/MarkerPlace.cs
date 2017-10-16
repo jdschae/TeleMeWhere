@@ -1,0 +1,107 @@
+﻿using System;
+using UnityEngine;
+
+
+namespace HoloToolkit.Unity.InputModule
+{
+    public class MarkerPlace : MonoBehaviour, IFocusable, IInputHandler//, ISourceStateHandler
+    {
+        public Transform HostTransform;
+        public GameObject MarkerTemplate;
+        public bool IsPlacementEnabled = true;
+        private bool isGazed;
+
+        private IInputSource currentInputSource;
+        private uint currentInputSourceId;
+
+
+        // Use this for initialization
+        void Start()
+        {
+            if (HostTransform == null)
+            {
+                HostTransform = transform;
+            }
+        }
+
+        public void OnFocusEnter()
+        {
+            if (!IsPlacementEnabled)
+            {
+                return;
+            }
+
+            if (isGazed)
+            {
+                return;
+            }
+
+            isGazed = true;
+        }
+
+        public void OnFocusExit()
+        {
+            if (!IsPlacementEnabled)
+            {
+                return;
+            }
+
+            if (!isGazed)
+            {
+                return;
+            }
+
+            isGazed = false;
+        }
+
+        public void OnInputUp(InputEventData eventData)
+        {
+            //if (currentInputSource != null &&
+            //    eventData.SourceId == currentInputSourceId)
+            //{
+            //    PlaceMarker();
+            //}
+        }
+
+        public void OnInputDown(InputEventData eventData)
+        {
+            if (!eventData.InputSource.SupportsInputInfo(eventData.SourceId, SupportedInputInfo.Position))
+            {
+                // The input source must provide positional data for this script to be usable
+                return;
+            }
+
+            currentInputSource = eventData.InputSource;
+            currentInputSourceId = eventData.SourceId;
+            PlaceMarker();
+        }
+
+        //public void onsourcedetected(sourcestateeventdata eventdata)
+        //{
+        //    // nothing to do
+        //}
+
+        //public void onsourcelost(sourcestateeventdata eventdata)
+        //{
+        //    if (currentinputsource != null && eventdata.sourceid == currentinputsourceid)
+        //    {
+        //        stopdragging();
+        //    }
+        //}
+
+        private void PlaceMarker()
+        {
+            if (!isGazed)
+            {
+                return;
+            }
+
+
+            Vector3 gazeHitPosition = GazeManager.Instance.HitInfo.point;
+            GameObject.Instantiate(MarkerTemplate, gazeHitPosition, Quaternion.identity, HostTransform);
+
+            //In model space
+            Vector3 markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
+        }
+    }
+}

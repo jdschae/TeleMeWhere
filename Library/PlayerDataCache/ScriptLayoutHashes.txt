@@ -114,6 +114,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 7b848b7feaa524953d09fc1851efa6da UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 c24a21b131bfa67be1162db2cba4b52b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 979ec343bb4719b48e79cacd32bc5cf1 Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.AxisController
+0d8f1d3d686390288bbcb9e1e452469b Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.HandRotate
 e0a1951523cfeb2d5ee0babfc2505009 Assembly-CSharp.dll:HoloToolkit.Unity.Interpolator
 8282e7952e1225016ba235061a4ab851 Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.KeywordManager
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -130,6 +131,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+ec8e0694cab8e54622b5036f8d2f2eae Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.MarkerPlace
 38541c248ee03ae02806e7568421a6e2 Assembly-CSharp.dll:HoloToolkit.Unity.UAudioManager
 ba66ed51a66e14863f51781e69c657ef Assembly-CSharp.dll:HoloToolkit.UI.Keyboard.KeyboardValueKey
 549dafb5e0b8917306ca1eeb3e20dec6 Assembly-CSharp.dll:HoloToolkit.UI.Keyboard.CapsLockHighlight
@@ -217,3 +219,5 @@ d5caa5c507202d113c0e7f0a26ca4bba Assembly-CSharp.dll:HoloToolkit.Unity.AudioOccl
 186cc323f9f1e9ce3dbc3cb69a7ece5f Assembly-CSharp.dll:HoloToolkit.Unity.FixedAngularSize
 c200d5e5157786d95373f6cec9caf166 Assembly-CSharp.dll:HoloToolkit.Unity.SpatialMapping.SurfacePlane
 294210f7e02f750ff0f7733d3ee18691 Assembly-CSharp.dll:HoloToolkit.Sharing.VoiceChat.MicrophoneReceiver
+eb7356978dbbb3ed2e6aa897b45e1e2e Assembly-CSharp.dll:.Click_Buttons
+eb410b4192e1d19bea03af9dedc63032 Assembly-CSharp.dll:.Input_Fields

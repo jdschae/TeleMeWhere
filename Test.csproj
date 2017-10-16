@@ -355,7 +355,10 @@
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\VectorRollingStatistics.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Scripts\WorldAnchorManager.cs" />
     <Compile Include="Assets\HoloToolkit\Utilities\Shaders\FastConfigurable\Scripts\CalibrationSpace.cs" />
+    <Compile Include="Assets\Scripts\Click_Buttons.cs" />
     <Compile Include="Assets\Scripts\HandRotate.cs" />
+    <Compile Include="Assets\Scripts\Input_Fields.cs" />
+    <Compile Include="Assets\Scripts\MarkerPlace.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\HoloToolkit\Input\Shaders\Cursor.shader" />
