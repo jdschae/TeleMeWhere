@@ -26,7 +26,7 @@ namespace HoloToolkit.Unity.InputModule
         [Tooltip("Scale by which hand movement in z is multiplied to move the dragged object.")]
         public float DistanceScale = 2f;
 
-        public bool IsRotatingEnabled = true;
+        public bool IsRotatingEnabled = false;
 
         private bool isRotating;
         private bool isGazed;

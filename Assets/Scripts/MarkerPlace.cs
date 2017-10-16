@@ -8,7 +8,7 @@ namespace HoloToolkit.Unity.InputModule
     {
         public Transform HostTransform;
         public GameObject MarkerTemplate;
-        public bool IsPlacementEnabled = true;
+        public bool IsPlacementEnabled = false;
         private bool isGazed;
 
         private IInputSource currentInputSource;
@@ -23,6 +23,8 @@ namespace HoloToolkit.Unity.InputModule
                 HostTransform = transform;
             }
         }
+
+        
 
         public void OnFocusEnter()
         {
@@ -91,7 +93,7 @@ namespace HoloToolkit.Unity.InputModule
 
         private void PlaceMarker()
         {
-            if (!isGazed)
+            if (!isGazed || !IsPlacementEnabled)
             {
                 return;
             }

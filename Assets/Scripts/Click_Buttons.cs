@@ -54,9 +54,23 @@ public class Click_Buttons : MonoBehaviour
 
         using (var stream = await Task.Factory.FromAsync<Stream>(request.BeginGetRequestStream, request.EndGetRequestStream, null))
         {
-            Input_Fields user_inf = createCanvas.transform.GetChild(0).GetChild(5).GetComponent<Input_Fields>();
-            Input_Fields pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
-            string json = "{\"username\":\"" +user_inf.username + "," +
+            Input_Fields user_inf;
+            Input_Fields pass_inf;
+            Input_Fields pass2_inf;
+            Input_Fields email_inf;
+            if (signInCanvas.enabled)
+            {
+                user_inf = createCanvas.transform.GetChild(0).GetChild(5).GetComponent<Input_Fields>();
+                pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
+                pass2_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
+                email_inf = createCanvas.transform.GetChild(0).GetChild(6).GetComponent<Input_Fields>();
+            }
+            else
+            {
+                user_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
+                pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
+            }
+            string json = "{\"username\":\"" + user_inf.username + "," +
                           "\",\"password\":\"" + pass_inf.password +"\"}";
 
             streamWriter.Write(json);

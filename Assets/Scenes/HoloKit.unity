@@ -242,12 +242,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 163785573}
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 503116823}
+        m_MethodName: EnableMarkerPlacement
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 503116814}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Sign In
@@ -470,7 +470,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 503116823}
+        m_MethodName: EnableRotating
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 503116814}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!23 &359508147
@@ -772,6 +783,7 @@ GameObject:
   - component: {fileID: 503116820}
   - component: {fileID: 503116821}
   - component: {fileID: 503116822}
+  - component: {fileID: 503116823}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -865,7 +877,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 503116814}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d5a0a60fbe897549ad0bfe2039f12b6, type: 3}
   m_Name: 
@@ -882,13 +894,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 503116814}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 461239833557b8b4fa9551ea1a66474f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HostTransform: {fileID: 503116815}
-  RotationLerpSpeed: 14.9
+  RotationLerpSpeed: 20
   DistanceScale: 2
   IsRotatingEnabled: 1
 --- !u!114 &503116822
@@ -905,6 +917,17 @@ MonoBehaviour:
   HostTransform: {fileID: 503116815}
   MarkerTemplate: {fileID: 479741580}
   IsPlacementEnabled: 1
+--- !u!114 &503116823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503116814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fff9b54ff8db3649bd34a924b290790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &588000265
 Prefab:
   m_ObjectHideFlags: 0
@@ -1640,7 +1663,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 503116823}
+        m_MethodName: EnableDragging
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 503116814}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!23 &1840924258
