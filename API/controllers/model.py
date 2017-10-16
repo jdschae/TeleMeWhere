@@ -11,10 +11,10 @@ def add_model_route():
 	if 'user' not in session:
 		return jsonify(errors = [{'message': "User not in session"}]), 422
 	cur = db.cursor()
-	modelid = random.randint(0, 10000)
-	print("INSERT INTO Model (modelid, username) VALUES (%s, %s)", (modelid, session['user']['username']))
-	cur.execute("INSERT INTO Model (modelid, username) VALUES (%s, %s)", (modelid, session['user']['username']))
-	return jsonify(modelid = modelid)
+	cur.execute("INSERT INTO Model (username) VALUES (%s)", (session['user']['username']))
+	cur.execute("SELECT LAST_INSERT_ID()");
+	result = cur.fetchone();
+	return jsonify(modelid = result['LAST_INSERT_ID()'])
 
 @api_model.route('/api/model/view/<modelid>', methods = ['GET'])
 def view_model_route(modelid):

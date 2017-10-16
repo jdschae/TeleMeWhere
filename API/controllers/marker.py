@@ -11,10 +11,11 @@ def add_marker_route():
 	check_user_and_model(session, request.json)
 
 	cur = db.cursor()
-	markerid = random.randint(0,20000)
-	cur.execute("INSERT INTO Marker (markerid ,modelid, message, x, y, z) VALUES (%s, %s, %s, %s, %s, %s)",
-	 (markerid, request.json['modelid'], request.json['message'], request.json['x'], request.json['y'], request.json['z']))
-	return jsonify(markerid = markerid)
+	cur.execute("INSERT INTO Marker (modelid, message, x, y, z) VALUES (%s, %s, %s, %s, %s)",
+	 (request.json['modelid'], request.json['message'], request.json['x'], request.json['y'], request.json['z']))
+	cur.execute("SELECT LAST_INSERT_ID()");
+	result = cur.fetchone();
+	return jsonify(markerid = result['LAST_INSERT_ID()'])
 
 
 @api_marker.route('/api/marker/edit', methods = ['POST'])
