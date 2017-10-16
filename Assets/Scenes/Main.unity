@@ -222,13 +222,14 @@ GameObject:
   - component: {fileID: 94774375}
   - component: {fileID: 94774374}
   - component: {fileID: 94774378}
+  - component: {fileID: 94774379}
   m_Layer: 5
   m_Name: CreateCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &94774374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +295,7 @@ RectTransform:
   m_GameObject: {fileID: 94774373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 0.002868778, y: 0.002868778, z: 0.002868778}
+  m_LocalScale: {x: 0.0014, y: 0.0014, z: 0.002868778}
   m_Children:
   - {fileID: 830890414}
   m_Father: {fileID: 0}
@@ -324,6 +325,18 @@ MonoBehaviour:
   password: 
   password2: 
   email: 
+--- !u!65 &94774379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 94774373}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1000, y: 500, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &157029392
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +617,7 @@ RectTransform:
   m_GameObject: {fileID: 234483729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 0.002868778, y: 0.002868778, z: 0.002868778}
+  m_LocalScale: {x: 0.0014, y: 0.0014, z: 0.002868778}
   m_Children:
   - {fileID: 1612050417}
   m_Father: {fileID: 0}
@@ -625,7 +638,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.02, z: 1}
+  m_Size: {x: 1000, y: 500, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &235408703
 Prefab:
@@ -4922,7 +4935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2034311184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4988,7 +5001,7 @@ RectTransform:
   m_GameObject: {fileID: 2034311183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 0.002868778, y: 0.002868778, z: 0.002868778}
+  m_LocalScale: {x: 0.0014, y: 0.0014, z: 0.002868778}
   m_Children:
   - {fileID: 338924313}
   m_Father: {fileID: 0}
@@ -5028,7 +5041,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.02, z: 1}
+  m_Size: {x: 1000, y: 500, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2047472636
 GameObject:
