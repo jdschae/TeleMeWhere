@@ -1,0 +1,10 @@
+*.pyc
+venv/*
+.vagrant/*
+__pycache__/*
+controllers/__pycache__/*
+controllers/*.pyc
+static/images/*
+.idea/*
+config.py
+
