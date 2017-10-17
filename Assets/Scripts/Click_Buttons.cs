@@ -8,6 +8,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Click_Buttons : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class Click_Buttons : MonoBehaviour
     public Canvas mainCanvas;
     public Canvas signInCanvas;
     public Canvas createCanvas;
+
+    //For Invalid Username/Password
+    private Text invalid;
 
     //On start, only Main Menu is visible
     private void Awake()
@@ -31,6 +35,7 @@ public class Click_Buttons : MonoBehaviour
         signInCanvas.enabled = true;
         mainCanvas.enabled = false;
         createCanvas.enabled = false;
+        invalid.enabled = false;
     }
 
     //Used when clicking "Create Account" from Main Menu
@@ -47,6 +52,7 @@ public class Click_Buttons : MonoBehaviour
         createCanvas.enabled = false;
         signInCanvas.enabled = false;
         mainCanvas.enabled = true;
+        invalid.enabled = false;
     }
 
     private IEnumerator request(WWW www)
@@ -57,6 +63,8 @@ public class Click_Buttons : MonoBehaviour
     //Used when clicking "Sign In" or "Create Account" to start session
     public void ChangeScene()
     {
+        string json = "";
+        string url = "";
         if (createCanvas.enabled == true && signInCanvas.enabled == false){
             
         }
@@ -64,8 +72,9 @@ public class Click_Buttons : MonoBehaviour
             Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(1).GetComponent<Input_Fields>();
             Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(2).GetComponent<Input_Fields>();
             
-            string json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" +"\"}";
-            string url = "http://35.1.168.14:3000/api/user/login";
+            json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" +"\"}";
+            url = "http://35.1.168.14:3000/api/user/login";
+
 
             WWW www = SendPostRequest(json, url);
             StartCoroutine(ProcessLogIn(www));
@@ -78,8 +87,10 @@ public class Click_Buttons : MonoBehaviour
         yield return www;
         // check for errors
         if (www.error == null) {
+            invalid.enabled = false;
             print (www.text);
         } else {
+            invalid.enabled = true;
             print ("error: " + www.error);
         }
         SceneManager.LoadScene(1);
