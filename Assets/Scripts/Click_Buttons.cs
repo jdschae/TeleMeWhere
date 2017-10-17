@@ -48,42 +48,31 @@ public class Click_Buttons : MonoBehaviour
     //Used when clicking "Sign In" or "Create Account" to start session
     public void ChangeScene(string sceneName)
     {
-        var httpWebRequest = (HttpWebRequest)WebRequest.Create("localhost:3000/api/user/login");
-        httpWebRequest.ContentType = "application/json";
-        httpWebRequest.Method = "POST";
+        user_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
+        pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
 
-        using (var stream = await Task.Factory.FromAsync<Stream>(request.BeginGetRequestStream, request.EndGetRequestStream, null))
-        {
-            Input_Fields user_inf;
-            Input_Fields pass_inf;
-            Input_Fields pass2_inf;
-            Input_Fields email_inf;
-            if (signInCanvas.enabled)
-            {
-                user_inf = createCanvas.transform.GetChild(0).GetChild(5).GetComponent<Input_Fields>();
-                pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
-                pass2_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
-                email_inf = createCanvas.transform.GetChild(0).GetChild(6).GetComponent<Input_Fields>();
-            }
-            else
-            {
-                user_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
-                pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
-            }
-            string json = "{\"username\":\"" + user_inf.username + "," +
+        ASCIIEncoding encoding = new ASCIIEncoding();
+        string json = "{\"username\":\"" + user_inf.username + "," +
                           "\",\"password\":\"" + pass_inf.password +"\"}";
+        byte[] data = encoding.GetBytes(json);
 
-            streamWriter.Write(json);
-            streamWriter.Flush();
-            streamWriter.Dispose();
-        }
+        WebRequest request = WebRequest.Create("35.1.168.14:3000/api/user/login");
+        request.Method = "POST";
+        request.ContentType = "application/json";
+        request.ContentLength = data.Length;
 
+        Stream stream = request.GetRequestStream();
+        stream.Write(data, 0, data.Length);
+        stream.Close();
 
-        HttpWebResponse httpResponse = await webrequest.GetResponseAsync();
-        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-        {
-            var result = streamReader.ReadToEnd();
-        }
+        WebResponse response = request.GetResponse();
+        stream = response.GetResponseStream();
+
+        StreamReader sr99 = new StreamReader(stream);
+        MessageBox.Show(sr99.ReadToEnd());
+
+        sr99.Close();
+        stream.Close();
 
         SceneManager.LoadScene(sceneName);
     }

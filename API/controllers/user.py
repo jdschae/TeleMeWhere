@@ -46,7 +46,8 @@ def logout_route():
 def create_route():
 	request_json = request.get_json()
 	if ('username' not in request_json or 'firstname' not in request_json
-		or 'lastname' not in request_json or 'password' not in request_json):
+		or 'lastname' not in request_json or 'email' not in request_json
+		or 'password' not in request_json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
 	else:
 		pw_hash = encrypt_password(request.json['password'])
@@ -54,10 +55,10 @@ def create_route():
 		cur.execute("SELECT * FROM User Where username = %s", request_json['username'])
 		if (cur.fetchone()):
 			return jsonify(errors = [{"message": "username already exists"}]), 422
-		cur.execute("INSERT INTO User (username, firstname, lastname, password) "
+		cur.execute("INSERT INTO User (username, firstname, lastname, password, email) "
 						"VALUES(%s, %s, %s, %s)", (request_json['username'],
 						request_json['firstname'], request_json['lastname'],
-						pw_hash))
+						pw_hash, request_json['email']))
 	return jsonify(success = [{'message': "User created"}]), 200
 
 
