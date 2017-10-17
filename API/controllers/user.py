@@ -27,7 +27,6 @@ def login_route():
 		'firstname': result['firstname'],
 		'lastname': result['lastname']
 	}
-	print("good")
 	return jsonify(username = result['username'],
 				   firstname = result['firstname'],
 				   lastname = result['lastname'])
@@ -56,7 +55,7 @@ def create_route():
 		if (cur.fetchone()):
 			return jsonify(errors = [{"message": "username already exists"}]), 422
 		cur.execute("INSERT INTO User (username, firstname, lastname, password, email) "
-						"VALUES(%s, %s, %s, %s)", (request_json['username'],
+						"VALUES(%s, %s, %s, %s, %s)", (request_json['username'],
 						request_json['firstname'], request_json['lastname'],
 						pw_hash, request_json['email']))
 	return jsonify(success = [{'message': "User created"}]), 200

@@ -79,7 +79,7 @@ public class Click_Buttons : MonoBehaviour
         if (www.error == null) {
             print (www.text);
         } else {
-            print ("error: "+www.error);
+            print ("error: " + www.error);
         }
         SceneManager.LoadScene(1);
     }    
