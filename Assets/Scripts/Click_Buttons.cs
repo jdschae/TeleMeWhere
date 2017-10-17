@@ -73,7 +73,7 @@ public class Click_Buttons : MonoBehaviour
             Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(2).GetComponent<Input_Fields>();
             
             json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" +"\"}";
-            url = "http://35.1.168.14:3000/api/user/login";
+            url = "http://35.1.109.14:3000/api/user/login";
 
 
             WWW www = SendPostRequest(json, url);
