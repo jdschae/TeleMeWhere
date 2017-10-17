@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 163785575}
   - component: {fileID: 163785574}
   - component: {fileID: 163785573}
+  - component: {fileID: 163785578}
   m_Layer: 0
   m_Name: Place Marker
   m_TagString: Untagged
@@ -306,6 +307,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 163785571}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &163785578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163785571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4c10f6d0667b045bc8f934eca9925a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f27baa75ebd2a6d4287993227aeceaf8, type: 3}
 --- !u!1001 &164368421
 Prefab:
   m_ObjectHideFlags: 0
@@ -411,6 +424,7 @@ GameObject:
   - component: {fileID: 359508148}
   - component: {fileID: 359508147}
   - component: {fileID: 359508146}
+  - component: {fileID: 359508150}
   m_Layer: 0
   m_Name: Rotate
   m_TagString: Untagged
@@ -535,6 +549,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 359508144}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &359508150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359508144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4c10f6d0667b045bc8f934eca9925a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f27baa75ebd2a6d4287993227aeceaf8, type: 3}
 --- !u!1 &479741580
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +573,7 @@ GameObject:
   - component: {fileID: 479741583}
   - component: {fileID: 479741582}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,7 +586,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479741580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1000, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.05, z: 0.1}
   m_Children: []
   m_Father: {fileID: 503116815}
@@ -630,6 +656,7 @@ GameObject:
   - component: {fileID: 481730227}
   - component: {fileID: 481730226}
   - component: {fileID: 481730225}
+  - component: {fileID: 481730230}
   m_Layer: 0
   m_Name: Remove Marker
   m_TagString: Untagged
@@ -768,6 +795,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 481730223}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &481730230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481730223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4c10f6d0667b045bc8f934eca9925a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f27baa75ebd2a6d4287993227aeceaf8, type: 3}
 --- !u!1 &503116814
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +941,7 @@ MonoBehaviour:
   HostTransform: {fileID: 503116815}
   RotationLerpSpeed: 20
   DistanceScale: 2
-  IsRotatingEnabled: 1
+  IsRotatingEnabled: 0
 --- !u!114 &503116822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HostTransform: {fileID: 503116815}
   MarkerTemplate: {fileID: 479741580}
-  IsPlacementEnabled: 1
+  IsPlacementEnabled: 0
 --- !u!114 &503116823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1604,6 +1643,7 @@ GameObject:
   - component: {fileID: 1840924259}
   - component: {fileID: 1840924258}
   - component: {fileID: 1840924257}
+  - component: {fileID: 1840924261}
   m_Layer: 0
   m_Name: Drag
   m_TagString: Untagged
@@ -1728,6 +1768,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1840924255}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1840924261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1840924255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4c10f6d0667b045bc8f934eca9925a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f27baa75ebd2a6d4287993227aeceaf8, type: 3}
 --- !u!1001 &1912085753
 Prefab:
   m_ObjectHideFlags: 0
