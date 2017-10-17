@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 157029396}
   - component: {fileID: 157029395}
   - component: {fileID: 157029394}
+  - component: {fileID: 157029397}
   m_Layer: 5
   m_Name: GoBackbtn
   m_TagString: Untagged
@@ -337,6 +338,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 157029392}
+--- !u!114 &157029397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 157029392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d3634a07a6a374c9d81a7013ff6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f156301e33317394abf4990b2816f296, type: 3}
 --- !u!1 &161015747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,6 +1809,7 @@ GameObject:
   - component: {fileID: 1305968209}
   - component: {fileID: 1305968208}
   - component: {fileID: 1305968207}
+  - component: {fileID: 1305968210}
   m_Layer: 5
   m_Name: SignInbtn
   m_TagString: Untagged
@@ -1907,6 +1921,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1305968205}
+--- !u!114 &1305968210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305968205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d3634a07a6a374c9d81a7013ff6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f156301e33317394abf4990b2816f296, type: 3}
 --- !u!1 &1321376456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +1944,7 @@ GameObject:
   - component: {fileID: 1321376460}
   - component: {fileID: 1321376459}
   - component: {fileID: 1321376458}
+  - component: {fileID: 1321376461}
   m_Layer: 5
   m_Name: GoBackbtn
   m_TagString: Untagged
@@ -2029,6 +2056,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1321376456}
+--- !u!114 &1321376461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1321376456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d3634a07a6a374c9d81a7013ff6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f156301e33317394abf4990b2816f296, type: 3}
 --- !u!1 &1346711921
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,6 +3398,7 @@ GameObject:
   - component: {fileID: 1762465233}
   - component: {fileID: 1762465232}
   - component: {fileID: 1762465231}
+  - component: {fileID: 1762465234}
   m_Layer: 5
   m_Name: SignInbtn
   m_TagString: Untagged
@@ -3470,6 +3510,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1762465229}
+--- !u!114 &1762465234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1762465229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d3634a07a6a374c9d81a7013ff6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f156301e33317394abf4990b2816f296, type: 3}
 --- !u!1 &1831897714
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,6 +3533,7 @@ GameObject:
   - component: {fileID: 1831897718}
   - component: {fileID: 1831897717}
   - component: {fileID: 1831897716}
+  - component: {fileID: 1831897719}
   m_Layer: 5
   m_Name: Createbtn
   m_TagString: Untagged
@@ -3592,6 +3645,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831897714}
+--- !u!114 &1831897719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831897714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d3634a07a6a374c9d81a7013ff6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f156301e33317394abf4990b2816f296, type: 3}
 --- !u!1001 &1846425585
 Prefab:
   m_ObjectHideFlags: 0
@@ -3795,6 +3860,7 @@ GameObject:
   - component: {fileID: 1888823648}
   - component: {fileID: 1888823647}
   - component: {fileID: 1888823646}
+  - component: {fileID: 1888823649}
   m_Layer: 5
   m_Name: Createbtn
   m_TagString: Untagged
@@ -3906,6 +3972,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1888823644}
+--- !u!114 &1888823649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1888823644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d3634a07a6a374c9d81a7013ff6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f156301e33317394abf4990b2816f296, type: 3}
 --- !u!1 &1890363521
 GameObject:
   m_ObjectHideFlags: 0
