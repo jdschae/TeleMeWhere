@@ -11,6 +11,7 @@ public class ActionEnabler : MonoBehaviour {
         Model.GetComponent<MarkerPlace>().IsPlacementEnabled = true;
         Model.GetComponent<HandDraggable>().IsDraggingEnabled = false;
         Model.GetComponent<HandRotate>().IsRotatingEnabled = false;
+        Model.GetComponent<MarkerRemove>().IsRemoveEnabled = false;
     }
 
     public void EnableDragging(GameObject Model)
@@ -18,6 +19,7 @@ public class ActionEnabler : MonoBehaviour {
         Model.GetComponent<MarkerPlace>().IsPlacementEnabled = false;
         Model.GetComponent<HandDraggable>().IsDraggingEnabled = true;
         Model.GetComponent<HandRotate>().IsRotatingEnabled = false;
+        Model.GetComponent<MarkerRemove>().IsRemoveEnabled = false;
     }
 
     public void EnableRotating(GameObject Model)
@@ -25,5 +27,14 @@ public class ActionEnabler : MonoBehaviour {
         Model.GetComponent<MarkerPlace>().IsPlacementEnabled = false;
         Model.GetComponent<HandDraggable>().IsDraggingEnabled = false;
         Model.GetComponent<HandRotate>().IsRotatingEnabled = true;
+        Model.GetComponent<MarkerRemove>().IsRemoveEnabled = false;
+    }
+
+    public void EnableRemoval(GameObject Model)
+    {
+        Model.GetComponent<MarkerPlace>().IsPlacementEnabled = false;
+        Model.GetComponent<HandDraggable>().IsDraggingEnabled = false;
+        Model.GetComponent<HandRotate>().IsRotatingEnabled = false;
+        Model.GetComponent<MarkerRemove>().IsRemoveEnabled = true;
     }
 }

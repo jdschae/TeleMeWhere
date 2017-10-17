@@ -7,29 +7,57 @@ namespace HoloToolkit.Unity.InputModule
     {
 
         public Transform HostTransform;
-        public bool IsPlacementEnabled = false;
+        public bool IsRemoveEnabled = false;
         private bool isGazed;
 
         private IInputSource currentInputSource;
         private uint currentInputSourceId;
         public void OnFocusEnter()
         {
-            throw new NotImplementedException();
+            if (!IsRemoveEnabled)
+            {
+                return;
+            }
+
+            if (isGazed)
+            {
+                return;
+            }
+
+            isGazed = true;
         }
 
         public void OnFocusExit()
         {
-            throw new NotImplementedException();
+            if (!IsRemoveEnabled)
+            {
+                return;
+            }
+
+            if (!isGazed)
+            {
+                return;
+            }
+
+            isGazed = false;
         }
 
         public void OnInputDown(InputEventData eventData)
         {
-            throw new NotImplementedException();
+            if (!eventData.InputSource.SupportsInputInfo(eventData.SourceId, SupportedInputInfo.Position))
+            {
+                // The input source must provide positional data for this script to be usable
+                return;
+            }
+
+            currentInputSource = eventData.InputSource;
+            currentInputSourceId = eventData.SourceId;
+            RemoveMarker();
         }
 
         public void OnInputUp(InputEventData eventData)
         {
-            throw new NotImplementedException();
+            
         }
 
         // Use this for initialization
@@ -41,7 +69,25 @@ namespace HoloToolkit.Unity.InputModule
             }
         }
 
-        // Update is called once per frame
-        
+        private void RemoveMarker()
+        {
+            if (!isGazed || !IsRemoveEnabled)
+            {
+                return;
+            }
+
+            GameObject hit = GazeManager.Instance.HitObject;
+
+            if (hit == null || hit.name != "Marker")
+            {
+                return;
+            }
+
+            Vector3 markerPostion = hit.transform.position;
+            Destroy(hit);
+        }
+
     }
+
+    
 }
