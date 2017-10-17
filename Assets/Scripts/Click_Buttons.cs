@@ -7,7 +7,7 @@ using System.Net;
 using System.IO;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Windows.Foundation;
+using System.Collections.Generic;
 
 public class Click_Buttons : MonoBehaviour
 {
@@ -77,26 +77,40 @@ public class Click_Buttons : MonoBehaviour
         //Stream resStream = response.GetResponseStream();
         //StreamReader reader = new StreamReader(resStream);
         //string fin = reader.ReadToEnd();
-        IAsyncAction asyncAction = Windows.System.Threading.ThreadPool.RunAsync(
-        async (workItem) =>
-        {
+        //IAsyncAction asyncAction = System.Threading.ThreadPool.RunAsync(
+        //async (workItem) =>
+        //{
 
-            string json = "{\"username\":\"Frank\", \"password\":\"Fapmaster\"}";
-            byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json.ToCharArray());
+            //string json = "{\"username\":\"Frank\", \"password\":\"Fapmaster\"}";
+            //byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json.ToCharArray());
 
-            string url = "http://35.1.168.14:3000/api/user/login";
-            WebRequest webRequest = WebRequest.Create(url);
-            webRequest.Method = "POST";
-            webRequest.Headers["Content-Type"] = "application/json";
+            //string url = "http://35.1.168.14:3000/api/user/login";
+            //WebRequest webRequest = WebRequest.Create(url);
+            //webRequest.Method = "POST";
+            //webRequest.Headers["Content-Type"] = "application/json";
 
-            Stream stream = await webRequest.GetRequestStreamAsync();
-            stream.Write(jsonBytes, 0, jsonBytes.Length);
+            //Stream stream = webRequest.GetRequestStream();
+            //stream.Write(jsonBytes, 0, jsonBytes.Length);
 
-            WebResponse response = await webRequest.GetResponseAsync();
-        }
-        );
+            //WebResponse response = webRequest.GetResponse();
+        //}
+        //);
 
         //asyncAction.Completed = new AsyncActionCompletedHandler(PostDataAsyncCompleted);
+
+        //Input_Fields user_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
+        //Input_Fields pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
+
+        ASCIIEncoding encoding = new ASCIIEncoding();
+        string json = "{\"username\":\"" + "frank" + "," +
+                          "\",\"password\":\"" + "hi" +"\"}";
+
+        Dictionary<string, string> headers = new Dictionary<string, string>();
+        headers.Add("Content-Type", "application/json");
+
+        byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
+
+        WWW www = new WWW("http://35.1.168.14:3000/api/user/login", pData, headers);
 
         SceneManager.LoadScene(1);
     }
