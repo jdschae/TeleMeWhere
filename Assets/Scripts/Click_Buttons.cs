@@ -97,7 +97,7 @@ public class Click_Buttons : MonoBehaviour
     }    
 
     // Util method for sending post request
-    public WWW SendPostRequest(string json, string url)
+    public static WWW SendPostRequest(string json, string url)
     {
         ASCIIEncoding encoding = new ASCIIEncoding();
 
