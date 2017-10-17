@@ -78,7 +78,7 @@ namespace HoloToolkit.Unity.InputModule
 
             GameObject hit = GazeManager.Instance.HitObject;
 
-            if (hit == null || hit.name != "Marker")
+            if (hit == null || hit.name != "Marker(Clone)")
             {
                 return;
             }
