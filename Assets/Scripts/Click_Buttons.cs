@@ -59,50 +59,9 @@ public class Click_Buttons : MonoBehaviour
     {
         Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
         Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
-        /*
+        
         ASCIIEncoding encoding = new ASCIIEncoding();
-        string json = "{\"username\":\"Frank\", \"password\":\"Fapmaster\"}";
-
-        Dictionary<string, string> headers = new Dictionary<string, string>();
-        headers.Add("Content-Type", "application/json");
-
-        byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
-
-        WWW www = new WWW("35.1.168.14:3000/api/user/login", pData, headers);
-
-        StartCoroutine(request(www));
-        */
-        //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("35.1.168.14:3000/api/model/view/1");
-        //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        //Stream resStream = response.GetResponseStream();
-        //StreamReader reader = new StreamReader(resStream);
-        //string fin = reader.ReadToEnd();
-        //IAsyncAction asyncAction = System.Threading.ThreadPool.RunAsync(
-        //async (workItem) =>
-        //{
-
-            //string json = "{\"username\":\"Frank\", \"password\":\"Fapmaster\"}";
-            //byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json.ToCharArray());
-
-            //string url = "http://35.1.168.14:3000/api/user/login";
-            //WebRequest webRequest = WebRequest.Create(url);
-            //webRequest.Method = "POST";
-            //webRequest.Headers["Content-Type"] = "application/json";
-
-            //Stream stream = webRequest.GetRequestStream();
-            //stream.Write(jsonBytes, 0, jsonBytes.Length);
-
-            //WebResponse response = webRequest.GetResponse();
-        //}
-        //);
-
-        //asyncAction.Completed = new AsyncActionCompletedHandler(PostDataAsyncCompleted);
-
-        //Input_Fields user_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
-        //Input_Fields pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
-
-        ASCIIEncoding encoding = new ASCIIEncoding();
-        string json = "{\"username\":\"" + "frank" + "," +
+        string json = "{\"username\":\"" + "Frank" +
                           "\",\"password\":\"" + "hi" +"\"}";
 
         Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -112,7 +71,18 @@ public class Click_Buttons : MonoBehaviour
 
         WWW www = new WWW("http://35.1.168.14:3000/api/user/login", pData, headers);
 
-        SceneManager.LoadScene(1);
     }
+
+    private IEnumerator WaitForRequest(WWW www) 
+    {
+        yield return www;
+        // check for errors
+        if (www.error == null) {
+            print (www.text);
+        } else {
+            print ("error: "+www.error);
+        }
+        SceneManager.LoadScene(1);
+    }    
 
 }
