@@ -57,31 +57,44 @@ public class Click_Buttons : MonoBehaviour
     //Used when clicking "Sign In" or "Create Account" to start session
     public void ChangeScene()
     {
-        Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
-        Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
-        
-        ASCIIEncoding encoding = new ASCIIEncoding();
-        string json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" +"\"}";
+        if (createCanvas.enabled == true && signInCanvas.enabled == false){
+            
+        }
+        else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
+            Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(1).GetComponent<Input_Fields>();
+            Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(2).GetComponent<Input_Fields>();
+            
+            string json = "{\"username\":\"" + user_inf.username + "\",\"password\":\"" + pass_inf.password +"\"}";
+            string url = "http://35.1.168.14:3000/api/user/login";
 
-        Dictionary<string, string> headers = new Dictionary<string, string>();
-        headers.Add("Content-Type", "application/json");
-
-        byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
-
-        WWW www = new WWW("http://35.1.168.14:3000/api/user/login", pData, headers);
-        StartCoroutine(WaitForRequest(www));
+            WWW www = SendPostRequest(json,url)
+            StartCoroutine(ProcessLogIn(www));
+        }
     }
 
-    private IEnumerator WaitForRequest(WWW www) 
+    // Called when process response from LogIn request
+    private IEnumerator ProcessLogIn(WWW www) 
     {
         yield return www;
         // check for errors
         if (www.error == null) {
             print (www.text);
         } else {
-            print ("error: "+www.error);
+            print ("error: " + www.error);
         }
         SceneManager.LoadScene(1);
     }    
 
+    // Util method for sending post request
+    public WWW SendPostRequest(string json, string url)
+    {
+        ASCIIEncoding encoding = new ASCIIEncoding();
+
+        Dictionary<string, string> headers = new Dictionary<string, string>();
+        headers.Add("Content-Type", "application/json");
+
+        byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
+
+        WWW www = new WWW(url, pData, headers);
+    }
 }

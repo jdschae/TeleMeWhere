@@ -16,12 +16,12 @@ def add_model_route():
 	result = cur.fetchone();
 	return jsonify(modelid = result['LAST_INSERT_ID()'])
 
-@api_model.route('/api/model/view/<modelid>', methods = ['GET'])
-def view_model_route(modelid):
+@api_model.route('/api/model/view', methods = ['GET'])
+def view_model_route():
 	if 'user' not in session:
 		return jsonify(errors = [{'message': "Please log in first"}]), 401
 	cur = db.cursor()
-	cur.execute("SELECT * FROM Model WHERE username = %s AND modelid = %s;", (session['user']['username'], modelid))
+	cur.execute("SELECT * FROM Model WHERE username = %s;", (session['user']['username']))
 	result = cur.fetchone()
 	if result:
 		return jsonify(username = result['username'])
@@ -37,7 +37,7 @@ def delete_model_route():
 		return jsonify(errors = [{'message': "You did not provide the "
 					   "necessary fields"}]), 422
 	cur = db.cursor() 
-	cur.execute("SELECT * FROM Model WHERE modelid = %s AND username = %s", (request.json['modelid'], session['user']['username']))
+	cur.execute("SELECT * FROM Model WHERE username = %s", (request.json['modelid'], session['user']['username']))
 	if not cur.fetchone():
 		return jsonify(errors = [{'message': "User doesn't have this model"}]), 401
 	cur.execute("DELETE FROM Model WHERE modelid = %s", request.json['modelid'])
