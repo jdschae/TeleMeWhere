@@ -11,8 +11,10 @@ def add_marker_route():
 	check_user_and_model(session, request.json)
 
 	cur = db.cursor()
+	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
+	modelid = cur.fetchone()['modelid']
 	cur.execute("INSERT INTO Marker (modelid, message, x, y, z) VALUES (%s, %s, %s, %s, %s)",
-	 (request.json['modelid'], request.json['message'], request.json['x'], request.json['y'], request.json['z']))
+	 (modelid, request.json['message'], request.json['x'], request.json['y'], request.json['z']))
 	cur.execute("SELECT LAST_INSERT_ID()");
 	result = cur.fetchone();
 	return jsonify(markerid = result['LAST_INSERT_ID()'])
@@ -33,7 +35,9 @@ def delete_marker_route():
 	if 'user' not in session:
 		return jsonify(errors = [{'message': "User not in session"}]), 422
 	cur = db.cursor()
-	cur.execute("SELECT * FROM Model WHERE modelid = %s AND username = %s", (json['modelid'], session['user']['username']))
+	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
+	modelid = cur.fetchone()['modelid']
+	cur.execute("SELECT * FROM Model WHERE modelid = %s AND username = %s", (modelid, session['user']['username']))
 	if not cur.fetchone():
 		return jsonify(errors = [{'message': "User doesn't have access to this model"}]), 401
 	check_marker(session, request.json)
@@ -43,18 +47,17 @@ def delete_marker_route():
 
 
 def check_user_and_model(session, json):
-	if ('modelid' not in json or 'x' not in json or 'y' not in json or 'z' not in json
+	if ( 'x' not in json or 'y' not in json or 'z' not in json
 		or 'message' not in json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
 	cur = db.cursor()
-	cur.execute("SELECT * FROM Model WHERE modelid = %s AND username = %s", (json['modelid'], session['user']['username']))
-	if not cur.fetchone():
-		return jsonify(errors = [{'message': "User doesn't have access to this model"}]), 401
 
 def check_marker(session, json):
 	if ('markerid' not in json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
 	cur = db.cursor()
-	cur.execute("SELECT * FROM Marker WHERE markerid = %s AND modelid = %s", (json['markerid'], json['modelid']))
+	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
+	modelid = cur.fetchone()['modelid']
+	cur.execute("SELECT * FROM Marker WHERE markerid = %s AND modelid = %s", (json['markerid'], modelid))
 	if not cur.fetchone():
 		return jsonify(errors = [{'message': "This marker doesn't exist"}]), 401
