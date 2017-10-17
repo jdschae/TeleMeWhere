@@ -1974,7 +1974,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1394448943}
     m_Modifications:
     - target: {fileID: 11401954, guid: c4e389e44d96da64ea974ab237ce1a9a, type: 2}
       propertyPath: InputField
@@ -2005,6 +2005,10 @@ Prefab:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 22458684, guid: c4e389e44d96da64ea974ab237ce1a9a, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 11401954, guid: c4e389e44d96da64ea974ab237ce1a9a, type: 2}
       propertyPath: InputFieldSlide
       value: 
@@ -2014,10 +2018,14 @@ Prefab:
       propertyPath: m_IgnoreReversedGraphics
       value: 0
       objectReference: {fileID: 0}
-
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4e389e44d96da64ea974ab237ce1a9a, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &1068481330 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22458684, guid: c4e389e44d96da64ea974ab237ce1a9a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068481329}
 --- !u!1001 &1118539465
 Prefab:
   m_ObjectHideFlags: 0
@@ -2815,6 +2823,7 @@ RectTransform:
   m_Children:
   - {fileID: 494260413}
   - {fileID: 1198882732}
+  - {fileID: 1068481330}
   m_Father: {fileID: 830890414}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
