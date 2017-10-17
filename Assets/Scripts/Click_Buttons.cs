@@ -61,8 +61,7 @@ public class Click_Buttons : MonoBehaviour
         Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
         
         ASCIIEncoding encoding = new ASCIIEncoding();
-        string json = "{\"username\":\"" + "Frank" +
-                          "\",\"password\":\"" + "hi" +"\"}";
+        string json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" +"\"}";
 
         Dictionary<string, string> headers = new Dictionary<string, string>();
         headers.Add("Content-Type", "application/json");
@@ -70,7 +69,7 @@ public class Click_Buttons : MonoBehaviour
         byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
 
         WWW www = new WWW("http://35.1.168.14:3000/api/user/login", pData, headers);
-
+        StartCoroutine(WaitForRequest(www));
     }
 
     private IEnumerator WaitForRequest(WWW www) 
