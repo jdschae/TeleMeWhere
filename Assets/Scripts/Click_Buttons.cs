@@ -64,10 +64,10 @@ public class Click_Buttons : MonoBehaviour
             Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(1).GetComponent<Input_Fields>();
             Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(2).GetComponent<Input_Fields>();
             
-            string json = "{\"username\":\"" + user_inf.username + "\",\"password\":\"" + pass_inf.password +"\"}";
+            string json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" +"\"}";
             string url = "http://35.1.168.14:3000/api/user/login";
 
-            WWW www = SendPostRequest(json,url)
+            WWW www = SendPostRequest(json, url);
             StartCoroutine(ProcessLogIn(www));
         }
     }
@@ -95,6 +95,6 @@ public class Click_Buttons : MonoBehaviour
 
         byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
 
-        WWW www = new WWW(url, pData, headers);
+        return new WWW(url, pData, headers);
     }
 }
