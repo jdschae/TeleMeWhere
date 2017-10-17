@@ -48,31 +48,19 @@ public class Click_Buttons : MonoBehaviour
     //Used when clicking "Sign In" or "Create Account" to start session
     public void ChangeScene(string sceneName)
     {
-        user_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
-        pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
+        Input_Fields user_inf = createCanvas.transform.GetChild(0).GetChild(3).GetComponent<Input_Fields>();
+        Input_Fields pass_inf = createCanvas.transform.GetChild(0).GetChild(4).GetComponent<Input_Fields>();
 
         ASCIIEncoding encoding = new ASCIIEncoding();
         string json = "{\"username\":\"" + user_inf.username + "," +
                           "\",\"password\":\"" + pass_inf.password +"\"}";
-        byte[] data = encoding.GetBytes(json);
 
-        WebRequest request = WebRequest.Create("35.1.168.14:3000/api/user/login");
-        request.Method = "POST";
-        request.ContentType = "application/json";
-        request.ContentLength = data.Length;
-
-        Stream stream = request.GetRequestStream();
-        stream.Write(data, 0, data.Length);
-        stream.Close();
-
-        WebResponse response = request.GetResponse();
-        stream = response.GetResponseStream();
-
-        StreamReader sr99 = new StreamReader(stream);
-        MessageBox.Show(sr99.ReadToEnd());
-
-        sr99.Close();
-        stream.Close();
+        Hashtable headers = new Hashtable();
+        headers.Add("Content-Type", "application/json");
+         
+        byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
+         
+        WWW www = new WWW("35.1.168.14:3000/api/user/login", pData, headers);
 
         SceneManager.LoadScene(sceneName);
     }
