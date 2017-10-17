@@ -8,6 +8,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Click_Buttons : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class Click_Buttons : MonoBehaviour
     public Canvas mainCanvas;
     public Canvas signInCanvas;
     public Canvas createCanvas;
+
+    //For Invalid Username/Password
+    private Text invalid;
 
     //On start, only Main Menu is visible
     private void Awake()
@@ -31,6 +35,7 @@ public class Click_Buttons : MonoBehaviour
         signInCanvas.enabled = true;
         mainCanvas.enabled = false;
         createCanvas.enabled = false;
+        invalid.enabled = false;
     }
 
     //Used when clicking "Create Account" from Main Menu
@@ -47,6 +52,7 @@ public class Click_Buttons : MonoBehaviour
         createCanvas.enabled = false;
         signInCanvas.enabled = false;
         mainCanvas.enabled = true;
+        invalid.enabled = false;
     }
 
     private IEnumerator request(WWW www)
@@ -67,7 +73,7 @@ public class Click_Buttons : MonoBehaviour
             string json = "{\"username\":\"" + user_inf.username + "\",\"password\":\"" + pass_inf.password +"\"}";
             string url = "http://35.1.168.14:3000/api/user/login";
 
-            WWW www = SendPostRequest(json,url)
+            WWW www = SendPostRequest(json, url);
             StartCoroutine(ProcessLogIn(www));
         }
     }
@@ -95,6 +101,6 @@ public class Click_Buttons : MonoBehaviour
 
         byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
 
-        WWW www = new WWW(url, pData, headers);
+        return new WWW(url, pData, headers);
     }
 }
