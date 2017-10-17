@@ -25,7 +25,7 @@ namespace HoloToolkit.UI.Keyboard
         [HideInInspector]
         public Keyboard.LayoutType KeyboardLayout = Keyboard.LayoutType.Alpha;
 
-        private const float KeyBoardPositionOffset = 0.045f;
+        private const float KeyBoardPositionOffset = 0.75f;
 
         /// <summary>
         /// Override OnPointerClick to spawn keyboard
@@ -39,7 +39,7 @@ namespace HoloToolkit.UI.Keyboard
 
             if (KeyboardSpawnPoint != null)
             {
-                Keyboard.Instance.RepositionKeyboard(KeyboardSpawnPoint, null, KeyBoardPositionOffset);
+                Keyboard.Instance.RepositionKeyboard(KeyboardSpawnPoint.position + new Vector3(0.0f, 0.0f, -1.0f), KeyBoardPositionOffset);
             }
             else
             {
