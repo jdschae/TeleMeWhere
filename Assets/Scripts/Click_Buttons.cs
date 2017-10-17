@@ -63,6 +63,8 @@ public class Click_Buttons : MonoBehaviour
     //Used when clicking "Sign In" or "Create Account" to start session
     public void ChangeScene()
     {
+        string json = "";
+        string url = "";
         if (createCanvas.enabled == true && signInCanvas.enabled == false){
             
         }
@@ -70,8 +72,9 @@ public class Click_Buttons : MonoBehaviour
             Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(1).GetComponent<Input_Fields>();
             Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(2).GetComponent<Input_Fields>();
             
-            string json = "{\"username\":\"" + user_inf.username + "\",\"password\":\"" + pass_inf.password +"\"}";
-            string url = "http://35.1.168.14:3000/api/user/login";
+            //this needs to be fixed when we figure out how to get the text from the input fields
+            json = "{\"username\":\"" + user_inf.username + "\",\"password\":\"" + pass_inf.password +"\"}";
+            url = "http://35.1.168.14:3000/api/user/login";
 
             WWW www = SendPostRequest(json, url);
             StartCoroutine(ProcessLogIn(www));
@@ -84,8 +87,10 @@ public class Click_Buttons : MonoBehaviour
         yield return www;
         // check for errors
         if (www.error == null) {
+            invalid.enabled = false;
             print (www.text);
         } else {
+            invalid.enabled = true;
             print ("error: " + www.error);
         }
         SceneManager.LoadScene(1);
