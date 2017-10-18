@@ -106,7 +106,7 @@ namespace HoloToolkit.Unity.InputModule
                         "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + "message "+"\"}";
             string api = "/api/marker/add";
 
-            WWW www = NetworkUtility.SendPostRequest(json, api);
+            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
             // TODO: Parse response 
             GameObject.Instantiate(MarkerTemplate, gazeHitPosition, Quaternion.identity, HostTransform);
 

@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class NetworkUtility : MonoBehaviour {
+public class NetworkUtility : Singleton<NetworkUtility> {
 
 
-    public static string IPAddress;
+    public string IPAddress;
     // Util method for sending post request
-    public static WWW SendPostRequest(string json, string apiRoute)
+    public WWW SendPostRequest(string json, string apiRoute)
     {
         ASCIIEncoding encoding = new ASCIIEncoding();
 

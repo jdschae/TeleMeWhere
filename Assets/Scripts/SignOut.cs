@@ -9,7 +9,7 @@ public class SignOut : MonoBehaviour {
     {	
     	string json = "";
     	string api = "/api/user/logout";
-        WWW www = NetworkUtility.SendPostRequest(json, api);
+        WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
         // parse databefore signout
         SceneManager.LoadScene(0);
     }

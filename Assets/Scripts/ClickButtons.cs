@@ -9,8 +9,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using HoloToolkit.UI.Keyboard;
 
-public class Click_Buttons : MonoBehaviour
+public class ClickButtons : MonoBehaviour
 {
 
     //Three main Canvas Screens before logging in
@@ -74,21 +75,18 @@ public class Click_Buttons : MonoBehaviour
     public void ChangeScene()
     {
         string json = "";
-        string url = "";
+        string api = "";
         if (createCanvas.enabled == true && signInCanvas.enabled == false){
             //json = "{\"firstname\":\"" + firstname_inf.text + "\",\"lastname\":\"" + lastname_inf.text + "\",\"username\":\"" + username_inf.text + "\",\"password\":\"" + pass_inf.text + "\",\"password2\":\"" + pass2_inf.text + "\",\"email\":\"" + email_inf.text + "\"}";
         }
         else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
-            //Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(1).GetComponent<Input_Fields>();
-            //Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(2).GetComponent<Input_Fields>();
-            
-            //json = "{\"username\":\"" + username_inf.text + "\",\"password\":\"" + pass_inf.text + "\"}";
+            KeyboardInputField user_inf = signInCanvas.transform.GetChild(0).GetChild(3).GetComponent<KeyboardInputField>();
+            KeyboardInputField pswrd_inf = signInCanvas.transform.GetChild(0).GetChild(4).GetComponent<KeyboardInputField>();
 
-            json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" + "\"}";
+            json = "{\"username\":\"" + user_inf.text + "\",\"password\":\"" + pswrd_inf.text + "\"}";
             api = "/api/user/login";
 
-
-            WWW www = NetworkUtility.SendPostRequest(json, api);
+            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
             StartCoroutine(ProcessLogIn(www));
         }
     }
@@ -99,13 +97,11 @@ public class Click_Buttons : MonoBehaviour
         yield return www;
         // check for errors
         if (www.error == null) {
-            //invalid.enabled = false;
-            print (www.text);
-        } else {
-            //invalid.enabled = true;
+            SceneManager.LoadScene(1);
+        }
+        else {
             print ("error: " + www.error);
         }
-        SceneManager.LoadScene(1);
     }    
 
     

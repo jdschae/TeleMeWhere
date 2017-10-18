@@ -204,7 +204,6 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   signInCanvas: {fileID: 0}
   createCanvas: {fileID: 0}
-  invalid: {fileID: 0}
   firstname_inf: {fileID: 0}
   lastname_inf: {fileID: 0}
   username_inf: {fileID: 0}
@@ -1185,7 +1184,6 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   signInCanvas: {fileID: 0}
   createCanvas: {fileID: 0}
-  invalid: {fileID: 0}
   firstname_inf: {fileID: 0}
   lastname_inf: {fileID: 0}
   username_inf: {fileID: 0}
@@ -1786,6 +1784,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1770564352}
+  - component: {fileID: 1770564353}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1810,6 +1809,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1770564353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770564351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f0ad1be5eda5149802723ab7a7b41c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IPAddress: 35.1.109.92
 --- !u!1 &1840924255
 GameObject:
   m_ObjectHideFlags: 0

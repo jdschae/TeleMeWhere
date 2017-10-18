@@ -89,7 +89,7 @@ namespace HoloToolkit.Unity.InputModule
                         "\",\"z\":\"" + markerPosition.z + "\"}";
             string api = "/api/marker/delete";
 
-            WWW www = NetworkUtility.SendPostRequest(json, api);
+            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
 
             Destroy(hit);
 
