@@ -82,8 +82,19 @@ public class ClickButtons : MonoBehaviour
         string api = "";
         if (createCanvas.enabled == true && signInCanvas.enabled == false){
             Transform panel = createCanvas.transform.GetChild(0);
+            string firstname = panel.GetChild(3).GetComponent<KeyboardInputField>().text;
+            string lastname = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
             string username = panel.GetChild(5).GetComponent<KeyboardInputField>().text;
             string password1 = panel.GetChild(6).GetComponent<KeyboardInputField>().text;
+            string password2 = panel.GetChild(7).GetComponent<KeyboardInputField>().text;
+            string email = panel.GetChild(8).GetComponent<KeyboardInputField>().text;
+            if (password1 != password2) {
+                // 
+                return;
+            }
+            json = "{\"username\":\"" + username + "\",\"password\":\"" + password1 + "\",\"firstname\":\"" 
+                    + firstname + "\",\"lastname\":\""  + lastname + "\",\"email\":\"" + email + "\"}";
+            api = "/api/user/create";
 
         }
         else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
@@ -92,10 +103,9 @@ public class ClickButtons : MonoBehaviour
 
             json = "{\"username\":\"" + user_inf.text + "\",\"password\":\"" + pswrd_inf.text + "\"}";
             api = "/api/user/login";
-
-            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
-            StartCoroutine(ProcessLogIn(www));
         }
+        WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+        StartCoroutine(ProcessLogIn(www));
     }
 
     // Called when process response from LogIn request
