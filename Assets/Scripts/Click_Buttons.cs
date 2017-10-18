@@ -74,7 +74,7 @@ public class Click_Buttons : MonoBehaviour
         string json = "";
         string url = "";
         if (createCanvas.enabled == true && signInCanvas.enabled == false){
-            //json = firstname_inf.text + lastname_inf.text + username_inf.text + pass_inf.text + pass2_inf.text + email_inf.text;
+            //json = "{\"firstname\":\"" + firstname_inf.text + "\",\"lastname\":\"" + lastname_inf.text + "\",\"username\":\"" + username_inf.text + "\",\"password\":\"" + pass_inf.text + "\",\"password2\":\"" + pass2_inf.text + "\",\"email\":\"" + email_inf.text + "\"}";
         }
         else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
             //Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(1).GetComponent<Input_Fields>();
@@ -82,7 +82,7 @@ public class Click_Buttons : MonoBehaviour
             
             //json = "{\"username\":\"" + username_inf.text + "\",\"password\":\"" + pass_inf.text + "\"}";
 
-            json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" +"\"}";
+            json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" + "\"}";
             url = "http://35.1.109.14:3000/api/user/login";
 
 
