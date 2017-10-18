@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 163785575}
   - component: {fileID: 163785574}
   - component: {fileID: 163785573}
+  - component: {fileID: 163785578}
   m_Layer: 0
   m_Name: Place Marker
   m_TagString: Untagged
@@ -203,6 +204,12 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   signInCanvas: {fileID: 0}
   createCanvas: {fileID: 0}
+  firstname_inf: {fileID: 0}
+  lastname_inf: {fileID: 0}
+  username_inf: {fileID: 0}
+  pass_inf: {fileID: 0}
+  pass2_inf: {fileID: 0}
+  email_inf: {fileID: 0}
 --- !u!114 &163785574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +313,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 163785571}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &163785578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163785571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4c10f6d0667b045bc8f934eca9925a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f27baa75ebd2a6d4287993227aeceaf8, type: 3}
 --- !u!1001 &164368421
 Prefab:
   m_ObjectHideFlags: 0
@@ -411,6 +430,7 @@ GameObject:
   - component: {fileID: 359508148}
   - component: {fileID: 359508147}
   - component: {fileID: 359508146}
+  - component: {fileID: 359508150}
   m_Layer: 0
   m_Name: Rotate
   m_TagString: Untagged
@@ -535,6 +555,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 359508144}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &359508150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359508144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4c10f6d0667b045bc8f934eca9925a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f27baa75ebd2a6d4287993227aeceaf8, type: 3}
 --- !u!1 &479741580
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +579,7 @@ GameObject:
   - component: {fileID: 479741583}
   - component: {fileID: 479741582}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,8 +592,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479741580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.05, z: 0.1}
+  m_LocalPosition: {x: 1000, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.25, z: 0.5}
   m_Children: []
   m_Father: {fileID: 503116815}
   m_RootOrder: 0
@@ -629,7 +661,7 @@ GameObject:
   - component: {fileID: 481730228}
   - component: {fileID: 481730227}
   - component: {fileID: 481730226}
-  - component: {fileID: 481730225}
+  - component: {fileID: 481730230}
   m_Layer: 0
   m_Name: Remove Marker
   m_TagString: Untagged
@@ -651,20 +683,6 @@ Transform:
   m_Father: {fileID: 1158515891}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &481730225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 481730223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54924b904eb21df4eabba1a0d5b26b70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCanvas: {fileID: 0}
-  signInCanvas: {fileID: 0}
-  createCanvas: {fileID: 0}
 --- !u!114 &481730226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,12 +722,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 481730225}
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 503116823}
+        m_MethodName: EnableRemoval
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 503116814}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Sign In
@@ -768,6 +786,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 481730223}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &481730230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481730223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4c10f6d0667b045bc8f934eca9925a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f27baa75ebd2a6d4287993227aeceaf8, type: 3}
 --- !u!1 &503116814
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +814,7 @@ GameObject:
   - component: {fileID: 503116821}
   - component: {fileID: 503116822}
   - component: {fileID: 503116823}
+  - component: {fileID: 503116824}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -902,7 +933,7 @@ MonoBehaviour:
   HostTransform: {fileID: 503116815}
   RotationLerpSpeed: 20
   DistanceScale: 2
-  IsRotatingEnabled: 1
+  IsRotatingEnabled: 0
 --- !u!114 &503116822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HostTransform: {fileID: 503116815}
   MarkerTemplate: {fileID: 479741580}
-  IsPlacementEnabled: 1
+  IsPlacementEnabled: 0
 --- !u!114 &503116823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +959,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fff9b54ff8db3649bd34a924b290790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &503116824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503116814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20f0caa51715e4484231b1cde377d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HostTransform: {fileID: 503116815}
+  IsRemoveEnabled: 0
 --- !u!1001 &588000265
 Prefab:
   m_ObjectHideFlags: 0
@@ -1124,6 +1168,12 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   signInCanvas: {fileID: 0}
   createCanvas: {fileID: 0}
+  firstname_inf: {fileID: 0}
+  lastname_inf: {fileID: 0}
+  username_inf: {fileID: 0}
+  pass_inf: {fileID: 0}
+  pass2_inf: {fileID: 0}
+  email_inf: {fileID: 0}
 --- !u!4 &1158515891
 Transform:
   m_ObjectHideFlags: 0
@@ -1604,6 +1654,7 @@ GameObject:
   - component: {fileID: 1840924259}
   - component: {fileID: 1840924258}
   - component: {fileID: 1840924257}
+  - component: {fileID: 1840924261}
   m_Layer: 0
   m_Name: Drag
   m_TagString: Untagged
@@ -1728,6 +1779,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1840924255}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1840924261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1840924255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4c10f6d0667b045bc8f934eca9925a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: f27baa75ebd2a6d4287993227aeceaf8, type: 3}
 --- !u!1001 &1912085753
 Prefab:
   m_ObjectHideFlags: 0
