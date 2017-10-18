@@ -39,7 +39,7 @@ namespace HoloToolkit.UI.Keyboard
 
             if (KeyboardSpawnPoint != null)
             {
-                Keyboard.Instance.RepositionKeyboard(KeyboardSpawnPoint.position + new Vector3(0.0f, 0.25f, -1.0f), KeyBoardPositionOffset);
+                Keyboard.Instance.RepositionKeyboard(KeyboardSpawnPoint.position + new Vector3(0.0f, -0.3f, -1.0f), KeyBoardPositionOffset);
             }
             else
             {
@@ -57,9 +57,15 @@ namespace HoloToolkit.UI.Keyboard
         /// <param name="newText"></param>
         private void Keyboard_OnTextUpdated(string newText)
         {
-            if (!string.IsNullOrEmpty(newText))
+            if (newText != null)
             {
+                string oldText = text;
+                
                 text = newText;
+                if (newText.Length > oldText.Length)
+                {
+                    Keyboard.Instance.MoveCaretRight();
+                }
             }
         }
 
