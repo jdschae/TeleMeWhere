@@ -103,7 +103,7 @@ namespace HoloToolkit.Unity.InputModule
 
             Vector3 markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
 
-            string json = "{\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
+            string json = "{\"username\":\"" + NetworkUtility.Instance.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
                         "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + "message "+"\"}";
             string api = "/api/marker/add";
 

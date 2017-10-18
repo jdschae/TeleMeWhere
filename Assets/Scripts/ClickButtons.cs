@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 using HoloToolkit.UI.Keyboard;
+using Json.
 
 public class ClickButtons : MonoBehaviour
 {
@@ -25,16 +26,18 @@ public class ClickButtons : MonoBehaviour
 
     public static string ipAddress;
 
+    private class UserInfo
+    {
+        public string username;
+    }
+
     //On start, only Main Menu is visible
     private void Awake()
     {
         mainCanvas.enabled = true;
         signInCanvas.enabled = false;
         createCanvas.enabled = false;
-
-        System.Random rnd = new System.Random();
-        int cookieGen = rnd.Next(1, 0xFFFFFFF);
-        NetworkUtility.Instance.Cookie = cookieGen.ToString();
+        
     }
 
     //Used when clicking "Sign In" from Main Menu
@@ -122,6 +125,9 @@ public class ClickButtons : MonoBehaviour
         yield return www;
         // check for errors
         if (www.error == null) {
+            //succesful log in or account creation
+            UserInfo ui = JsonUtility.FromJson<UserInfo>(www.text);
+            NetworkUtility.Instance.LoginUsername = ui.username;
             SceneManager.LoadScene(1);
         }
         else {

@@ -19,6 +19,7 @@ public class SignOut : MonoBehaviour {
         // check for errors
         if (www.error == null)
         {
+            NetworkUtility.Instance.LoginUsername = "";
             SceneManager.LoadScene(0);
         }
         else
