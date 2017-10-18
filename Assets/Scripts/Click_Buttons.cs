@@ -19,7 +19,7 @@ public class Click_Buttons : MonoBehaviour
     public Canvas createCanvas;
 
     //For Invalid Username/Password
-    public Text invalid;
+    //public Text invalid;
 
     //Input fields on the Create Account and Sign in Screens
     public InputField firstname_inf;
@@ -28,6 +28,8 @@ public class Click_Buttons : MonoBehaviour
     public InputField pass_inf;
     public InputField pass2_inf;
     public InputField email_inf;
+
+    public static string ipAddress;
 
     //On start, only Main Menu is visible
     private void Awake()
@@ -43,7 +45,7 @@ public class Click_Buttons : MonoBehaviour
         signInCanvas.enabled = true;
         mainCanvas.enabled = false;
         createCanvas.enabled = false;
-        invalid.enabled = false;
+        //invalid.enabled = false;
     }
 
     //Used when clicking "Create Account" from Main Menu
@@ -60,7 +62,7 @@ public class Click_Buttons : MonoBehaviour
         createCanvas.enabled = false;
         signInCanvas.enabled = false;
         mainCanvas.enabled = true;
-        invalid.enabled = false;
+        //invalid.enabled = false;
     }
 
     private IEnumerator request(WWW www)
@@ -83,10 +85,10 @@ public class Click_Buttons : MonoBehaviour
             //json = "{\"username\":\"" + username_inf.text + "\",\"password\":\"" + pass_inf.text + "\"}";
 
             json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" + "\"}";
-            url = "http://35.1.109.14:3000/api/user/login";
+            url = "http://35.1.109.92:3000/api/user/login";
 
 
-            WWW www = SendPostRequest(json, url);
+            WWW www = NetworkUtility.SendPostRequest(json, url);
             StartCoroutine(ProcessLogIn(www));
         }
     }
@@ -97,25 +99,14 @@ public class Click_Buttons : MonoBehaviour
         yield return www;
         // check for errors
         if (www.error == null) {
-            invalid.enabled = false;
+            //invalid.enabled = false;
             print (www.text);
         } else {
-            invalid.enabled = true;
+            //invalid.enabled = true;
             print ("error: " + www.error);
         }
         SceneManager.LoadScene(1);
     }    
 
-    // Util method for sending post request
-    public static WWW SendPostRequest(string json, string url)
-    {
-        ASCIIEncoding encoding = new ASCIIEncoding();
-
-        Dictionary<string, string> headers = new Dictionary<string, string>();
-        headers.Add("Content-Type", "application/json");
-
-        byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
-
-        return new WWW(url, pData, headers);
-    }
+    
 }
