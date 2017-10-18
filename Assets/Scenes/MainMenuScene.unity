@@ -953,6 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f0ad1be5eda5149802723ab7a7b41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cookie: 
   IPAddress: 35.1.109.92
 --- !u!1 &494260412
 GameObject:
@@ -3479,7 +3480,7 @@ GameObject:
   - component: {fileID: 1497991166}
   - component: {fileID: 1497991165}
   m_Layer: 5
-  m_Name: Password
+  m_Name: Password1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4854,7 +4855,7 @@ GameObject:
   - component: {fileID: 1890363524}
   - component: {fileID: 1890363523}
   m_Layer: 5
-  m_Name: Password(2)
+  m_Name: Password2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

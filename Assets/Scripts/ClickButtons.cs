@@ -39,9 +39,9 @@ public class ClickButtons : MonoBehaviour
         signInCanvas.enabled = false;
         createCanvas.enabled = false;
 
-        Random rnd = new Random();
-        int cookieGen = rnd.Next(1, 0xFFFFFFFF)
-        NetworkUtility.Instance.cookie = cookieGen.ToString();
+        System.Random rnd = new System.Random();
+        int cookieGen = rnd.Next(1, 0xFFFFFFF);
+        NetworkUtility.Instance.Cookie = cookieGen.ToString();
     }
 
     //Used when clicking "Sign In" from Main Menu
@@ -81,7 +81,10 @@ public class ClickButtons : MonoBehaviour
         string json = "";
         string api = "";
         if (createCanvas.enabled == true && signInCanvas.enabled == false){
-            //json = "{\"firstname\":\"" + firstname_inf.text + "\",\"lastname\":\"" + lastname_inf.text + "\",\"username\":\"" + username_inf.text + "\",\"password\":\"" + pass_inf.text + "\",\"password2\":\"" + pass2_inf.text + "\",\"email\":\"" + email_inf.text + "\"}";
+            Transform panel = createCanvas.transform.GetChild(0);
+            string username = panel.GetChild(5).GetComponent<KeyboardInputField>().text;
+            string password1 = panel.GetChild(6).GetComponent<KeyboardInputField>().text;
+
         }
         else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
             KeyboardInputField user_inf = signInCanvas.transform.GetChild(0).GetChild(3).GetComponent<KeyboardInputField>();
