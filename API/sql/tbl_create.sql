@@ -7,5 +7,4 @@ CREATE TABLE Marker(markerid INT NOT NULL AUTO_INCREMENT, modelid INT NOT NULL, 
 
 INSERT INTO User (username, firstname, lastname, password, email) VALUES ("jahan", "Frank", "Yu", "eecs498", "hello@gmail.com");
 INSERT INTO User (username, firstname, lastname, password, email) VALUES ("daddy", "John", "Schaefer", "eecs498","123@gmail.com");
-INSERT INTO User (username, firstname, lastname, password) VALUES ("mitch", "Mitchell", "Trost", "eecs498", "222@gmail.com");
-
+INSERT INTO User (username, firstname, lastname, password, email) VALUES ("mitch", "Mitchell", "Trost", "eecs498", "222@gmail.com");
