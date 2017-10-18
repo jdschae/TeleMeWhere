@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NetworkUtility : Singleton<NetworkUtility> {
 
-
+    public string Cookie;
     public string IPAddress;
     // Util method for sending post request
     public WWW SendPostRequest(string json, string apiRoute)
@@ -15,6 +15,7 @@ public class NetworkUtility : Singleton<NetworkUtility> {
 
         Dictionary<string, string> headers = new Dictionary<string, string>();
         headers.Add("Content-Type", "application/json");
+        headers.Add("Cookie", Cookie);
 
         byte[] pData = Encoding.ASCII.GetBytes(json.ToCharArray());
 

@@ -38,6 +38,10 @@ public class ClickButtons : MonoBehaviour
         mainCanvas.enabled = true;
         signInCanvas.enabled = false;
         createCanvas.enabled = false;
+
+        Random rnd = new Random();
+        int cookieGen = rnd.Next(1, 0xFFFFFFFF)
+        NetworkUtility.Instance.cookie = cookieGen.ToString();
     }
 
     //Used when clicking "Sign In" from Main Menu
