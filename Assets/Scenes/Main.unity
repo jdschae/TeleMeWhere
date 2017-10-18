@@ -182,8 +182,8 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 22922605}
-  m_TextComponent: {fileID: 0}
-  m_Placeholder: {fileID: 0}
+  m_TextComponent: {fileID: 1180850712}
+  m_Placeholder: {fileID: 1345696888}
   m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
@@ -1090,8 +1090,8 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 521224105}
-  m_TextComponent: {fileID: 0}
-  m_Placeholder: {fileID: 0}
+  m_TextComponent: {fileID: 916258742}
+  m_Placeholder: {fileID: 1652208029}
   m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
@@ -1781,8 +1781,8 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1040106364}
-  m_TextComponent: {fileID: 0}
-  m_Placeholder: {fileID: 0}
+  m_TextComponent: {fileID: 1748393350}
+  m_Placeholder: {fileID: 161015749}
   m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
@@ -3436,8 +3436,8 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1497991166}
-  m_TextComponent: {fileID: 0}
-  m_Placeholder: {fileID: 0}
+  m_TextComponent: {fileID: 1346711923}
+  m_Placeholder: {fileID: 925076097}
   m_ContentType: 0
   m_InputType: 0
   m_AsteriskChar: 42
@@ -4755,8 +4755,8 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1890363524}
-  m_TextComponent: {fileID: 0}
-  m_Placeholder: {fileID: 0}
+  m_TextComponent: {fileID: 574669412}
+  m_Placeholder: {fileID: 1534570980}
   m_ContentType: 0
   m_InputType: 0
   m_AsteriskChar: 42
