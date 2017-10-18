@@ -87,9 +87,9 @@ namespace HoloToolkit.Unity.InputModule
 
             string json = "{\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
                         "\",\"z\":\"" + markerPosition.z + "\"}";
-            string url = "http://35.1.109.92:3000/api/marker/delete";
+            string api = "/api/marker/delete";
 
-            WWW www = NetworkUtility.SendPostRequest(json, url);
+            WWW www = NetworkUtility.SendPostRequest(json, api);
 
             Destroy(hit);
 

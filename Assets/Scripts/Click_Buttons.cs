@@ -85,10 +85,10 @@ public class Click_Buttons : MonoBehaviour
             //json = "{\"username\":\"" + username_inf.text + "\",\"password\":\"" + pass_inf.text + "\"}";
 
             json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" + "\"}";
-            url = "http://35.1.109.92:3000/api/user/login";
+            api = "/api/user/login";
 
 
-            WWW www = NetworkUtility.SendPostRequest(json, url);
+            WWW www = NetworkUtility.SendPostRequest(json, api);
             StartCoroutine(ProcessLogIn(www));
         }
     }

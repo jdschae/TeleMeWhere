@@ -8,8 +8,8 @@ public class SignOut : MonoBehaviour {
 	public void SignOutAction()
     {	
     	string json = "";
-    	string url = "http://35.1.109.92:3000/api/user/logout";
-        WWW www = NetworkUtility.SendPostRequest(json, url);
+    	string api = "/api/user/logout";
+        WWW www = NetworkUtility.SendPostRequest(json, api);
         // parse databefore signout
         SceneManager.LoadScene(0);
     }
