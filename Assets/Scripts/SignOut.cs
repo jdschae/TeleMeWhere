@@ -10,8 +10,21 @@ public class SignOut : MonoBehaviour {
     	string json = "";
     	string api = "/api/user/logout";
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
-        // parse databefore signout
-        SceneManager.LoadScene(0);
+        StartCoroutine(ProcessSignOut(www));
+    }
+
+    private IEnumerator ProcessSignOut(WWW www)
+    {
+        yield return www;
+        // check for errors
+        if (www.error == null)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            print("error: " + www.error);
+        }
     }
 
 }

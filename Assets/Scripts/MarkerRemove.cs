@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
@@ -91,8 +92,22 @@ namespace HoloToolkit.Unity.InputModule
 
             WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
 
-            Destroy(hit);
+            StartCoroutine(ProcessMarkerRemoveRequest(www, hit));
 
+        }
+
+        private IEnumerator ProcessMarkerRemoveRequest(WWW www, GameObject victim)
+        {
+            yield return www;
+            // check for errors
+            if (www.error == null)
+            {
+                Destroy(victim);
+            }
+            else
+            {
+                print("error: " + www.error);
+            }
         }
 
     }

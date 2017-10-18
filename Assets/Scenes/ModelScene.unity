@@ -1712,7 +1712,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 304928133}
+      - m_Target: {fileID: 1770564354}
         m_MethodName: SignOutAction
         m_Mode: 1
         m_Arguments:
@@ -1785,6 +1785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1770564352}
   - component: {fileID: 1770564353}
+  - component: {fileID: 1770564354}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1820,7 +1821,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f0ad1be5eda5149802723ab7a7b41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cookie: 
   IPAddress: 35.1.109.92
+--- !u!114 &1770564354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770564351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a893a3f1902ac6c449027ab4ef3d9c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1840924255
 GameObject:
   m_ObjectHideFlags: 0

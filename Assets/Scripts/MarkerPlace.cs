@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -107,11 +108,22 @@ namespace HoloToolkit.Unity.InputModule
             string api = "/api/marker/add";
 
             WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
-            // TODO: Parse response 
-            GameObject.Instantiate(MarkerTemplate, gazeHitPosition, Quaternion.identity, HostTransform);
 
-            //In model space
-            
+            StartCoroutine(ProcessMarkerPlacementRequest(www, gazeHitPosition));
+        }
+
+        private IEnumerator ProcessMarkerPlacementRequest(WWW www, Vector3 spawnPosition)
+        {
+            yield return www;
+            // check for errors
+            if (www.error == null)
+            {
+                GameObject.Instantiate(MarkerTemplate, spawnPosition, Quaternion.identity, HostTransform);
+            }
+            else
+            {
+                print("error: " + www.error);
+            }
         }
     }
 }

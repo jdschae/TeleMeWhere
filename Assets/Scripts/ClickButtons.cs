@@ -1,13 +1,6 @@
-﻿using System.Text;
-using UnityEngine;
-using UnityEngine.Windows.Speech;
-using HoloToolkit.Unity;
-using System;
-using System.Net;
-using System.IO;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using HoloToolkit.UI.Keyboard;
 
@@ -120,11 +113,11 @@ public class ClickButtons : MonoBehaviour
             api = "/api/user/login";
         }
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
-        StartCoroutine(ProcessLogIn(www));
+        StartCoroutine(ProcessMainMenuRequest(www));
     }
 
     // Called when process response from LogIn request
-    private IEnumerator ProcessLogIn(WWW www) 
+    private IEnumerator ProcessMainMenuRequest(WWW www) 
     {
         yield return www;
         // check for errors
