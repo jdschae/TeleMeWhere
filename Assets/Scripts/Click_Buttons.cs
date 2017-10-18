@@ -19,7 +19,15 @@ public class Click_Buttons : MonoBehaviour
     public Canvas createCanvas;
 
     //For Invalid Username/Password
-    private Text invalid;
+    public Text invalid;
+
+    //Input fields on the Create Account and Sign in Screens
+    public InputField firstname_inf;
+    public InputField lastname_inf;
+    public InputField username_inf;
+    public InputField pass_inf;
+    public InputField pass2_inf;
+    public InputField email_inf;
 
     //On start, only Main Menu is visible
     private void Awake()
@@ -66,12 +74,14 @@ public class Click_Buttons : MonoBehaviour
         string json = "";
         string url = "";
         if (createCanvas.enabled == true && signInCanvas.enabled == false){
-            
+            //json = firstname_inf.text + lastname_inf.text + username_inf.text + pass_inf.text + pass2_inf.text + email_inf.text;
         }
         else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
-            Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(1).GetComponent<Input_Fields>();
-            Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(2).GetComponent<Input_Fields>();
+            //Input_Fields user_inf = signInCanvas.transform.GetChild(0).GetChild(1).GetComponent<Input_Fields>();
+            //Input_Fields pass_inf = signInCanvas.transform.GetChild(0).GetChild(2).GetComponent<Input_Fields>();
             
+            //json = "{\"username\":\"" + username_inf.text + "\",\"password\":\"" + pass_inf.text + "\"}";
+
             json = "{\"username\":\"" + "frank" + "\",\"password\":\"" + "eecs498" +"\"}";
             url = "http://35.1.109.14:3000/api/user/login";
 
