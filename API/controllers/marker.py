@@ -8,7 +8,11 @@ api_marker = Blueprint('api_marker', __name__, template_folder = 'templates')
 
 @api_marker.route('/api/marker/add', methods = ['POST'])
 def add_marker_route():
-	check_user_and_model(session, request.json)
+	if 'user' not in session:
+		return jsonify(errors = [{'message': "User not in session"}]), 422
+	if ( 'x' not in request.json or 'y' not in request.json or 'z' not in request.json
+		or 'message' not in request.json):
+		return jsonify(errors = [{"message": "missing field"}]), 422
 
 	cur = db.cursor()
 	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
@@ -22,8 +26,21 @@ def add_marker_route():
 
 @api_marker.route('/api/marker/edit', methods = ['POST'])
 def edit_marker_route():
-	check_user_and_model(session, request.json)
-	check_marker(session, request.json)
+	if 'user' not in session:
+		return jsonify(errors = [{'message': "User not in session"}]), 422
+	if ( 'x' not in request.json or 'y' not in request.json or 'z' not in request.json
+		or 'message' not in request.json):
+		return jsonify(errors = [{"message": "missing field"}]), 422
+
+	if ('markerid' not in request.json):
+		return jsonify(errors = [{"message": "missing field"}]), 422
+	cur = db.cursor()
+	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
+	modelid = cur.fetchone()['modelid']
+	cur.execute("SELECT * FROM Marker WHERE markerid = %s AND modelid = %s", (request.json['markerid'], modelid))
+	if not cur.fetchone():
+		return jsonify(errors = [{'message': "This marker doesn't exist"}]), 401
+
 	cur = db.cursor()
 	cur.execute("UPDATE Marker SET x = %s, y =%s, z = %s, message = %s WHERE markerid = %s", 
 		(request.json['x'], request.json['y'], request.json['z'],
@@ -35,29 +52,13 @@ def delete_marker_route():
 	if 'user' not in session:
 		return jsonify(errors = [{'message': "User not in session"}]), 422
 	cur = db.cursor()
+	if ( 'x' not in request.json or 'y' not in request.json or 'z' not in request.json):
+		return jsonify(errors = [{"message": "missing field"}]), 422
+
 	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
 	modelid = cur.fetchone()['modelid']
-	cur.execute("SELECT * FROM Model WHERE modelid = %s AND username = %s", (modelid, session['user']['username']))
-	if not cur.fetchone():
-		return jsonify(errors = [{'message': "User doesn't have access to this model"}]), 401
-	check_marker(session, request.json)
 
-	cur.execute("DELETE FROM Marker WHERE markerid = %s", (request.json['markerid']))
-	return jsonify(markerid = request.json['markerid'])
+	cur.execute("DELETE FROM Marker WHERE x = %s AND y = %s AND z = %s AND modelid = %s",
+	 (request.json['x'],request.json['y'],request.json['z'], modelid))
+	return jsonify(modelid = modelid)
 
-
-def check_user_and_model(session, json):
-	if ( 'x' not in json or 'y' not in json or 'z' not in json
-		or 'message' not in json):
-		return jsonify(errors = [{"message": "missing field"}]), 422
-	cur = db.cursor()
-
-def check_marker(session, json):
-	if ('markerid' not in json):
-		return jsonify(errors = [{"message": "missing field"}]), 422
-	cur = db.cursor()
-	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
-	modelid = cur.fetchone()['modelid']
-	cur.execute("SELECT * FROM Marker WHERE markerid = %s AND modelid = %s", (json['markerid'], modelid))
-	if not cur.fetchone():
-		return jsonify(errors = [{'message': "This marker doesn't exist"}]), 401

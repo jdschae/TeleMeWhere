@@ -22,9 +22,11 @@ def view_model_route():
 		return jsonify(errors = [{'message': "Please log in first"}]), 401
 	cur = db.cursor()
 	cur.execute("SELECT * FROM Model WHERE username = %s;", (session['user']['username']))
-	result = cur.fetchone()
-	if result:
-		return jsonify(username = result['username'])
+	modelid = cur.fetchone()['modelid']
+	cur.execute("SELECT * FROM Marker WHERE modelid = %s", modelid)
+	results = cur.fetchall()
+	if results:
+		return jsonify(markers = results)
 	else:
 		return jsonify(errors = [{'message': "You do not have the "
 					   "necessary credentials for the resource"}]), 401

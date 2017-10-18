@@ -84,7 +84,15 @@ namespace HoloToolkit.Unity.InputModule
             }
 
             Vector3 markerPostion = hit.transform.position;
+
+            string json = "{\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
+                        "\",\"z\":\"" + markerPosition.z + "\"}";
+            string url = "http://35.1.109.92:3000/api/marker/delete";
+
+            WWW www = Click_Buttons.SendPostRequest(json, url);
+
             Destroy(hit);
+
         }
 
     }
