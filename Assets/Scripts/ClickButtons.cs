@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 using HoloToolkit.UI.Keyboard;
-using Json.
 
 public class ClickButtons : MonoBehaviour
 {
