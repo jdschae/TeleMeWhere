@@ -39,7 +39,7 @@ namespace HoloToolkit.UI.Keyboard
 
             if (KeyboardSpawnPoint != null)
             {
-                Keyboard.Instance.RepositionKeyboard(KeyboardSpawnPoint.position + new Vector3(0.0f, -0.5f, -1.0f), KeyBoardPositionOffset);
+                Keyboard.Instance.RepositionKeyboard(KeyboardSpawnPoint.position + new Vector3(0.0f, 0.25f, -1.0f), KeyBoardPositionOffset);
             }
             else
             {
