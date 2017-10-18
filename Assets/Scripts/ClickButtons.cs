@@ -64,6 +64,20 @@ public class ClickButtons : MonoBehaviour
     //Used when clikcing "Main Menu" from either Sign In screen or Create Account
     public void GoBack()
     {
+        if (createCanvas.enabled)
+        {
+            Transform panel = createCanvas.transform.GetChild(0);
+            for (int i = 3; i < 8; ++i)
+            {
+                panel.GetChild(i).GetComponent<KeyboardInputField>().text = "";
+            }
+        }
+        else if (signInCanvas.enabled)
+        {
+            Transform panel = signInCanvas.transform.GetChild(0);
+            string username = panel.GetChild(3).GetComponent<KeyboardInputField>().text = "";
+            string password = panel.GetChild(4).GetComponent<KeyboardInputField>().text = "";
+        }
         createCanvas.enabled = false;
         signInCanvas.enabled = false;
         mainCanvas.enabled = true;
@@ -98,10 +112,11 @@ public class ClickButtons : MonoBehaviour
 
         }
         else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
-            KeyboardInputField user_inf = signInCanvas.transform.GetChild(0).GetChild(3).GetComponent<KeyboardInputField>();
-            KeyboardInputField pswrd_inf = signInCanvas.transform.GetChild(0).GetChild(4).GetComponent<KeyboardInputField>();
+            Transform panel = signInCanvas.transform.GetChild(0);
+            string username = panel.GetChild(3).GetComponent<KeyboardInputField>().text;
+            string password = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
 
-            json = "{\"username\":\"" + user_inf.text + "\",\"password\":\"" + pswrd_inf.text + "\"}";
+            json = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}";
             api = "/api/user/login";
         }
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
