@@ -8,14 +8,17 @@ api_marker = Blueprint('api_marker', __name__, template_folder = 'templates')
 
 @api_marker.route('/api/marker/add', methods = ['POST'])
 def add_marker_route():
+	'''
 	if 'user' not in session:
 		return jsonify(errors = [{'message': "User not in session"}]), 422
+	'''
 	if ( 'x' not in request.json or 'y' not in request.json or 'z' not in request.json
-		or 'message' not in request.json):
+		or 'message' not in request.json or 'username' not in request.json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
-
+	if (request.json['username'] == ""):
+		return jsonify(errors = [{"message": "not logged in"}]), 422
 	cur = db.cursor()
-	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
+	cur.execute("SELECT * FROM Model WHERE username = %s", request.json['username'])
 	modelid = cur.fetchone()['modelid']
 	cur.execute("INSERT INTO Marker (modelid, message, x, y, z) VALUES (%s, %s, %s, %s, %s)",
 	 (modelid, request.json['message'], request.json['x'], request.json['y'], request.json['z']))
@@ -26,16 +29,19 @@ def add_marker_route():
 
 @api_marker.route('/api/marker/edit', methods = ['POST'])
 def edit_marker_route():
+	'''
 	if 'user' not in session:
 		return jsonify(errors = [{'message': "User not in session"}]), 422
+	'''
 	if ( 'x' not in request.json or 'y' not in request.json or 'z' not in request.json
-		or 'message' not in request.json):
+		or 'message' not in request.json or 'username' not in request.json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
-
+	if (request.json['username'] == ""):
+		return jsonify(errors = [{"message": "not logged in"}]), 422
 	if ('markerid' not in request.json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
 	cur = db.cursor()
-	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
+	cur.execute("SELECT * FROM Model WHERE username = %s", request.json['username'])
 	modelid = cur.fetchone()['modelid']
 	cur.execute("SELECT * FROM Marker WHERE markerid = %s AND modelid = %s", (request.json['markerid'], modelid))
 	if not cur.fetchone():
@@ -49,13 +55,16 @@ def edit_marker_route():
 
 @api_marker.route('/api/marker/delete', methods = ['POST'])
 def delete_marker_route():
+	'''
 	if 'user' not in session:
 		return jsonify(errors = [{'message': "User not in session"}]), 422
+	'''
 	cur = db.cursor()
-	if ( 'x' not in request.json or 'y' not in request.json or 'z' not in request.json):
+	if ( 'x' not in request.json or 'y' not in request.json or 'z' not in request.json or 'username' not in request.json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
-
-	cur.execute("SELECT * FROM Model WHERE username = %s", session['user']['username'])
+	if (request.json['username'] == ""):
+		return jsonify(errors = [{"message": "not logged in"}]), 422
+	cur.execute("SELECT * FROM Model WHERE username = %s", request.json['username'])
 	modelid = cur.fetchone()['modelid']
 
 	cur.execute("DELETE FROM Marker WHERE x = %s AND y = %s AND z = %s AND modelid = %s",
