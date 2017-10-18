@@ -98,12 +98,17 @@ namespace HoloToolkit.Unity.InputModule
                 return;
             }
 
-
             Vector3 gazeHitPosition = GazeManager.Instance.HitInfo.point;
             GameObject.Instantiate(MarkerTemplate, gazeHitPosition, Quaternion.identity, HostTransform);
 
             //In model space
             Vector3 markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
+
+            string json = "{\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
+                        "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + "message "+"\"}";
+            string url = "http://35.1.109.14:3000/api/marker/add";
+
+            WWW www = Click_Buttons.SendPostRequest(json,url)
         }
     }
 }
