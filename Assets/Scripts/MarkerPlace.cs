@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -23,9 +21,37 @@ namespace HoloToolkit.Unity.InputModule
             {
                 HostTransform = transform;
             }
+
+            string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
+            string api = "/api/model/view";
+
+            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+
+            StartCoroutine(ProcessAllMarkerRequest(www));
         }
 
-        
+        private IEnumerator ProcessAllMarkerRequest(WWW www)
+        {
+            yield return www;
+            // check for errors
+            if (www.error == null)
+            {
+                string[] Coordinates = www.text.Split(';');
+                for (int i = 0; i < Coordinates.Length - 1; ++i)
+                {
+                    string[] Components = Coordinates[i].Split(',');
+                    Vector3 worldPosition = HostTransform.TransformPoint(new Vector3(float.Parse(Components[1]), float.Parse(Components[2]), float.Parse(Components[3])));
+                    GameObject marker = GameObject.Instantiate(MarkerTemplate, worldPosition, Quaternion.identity, HostTransform);
+                    marker.name += Components[0];
+                }
+            }
+            else
+            {
+                print("error: " + www.error);
+            }
+        }
+
+
 
         public void OnFocusEnter()
         {
@@ -79,19 +105,6 @@ namespace HoloToolkit.Unity.InputModule
             PlaceMarker();
         }
 
-        //public void onsourcedetected(sourcestateeventdata eventdata)
-        //{
-        //    // nothing to do
-        //}
-
-        //public void onsourcelost(sourcestateeventdata eventdata)
-        //{
-        //    if (currentinputsource != null && eventdata.sourceid == currentinputsourceid)
-        //    {
-        //        stopdragging();
-        //    }
-        //}
-
         private void PlaceMarker()
         {
             if (!isGazed || !IsPlacementEnabled)
@@ -103,7 +116,7 @@ namespace HoloToolkit.Unity.InputModule
 
             Vector3 markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
 
-            string json = "{\"username\":\"" + NetworkUtility.Instance.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
+            string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
                         "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + "message "+"\"}";
             string api = "/api/marker/add";
 
@@ -118,7 +131,8 @@ namespace HoloToolkit.Unity.InputModule
             // check for errors
             if (www.error == null)
             {
-                GameObject.Instantiate(MarkerTemplate, spawnPosition, Quaternion.identity, HostTransform);
+                GameObject marker = GameObject.Instantiate(MarkerTemplate, spawnPosition, Quaternion.identity, HostTransform);
+                marker.name += www.text;
             }
             else
             {

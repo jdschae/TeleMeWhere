@@ -25,11 +25,6 @@ public class ClickButtons : MonoBehaviour
 
     public static string ipAddress;
 
-    private class UserInfo
-    {
-        public string username;
-    }
-
     //On start, only Main Menu is visible
     private void Awake()
     {
@@ -125,8 +120,7 @@ public class ClickButtons : MonoBehaviour
         // check for errors
         if (www.error == null) {
             //succesful log in or account creation
-            UserInfo ui = JsonUtility.FromJson<UserInfo>(www.text);
-            NetworkUtility.Instance.LoginUsername = ui.username;
+            NetworkUtility.LoginUsername = www.text.Split('\"')[3];
             SceneManager.LoadScene(1);
         }
         else {

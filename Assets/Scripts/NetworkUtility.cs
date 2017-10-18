@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NetworkUtility : Singleton<NetworkUtility> {
 
-    public string LoginUsername;
+    public static string LoginUsername;
     public string IPAddress;
     // Util method for sending post request
     public WWW SendPostRequest(string json, string apiRoute)

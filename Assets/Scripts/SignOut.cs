@@ -7,7 +7,7 @@ public class SignOut : MonoBehaviour {
 
 	public void SignOutAction()
     {	
-    	string json = "";
+    	string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
     	string api = "/api/user/logout";
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
         StartCoroutine(ProcessSignOut(www));
@@ -19,7 +19,7 @@ public class SignOut : MonoBehaviour {
         // check for errors
         if (www.error == null)
         {
-            NetworkUtility.Instance.LoginUsername = "";
+            NetworkUtility.LoginUsername = "";
             SceneManager.LoadScene(0);
         }
         else
