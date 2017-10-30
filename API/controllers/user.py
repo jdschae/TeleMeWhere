@@ -8,11 +8,6 @@ api_user = Blueprint('api_user', __name__, template_folder = 'templates')
 
 @api_user.route('/api/user/login',methods = ['POST'])
 def login_route():
-	'''
-	if 'user' in session:
-		return jsonify(errors = [{'message': "Please log out first"}]), 422
-	'''
-	print (request.get_json())
 	if 'username' not in request.json or 'password' not in request.json:
 		return jsonify(errors = [{'message': "You did not provide the "
 					   "necessary fields"}]), 422
@@ -58,6 +53,7 @@ def create_route():
 						"VALUES(%s, %s, %s, %s, %s)", (request_json['username'],
 						request_json['firstname'], request_json['lastname'],
 						pw_hash, request_json['email']))
+		cur.execute("INSERT INTO Model (username) VALUES (%s)", request.json['username'])
 	return jsonify(username = request_json['username'])
 
 

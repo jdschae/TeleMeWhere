@@ -8,28 +8,26 @@ api_model = Blueprint('api_model', __name__, template_folder = 'templates')
 
 @api_model.route('/api/model/add', methods = ['POST'])
 def add_model_route():
-	if 'user' not in session:
-		return jsonify(errors = [{'message': "User not in session"}]), 422
+
 	cur = db.cursor()
-	cur.execute("INSERT INTO Model (username) VALUES (%s)", (session['user']['username']))
+	cur.execute("INSERT INTO Model (username) VALUES (%s)", request.json['username'])
 	cur.execute("SELECT LAST_INSERT_ID()");
 	result = cur.fetchone();
 	return jsonify(modelid = result['LAST_INSERT_ID()'])
 
-@api_model.route('/api/model/view', methods = ['GET'])
+@api_model.route('/api/model/view', methods = ['POST'])
 def view_model_route():
-	if 'user' not in session:
-		return jsonify(errors = [{'message': "Please log in first"}]), 401
+	if (request.json['username'] == ""):
+		return jsonify(errors = [{"message": "not logged in"}]), 422
 	cur = db.cursor()
-	cur.execute("SELECT * FROM Model WHERE username = %s;", (session['user']['username']))
+	cur.execute("SELECT * FROM Model WHERE username = %s;", request.json['username'])
 	modelid = cur.fetchone()['modelid']
 	cur.execute("SELECT * FROM Marker WHERE modelid = %s", modelid)
 	results = cur.fetchall()
-	if results:
-		return jsonify(markers = results)
-	else:
-		return jsonify(errors = [{'message': "You do not have the "
-					   "necessary credentials for the resource"}]), 401
+	output = ""
+	for result in results:
+		output = output + str(result['markerid']) + "," + str(result['x']) + "," + str(result['y']) + "," + str(result['z']) + ";"
+	return output
 
 @api_model.route('/api/model/delete', methods = ['POST'])
 def delete_model_route():
