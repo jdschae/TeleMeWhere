@@ -623,7 +623,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 6a7c26c9-f24f-420e-8f34-123c18ab5790
-  projectName: Test
+  projectName: TeleMeWhere
   organizationId: jdschae
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
