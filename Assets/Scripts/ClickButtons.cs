@@ -15,14 +15,6 @@ public class ClickButtons : MonoBehaviour
     //For Invalid Username/Password
     //public Text invalid;
 
-    //Input fields on the Create Account and Sign in Screens
-    public InputField firstname_inf;
-    public InputField lastname_inf;
-    public InputField username_inf;
-    public InputField pass_inf;
-    public InputField pass2_inf;
-    public InputField email_inf;
-
     public static string ipAddress;
 
     //On start, only Main Menu is visible
@@ -126,7 +118,6 @@ public class ClickButtons : MonoBehaviour
         else {
             print ("error: " + www.error);
         }
-    }    
+    }
 
-    
 }
