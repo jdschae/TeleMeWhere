@@ -5053,6 +5053,7 @@ GameObject:
   - component: {fileID: 1462001910}
   - component: {fileID: 1462001909}
   - component: {fileID: 1462001908}
+  - component: {fileID: 1462001911}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5100,6 +5101,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1462001911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1462001907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99847ee7160688d4c89e9a8d8772cab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patientHomepage: {fileID: 583480015}
+  doctorHomepage: {fileID: 1523200916}
+  invitePatient: {fileID: 42115479}
+  inviteDoc: {fileID: 1822598593}
+  checkInvites: {fileID: 2077596843}
+  editInfo: {fileID: 986827330}
 --- !u!1 &1472660456
 GameObject:
   m_ObjectHideFlags: 0
