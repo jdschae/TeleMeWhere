@@ -124,12 +124,12 @@ GameObject:
   - component: {fileID: 42115474}
   - component: {fileID: 42115473}
   m_Layer: 5
-  m_Name: InvitePatient
+  m_Name: invitePatient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &42115473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,12 +1158,12 @@ GameObject:
   - component: {fileID: 583480010}
   - component: {fileID: 583480009}
   m_Layer: 5
-  m_Name: PatientHomepage
+  m_Name: patientHomepage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &583480009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3004,12 +3004,12 @@ GameObject:
   - component: {fileID: 986827324}
   - component: {fileID: 986827323}
   m_Layer: 5
-  m_Name: EditInfo
+  m_Name: editInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &986827323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3073,12 +3073,6 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   signInCanvas: {fileID: 0}
   createCanvas: {fileID: 0}
-  firstname_inf: {fileID: 938830651}
-  lastname_inf: {fileID: 1770680989}
-  username_inf: {fileID: 2064923523}
-  pass_inf: {fileID: 45223802}
-  pass2_inf: {fileID: 2050409941}
-  email_inf: {fileID: 2127359204}
 --- !u!65 &986827327
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5392,12 +5386,12 @@ GameObject:
   - component: {fileID: 1523200911}
   - component: {fileID: 1523200910}
   m_Layer: 5
-  m_Name: DoctorHomepage
+  m_Name: doctorHomepage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1523200910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7620,12 +7614,12 @@ GameObject:
   - component: {fileID: 1822598588}
   - component: {fileID: 1822598587}
   m_Layer: 5
-  m_Name: InviteDoc
+  m_Name: inviteDoc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1822598587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8427,12 +8421,12 @@ GameObject:
   - component: {fileID: 2077596838}
   - component: {fileID: 2077596837}
   m_Layer: 5
-  m_Name: Check Invites
+  m_Name: checkInvites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2077596837
 MonoBehaviour:
   m_ObjectHideFlags: 0
