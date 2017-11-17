@@ -31,7 +31,6 @@ namespace HoloToolkit.Unity.InputModule
             while (NetworkUtility.Instance.sync_flag) {
                 WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
                 StartCoroutine(ProcessAllMarkerRequest(www));
-                Thread.Sleep(5000);
             }
         }
 
@@ -54,6 +53,7 @@ namespace HoloToolkit.Unity.InputModule
             {
                 print("error: " + www.error);
             }
+            yield return new WaitForSeconds(5);
         }
 
 
