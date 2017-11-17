@@ -13,9 +13,15 @@ public class ClickButtons : MonoBehaviour
     public Canvas createCanvas;
 
     //For Invalid Username/Password
-    //public Text invalid;
+    public Canvas invalid;
 
     public static string ipAddress;
+
+    //Male/Female toggle buttons
+    public Toggle isMale;
+    public Toggle isFemale;
+    public bool male;
+    public bool female;
 
     //On start, only Main Menu is visible
     private void Awake()
@@ -23,7 +29,7 @@ public class ClickButtons : MonoBehaviour
         mainCanvas.enabled = true;
         signInCanvas.enabled = false;
         createCanvas.enabled = false;
-        
+        invalid.enabled = false;
     }
 
     //Used when clicking "Sign In" from Main Menu
@@ -32,7 +38,7 @@ public class ClickButtons : MonoBehaviour
         signInCanvas.enabled = true;
         mainCanvas.enabled = false;
         createCanvas.enabled = false;
-        //invalid.enabled = false;
+        invalid.enabled = false;
     }
 
     //Used when clicking "Create Account" from Main Menu
@@ -63,7 +69,23 @@ public class ClickButtons : MonoBehaviour
         createCanvas.enabled = false;
         signInCanvas.enabled = false;
         mainCanvas.enabled = true;
-        //invalid.enabled = false;
+        invalid.enabled = false;
+    }
+
+    public void ActiveToggle()
+    {
+        if (isMale.isOn)
+        {
+            Debug.Log("User selected Male");
+            male = true;
+            female = false;
+        }
+        else if (isFemale.isOn)
+        {
+            Debug.Log("User selected Female");
+            female = true;
+            male = false;
+        }
     }
 
     private IEnumerator request(WWW www)
@@ -91,7 +113,6 @@ public class ClickButtons : MonoBehaviour
             json = "{\"username\":\"" + username + "\",\"password\":\"" + password1 + "\",\"firstname\":\"" 
                     + firstname + "\",\"lastname\":\""  + lastname + "\",\"email\":\"" + email + "\"}";
             api = "/api/user/create";
-
         }
         else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
             Transform panel = signInCanvas.transform.GetChild(0);
@@ -113,10 +134,12 @@ public class ClickButtons : MonoBehaviour
         if (www.error == null) {
             //succesful log in or account creation
             NetworkUtility.LoginUsername = www.text.Split('\"')[3];
+            invalid.enabled = false;
             SceneManager.LoadScene(1);
         }
         else {
             print ("error: " + www.error);
+            invalid.enabled = true;
         }
     }
 
