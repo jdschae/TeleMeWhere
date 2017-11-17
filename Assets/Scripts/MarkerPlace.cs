@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System.Threading;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -25,9 +26,13 @@ namespace HoloToolkit.Unity.InputModule
             string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
             string api = "/api/model/view";
 
-            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+            NetworkUtility.Instance.sync_flag = true;
 
-            StartCoroutine(ProcessAllMarkerRequest(www));
+            while (NetworkUtility.Instance.sync_flag) {
+                WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+                StartCoroutine(ProcessAllMarkerRequest(www));
+                Thread.Sleep(5000);
+            }
         }
 
         private IEnumerator ProcessAllMarkerRequest(WWW www)

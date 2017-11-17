@@ -8,9 +8,10 @@ public class NetworkUtility : Singleton<NetworkUtility> {
 
     public static string LoginUsername;
     public string IPAddress;
+    public bool sync_flag;
     // Util method for sending post request
     public WWW SendPostRequest(string json, string apiRoute)
-    {
+    {   
         ASCIIEncoding encoding = new ASCIIEncoding();
 
         Dictionary<string, string> headers = new Dictionary<string, string>();
