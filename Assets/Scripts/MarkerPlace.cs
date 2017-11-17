@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System.Threading;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -25,29 +26,36 @@ namespace HoloToolkit.Unity.InputModule
             string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
             string api = "/api/model/view";
 
-            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+            NetworkUtility.Instance.sync_flag = true;
 
-            StartCoroutine(ProcessAllMarkerRequest(www));
+            
+                
+            StartCoroutine(ProcessAllMarkerRequest(json, api));
+            
         }
 
-        private IEnumerator ProcessAllMarkerRequest(WWW www)
-        {
-            yield return www;
-            // check for errors
-            if (www.error == null)
-            {
-                string[] Coordinates = www.text.Split(';');
-                for (int i = 0; i < Coordinates.Length - 1; ++i)
+        private IEnumerator ProcessAllMarkerRequest(String json, String api)
+        {   
+            while (NetworkUtility.Instance.sync_flag) {
+                WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+                yield return www;
+                // check for errors
+                if (www.error == null)
                 {
-                    string[] Components = Coordinates[i].Split(',');
-                    Vector3 worldPosition = HostTransform.TransformPoint(new Vector3(float.Parse(Components[1]), float.Parse(Components[2]), float.Parse(Components[3])));
-                    GameObject marker = GameObject.Instantiate(MarkerTemplate, worldPosition, Quaternion.identity, HostTransform);
-                    marker.name += Components[0];
+                    string[] Coordinates = www.text.Split(';');
+                    for (int i = 0; i < Coordinates.Length - 1; ++i)
+                    {
+                        string[] Components = Coordinates[i].Split(',');
+                        Vector3 worldPosition = HostTransform.TransformPoint(new Vector3(float.Parse(Components[1]), float.Parse(Components[2]), float.Parse(Components[3])));
+                        GameObject marker = GameObject.Instantiate(MarkerTemplate, worldPosition, Quaternion.identity, HostTransform);
+                        marker.name += Components[0];
+                    }
                 }
-            }
-            else
-            {
-                print("error: " + www.error);
+                else
+                {
+                    print("error: " + www.error);
+                }
+                yield return new WaitForSeconds(5);
             }
         }
 
