@@ -9,6 +9,7 @@ namespace HoloToolkit.Unity.InputModule
         public Transform HostTransform;
         public GameObject MarkerTemplate;
         public bool IsPlacementEnabled = false;
+        private ArrayList MarkerLog;
         private bool isGazed;
 
         private IInputSource currentInputSource;
@@ -22,19 +23,17 @@ namespace HoloToolkit.Unity.InputModule
             {
                 HostTransform = transform;
             }
+            MarkerLog = new ArrayList();
 
             string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
             string api = "/api/model/view";
 
             NetworkUtility.Instance.sync_flag = true;
 
-            
-                
             StartCoroutine(ProcessAllMarkerRequest(json, api));
-            
         }
 
-        private IEnumerator ProcessAllMarkerRequest(String json, String api)
+        private IEnumerator ProcessAllMarkerRequest(string json, string api)
         {   
             while (NetworkUtility.Instance.sync_flag) {
                 WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
@@ -42,13 +41,18 @@ namespace HoloToolkit.Unity.InputModule
                 // check for errors
                 if (www.error == null)
                 {
+                    for (int i = 0; i < MarkerLog.Count; ++i)
+                    {
+                        GameObject.Destroy((GameObject) MarkerLog[i]);
+                    }
+                    MarkerLog.Clear();
                     string[] Coordinates = www.text.Split(';');
                     for (int i = 0; i < Coordinates.Length - 1; ++i)
                     {
                         string[] Components = Coordinates[i].Split(',');
                         Vector3 worldPosition = HostTransform.TransformPoint(new Vector3(float.Parse(Components[1]), float.Parse(Components[2]), float.Parse(Components[3])));
-                        GameObject marker = GameObject.Instantiate(MarkerTemplate, worldPosition, Quaternion.identity, HostTransform);
-                        marker.name += Components[0];
+                        MarkerLog.Add(GameObject.Instantiate(MarkerTemplate, worldPosition, Quaternion.identity, HostTransform));
+                        ((GameObject) MarkerLog[MarkerLog.Count - 1]).name += Components[0];
                     }
                 }
                 else
@@ -139,8 +143,8 @@ namespace HoloToolkit.Unity.InputModule
             // check for errors
             if (www.error == null)
             {
-                GameObject marker = GameObject.Instantiate(MarkerTemplate, spawnPosition, Quaternion.identity, HostTransform);
-                marker.name += www.text;
+                MarkerLog.Add(GameObject.Instantiate(MarkerTemplate, spawnPosition, Quaternion.identity, HostTransform));
+                ((GameObject) MarkerLog[MarkerLog.Count - 1]).name += www.text;
             }
             else
             {
