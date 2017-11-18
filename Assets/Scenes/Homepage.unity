@@ -1847,7 +1847,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go Back
+  m_Text: To Model
 --- !u!222 &663194761
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2635,7 +2635,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go Back
+  m_Text: To Model
 --- !u!222 &873855127
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5039,6 +5039,7 @@ GameObject:
   - component: {fileID: 1462001909}
   - component: {fileID: 1462001908}
   - component: {fileID: 1462001911}
+  - component: {fileID: 1462001912}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5069,6 +5070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IPAddress: 35.1.109.92
+  sync_flag: 0
 --- !u!4 &1462001910
 Transform:
   m_ObjectHideFlags: 0
@@ -5103,6 +5105,17 @@ MonoBehaviour:
   inviteDoc: {fileID: 1822598593}
   checkInvites: {fileID: 2077596843}
   editInfo: {fileID: 986827330}
+--- !u!114 &1462001912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1462001907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5855946729d56b478e1582331bc1469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1472660456
 GameObject:
   m_ObjectHideFlags: 0
@@ -6103,8 +6116,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 1462001912}
+        m_MethodName: OpenModel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7849,8 +7862,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 1462001912}
+        m_MethodName: OpenModel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
