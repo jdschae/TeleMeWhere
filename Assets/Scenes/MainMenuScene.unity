@@ -302,7 +302,6 @@ GameObject:
   - component: {fileID: 94774375}
   - component: {fileID: 94774374}
   - component: {fileID: 94774379}
-  - component: {fileID: 94774378}
   - component: {fileID: 94774380}
   - component: {fileID: 94774382}
   - component: {fileID: 94774381}
@@ -389,30 +388,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.5}
   m_SizeDelta: {x: 979.7959, y: 489.89795}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &94774378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 94774373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54924b904eb21df4eabba1a0d5b26b70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCanvas: {fileID: 0}
-  signInCanvas: {fileID: 0}
-  createCanvas: {fileID: 0}
-  invalid: {fileID: 0}
-  passmatch: {fileID: 0}
-  isMale: {fileID: 0}
-  isFemale: {fileID: 0}
-  isPat: {fileID: 0}
-  isDoc: {fileID: 0}
-  male: 0
-  female: 0
-  patient: 0
-  doctor: 0
 --- !u!65 &94774379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -854,7 +829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &234483730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4483,10 +4458,8 @@ MonoBehaviour:
   isFemale: {fileID: 1188157985}
   isPat: {fileID: 261805425}
   isDoc: {fileID: 233904996}
-  male: 0
-  female: 0
-  patient: 0
-  doctor: 0
+  sex: 
+  type: 
 --- !u!1 &1460673406
 GameObject:
   m_ObjectHideFlags: 0
@@ -6707,7 +6680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2034311184
 MonoBehaviour:
   m_ObjectHideFlags: 0
