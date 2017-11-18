@@ -43,10 +43,11 @@ namespace HoloToolkit.Unity.InputModule
             if (www.error == null)
             {
                 string[] info = www.text.Split(';');
-                if (info[1] == "F")
+                if (info[0] == "F")
                 {
                     if (HostTransform.name == "M3DMale")
                     {
+                        HostTransform.gameObject.SetActive(false);
                         yield break;
                     }
                 }
@@ -54,10 +55,11 @@ namespace HoloToolkit.Unity.InputModule
                 {
                     if (HostTransform.name == "M3DFemale")
                     {
+                        HostTransform.gameObject.SetActive(false);
                         yield break;
+                 
                     }
                 }
-                HostTransform.gameObject.SetActive(true);
             }
             else
             {
