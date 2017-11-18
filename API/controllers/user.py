@@ -41,7 +41,8 @@ def create_route():
 	request_json = request.get_json()
 	if ('username' not in request_json or 'firstname' not in request_json
 		or 'lastname' not in request_json or 'email' not in request_json
-		or 'password' not in request_json):
+		or 'password' not in request_json or 'sex' not in request_json
+		or 'type' not in request_json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
 	else:
 		pw_hash = encrypt_password(request.json['password'])
@@ -49,14 +50,23 @@ def create_route():
 		cur.execute("SELECT * FROM User Where username = %s", request_json['username'])
 		if (cur.fetchone()):
 			return jsonify(errors = [{"message": "username already exists"}]), 422
-		cur.execute("INSERT INTO User (username, firstname, lastname, password, email) "
-						"VALUES(%s, %s, %s, %s, %s)", (request_json['username'],
+		cur.execute("INSERT INTO User (username, firstname, lastname, password, email, sex, type) "
+						"VALUES(%s, %s, %s, %s, %s, %s, %s)", (request_json['username'],
 						request_json['firstname'], request_json['lastname'],
-						pw_hash, request_json['email']))
+						pw_hash, request_json['email'], request_json['sex'],
+						request_json['type']))
 		cur.execute("INSERT INTO Model (username) VALUES (%s)", request.json['username'])
 	return jsonify(username = request_json['username'])
 
 
+@api_user.route('/api/user/info', methods = ['POST'])
+def view_user_info_route():
+	if (request.json['username'] == ""):
+		return jsonify(errors = [{"message": "not logged in"}]), 422
+	cur = db.cursor()
+	cur.execute("SELECT * FROM User WHERE username = %s;", request.json['username'])
+	result = cur.fetchone()
+	return result['sex'] + ";" + result["type"]
 
 def encrypt_password(password):
 	m = hashlib.new("sha512")
