@@ -39,12 +39,12 @@ public class HomepageButtons : MonoBehaviour {
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
         yield return www; 
         string[] info = www.text.Split(';');
-        if (info[1] == "d")
+        if (info[1] == "D")
         {
             doctor = true;
             doctorHomepage.enabled = true;
         }
-        else if (info[1] == "p")
+        else if (info[1] == "P")
         {
             patient = true;
             patientHomepage.enabled = true;
