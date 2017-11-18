@@ -18,6 +18,7 @@ def add_model_route():
 @api_model.route('/api/model/view', methods = ['POST'])
 def view_model_route():
 	if (request.json['username'] == ""):
+		print (request.json)
 		return jsonify(errors = [{"message": "not logged in"}]), 422
 	cur = db.cursor()
 	cur.execute("SELECT * FROM Model WHERE username = %s;", request.json['username'])
@@ -28,6 +29,8 @@ def view_model_route():
 	for result in results:
 		output = output + str(result['markerid']) + "," + str(result['x']) + "," + str(result['y']) + "," + str(result['z']) + ";"
 	return output
+
+
 
 @api_model.route('/api/model/delete', methods = ['POST'])
 def delete_model_route():

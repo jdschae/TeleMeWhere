@@ -62,7 +62,6 @@ def delete_marker_route():
 		return jsonify(errors = [{"message": "not logged in"}]), 422
 	cur.execute("SELECT * FROM Model WHERE username = %s", request.json['username'])
 	modelid = cur.fetchone()['modelid']
-	print (modelid + " ： " + request.json['markerid'])
 	cur.execute("DELETE FROM Marker WHERE  markerid = %s AND modelid = %s", (request.json['markerid'], modelid))
 
 	return jsonify(modelid = modelid)
