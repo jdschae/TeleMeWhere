@@ -18,13 +18,30 @@ public class HomepageButtons : MonoBehaviour {
     private void Awake()
     {
         //IF STATEMENT #FIXME
-        patientHomepage.enabled = true;
-        doctorHomepage.enabled = true;
+        string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
+        string api = "/api/user/info";
+        StartCoroutine(LoadHomeProfile(json, api));
+
+        patientHomepage.enabled = false;
+        doctorHomepage.enabled = false;
         invitePatient.enabled = false;
         inviteDoc.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = false;
 
+    }
+
+    private IEnumerator LoadHomeProfile(string json, string api)
+    { 
+        WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+        yield return www; 
+        string[] info = www.text.Split(';');
+        if (info[1] == "d"){
+            doctorHomepage.enabled = true;
+        }
+        else if (info[1] == "p"){
+            patientHomepage.enabled = true;
+        }
     }
 
     //Used when clicking "Invite Patient/Doctor" from Homepage
