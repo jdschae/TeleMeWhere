@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 using HoloToolkit.UI.Keyboard;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Text;
 
 public class ClickButtons : MonoBehaviour
 {
@@ -12,8 +15,10 @@ public class ClickButtons : MonoBehaviour
     public Canvas signInCanvas;
     public Canvas createCanvas;
 
-    //For Invalid Username/Password
+    //For Invalid Username/Password/Toggle/Email
     public Canvas invalid;
+    public Canvas selecttoggle;
+    public Canvas passmatch;
 
     public static string ipAddress;
 
@@ -30,6 +35,8 @@ public class ClickButtons : MonoBehaviour
         signInCanvas.enabled = false;
         createCanvas.enabled = false;
         invalid.enabled = false;
+        selecttoggle.enabled = false;
+        passmatch.enabled = false;
     }
 
     //Used when clicking "Sign In" from Main Menu
@@ -47,7 +54,30 @@ public class ClickButtons : MonoBehaviour
         signInCanvas.enabled = false;
         mainCanvas.enabled = false;
         createCanvas.enabled = true;
+        selecttoggle.enabled = true;
+        passmatch.enabled = false;
     }
+
+    //Regex code snippet
+    /*
+    public static void emas(string text)
+    {
+        const string MatchEmailPattern =
+       @"(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+       + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+         + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+       + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})";
+        Regex rx = new Regex(MatchEmailPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        // Find matches.
+        MatchCollection matches = rx.Matches(text);
+        // Report the number of matches found.
+        int noOfMatches = matches.Count;
+        // Report on each match.
+        foreach (Match match in matches)
+        {
+            Console.WriteLine(match.Value.ToString());
+        }
+    }*/
 
     //Used when clikcing "Main Menu" from either Sign In screen or Create Account
     public void GoBack()
@@ -70,6 +100,8 @@ public class ClickButtons : MonoBehaviour
         signInCanvas.enabled = false;
         mainCanvas.enabled = true;
         invalid.enabled = false;
+        selecttoggle.enabled = false;
+        passmatch.enabled = false;
     }
 
     public void ActiveToggle()
@@ -79,12 +111,14 @@ public class ClickButtons : MonoBehaviour
             Debug.Log("User selected Male");
             male = true;
             female = false;
+            selecttoggle.enabled = false;
         }
         else if (isFemale.isOn)
         {
             Debug.Log("User selected Female");
             female = true;
             male = false;
+            selecttoggle.enabled = false;
         }
     }
 
@@ -107,7 +141,7 @@ public class ClickButtons : MonoBehaviour
             string password2 = panel.GetChild(7).GetComponent<KeyboardInputField>().text;
             string email = panel.GetChild(8).GetComponent<KeyboardInputField>().text;
             if (password1 != password2) {
-                // 
+                passmatch.enabled = true;
                 return;
             }
             json = "{\"username\":\"" + username + "\",\"password\":\"" + password1 + "\",\"firstname\":\"" 
