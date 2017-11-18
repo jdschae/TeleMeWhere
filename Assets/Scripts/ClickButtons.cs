@@ -17,7 +17,6 @@ public class ClickButtons : MonoBehaviour
 
     //For Invalid Username/Password/Toggle/Email
     public Canvas invalid;
-    public Canvas selecttoggle;
     public Canvas passmatch;
 
     public static string ipAddress;
@@ -35,7 +34,6 @@ public class ClickButtons : MonoBehaviour
         signInCanvas.enabled = false;
         createCanvas.enabled = false;
         invalid.enabled = false;
-        selecttoggle.enabled = false;
         passmatch.enabled = false;
     }
 
@@ -54,7 +52,6 @@ public class ClickButtons : MonoBehaviour
         signInCanvas.enabled = false;
         mainCanvas.enabled = false;
         createCanvas.enabled = true;
-        selecttoggle.enabled = true;
         passmatch.enabled = false;
     }
 
@@ -100,7 +97,6 @@ public class ClickButtons : MonoBehaviour
         signInCanvas.enabled = false;
         mainCanvas.enabled = true;
         invalid.enabled = false;
-        selecttoggle.enabled = false;
         passmatch.enabled = false;
     }
 
@@ -111,14 +107,12 @@ public class ClickButtons : MonoBehaviour
             Debug.Log("User selected Male");
             male = true;
             female = false;
-            selecttoggle.enabled = false;
         }
         else if (isFemale.isOn)
         {
             Debug.Log("User selected Female");
             female = true;
             male = false;
-            selecttoggle.enabled = false;
         }
     }
 
