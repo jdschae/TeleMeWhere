@@ -5062,6 +5062,7 @@ GameObject:
   - component: {fileID: 1462001908}
   - component: {fileID: 1462001911}
   - component: {fileID: 1462001912}
+  - component: {fileID: 1462001913}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5140,6 +5141,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5855946729d56b478e1582331bc1469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1462001913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1462001907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa99bb9f70b1d3e47a75b0128445c34c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editInfoCanvas: {fileID: 986827330}
+  passmatch: {fileID: 42728067}
 --- !u!1 &1472660456
 GameObject:
   m_ObjectHideFlags: 0

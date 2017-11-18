@@ -11,8 +11,15 @@ public class EditInfo : MonoBehaviour {
     public Canvas editInfoCanvas;
     public Canvas passmatch;
 
-	// When the "Save Changes" button is pressed
-	public void SaveChanges() {
+    //On start, passmatch is not visible
+    private void Awake()
+    {
+        editInfoCanvas.enabled = true;
+        passmatch.enabled = false;
+    }
+
+    // When the "Save Changes" button is pressed
+    public void SaveChanges() {
         string json = "";
         string api = "";
         Transform panel = editInfoCanvas.transform.GetChild(0);
