@@ -133,6 +133,7 @@ public class ClickButtons : MonoBehaviour
         string json = "";
         string api = "";
         if (createCanvas.enabled == true && signInCanvas.enabled == false){
+            ActiveToggle();
             Transform panel = createCanvas.transform.GetChild(0);
             string firstname = panel.GetChild(3).GetComponent<KeyboardInputField>().text;
             string lastname = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
