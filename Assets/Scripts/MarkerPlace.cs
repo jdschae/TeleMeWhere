@@ -30,13 +30,42 @@ namespace HoloToolkit.Unity.InputModule
 
             NetworkUtility.Instance.sync_flag = true;
 
+
+
             StartCoroutine(ProcessAllMarkerRequest(json, api));
         }
 
         private IEnumerator ProcessAllMarkerRequest(string json, string api)
-        {   
+        {
+            WWW www = NetworkUtility.Instance.SendPostRequest(json, "/api/user/info");
+            yield return www;
+
+            if (www.error == null)
+            {
+                string[] info = www.text.Split(';');
+                if (info[1] == "F")
+                {
+                    if (HostTransform.name == "M3DMale")
+                    {
+                        yield break;
+                    }
+                }
+                else
+                {
+                    if (HostTransform.name == "M3DFemale")
+                    {
+                        yield break;
+                    }
+                }
+                HostTransform.gameObject.SetActive(true);
+            }
+            else
+            {
+                print("error: " + www.error);
+            }
+
             while (NetworkUtility.Instance.sync_flag) {
-                WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+                www = NetworkUtility.Instance.SendPostRequest(json, api);
                 yield return www;
                 // check for errors
                 if (www.error == null)
