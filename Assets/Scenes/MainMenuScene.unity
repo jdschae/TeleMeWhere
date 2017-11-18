@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PivotAxis: 0
+  PivotAxis: 1
   TargetTransform: {fileID: 0}
 --- !u!114 &94774381
 MonoBehaviour:
@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PivotAxis: 0
+  PivotAxis: 1
   TargetTransform: {fileID: 0}
 --- !u!114 &234483736
 MonoBehaviour:
@@ -6791,7 +6791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PivotAxis: 0
+  PivotAxis: 1
   TargetTransform: {fileID: 0}
 --- !u!65 &2034311189
 BoxCollider:
