@@ -407,8 +407,12 @@ MonoBehaviour:
   passmatch: {fileID: 0}
   isMale: {fileID: 0}
   isFemale: {fileID: 0}
+  isPat: {fileID: 0}
+  isDoc: {fileID: 0}
   male: 0
   female: 0
+  patient: 0
+  doctor: 0
 --- !u!65 &94774379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4477,8 +4481,12 @@ MonoBehaviour:
   passmatch: {fileID: 1041397500}
   isMale: {fileID: 1670430307}
   isFemale: {fileID: 1188157985}
+  isPat: {fileID: 261805425}
+  isDoc: {fileID: 233904996}
   male: 0
   female: 0
+  patient: 0
+  doctor: 0
 --- !u!1 &1460673406
 GameObject:
   m_ObjectHideFlags: 0

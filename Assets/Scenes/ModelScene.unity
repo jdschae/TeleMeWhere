@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sign Out
+  m_Text: Homepage
 --- !u!222 &505343313
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 596385715}
   - component: {fileID: 596385714}
   m_Layer: 5
-  m_Name: Sign Out
+  m_Name: Homepage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,8 +692,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 359.9984, y: -203}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 348, y: -203}
+  m_SizeDelta: {x: 220, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &596385714
 MonoBehaviour:
@@ -746,8 +746,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1770564354}
-        m_MethodName: SignOutAction
+      - m_Target: {fileID: 1770564355}
+        m_MethodName: OpenHomepage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1684,6 +1684,7 @@ GameObject:
   - component: {fileID: 1770564352}
   - component: {fileID: 1770564353}
   - component: {fileID: 1770564354}
+  - component: {fileID: 1770564355}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1730,6 +1731,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a893a3f1902ac6c449027ab4ef3d9c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1770564355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770564351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5855946729d56b478e1582331bc1469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1786817466
