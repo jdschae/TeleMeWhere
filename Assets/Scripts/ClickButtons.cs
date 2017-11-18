@@ -21,11 +21,13 @@ public class ClickButtons : MonoBehaviour
 
     public static string ipAddress;
 
-    //Male/Female toggle buttons
+    //Male/Female Doc/Pat toggle buttons
     public Toggle isMale;
     public Toggle isFemale;
-    public bool male;
-    public bool female;
+    public Toggle isPat;
+    public Toggle isDoc;
+    public string sex;
+    public string type;
 
     //On start, only Main Menu is visible
     private void Awake()
@@ -104,15 +106,19 @@ public class ClickButtons : MonoBehaviour
     {
         if (isMale.isOn)
         {
-            Debug.Log("User selected Male");
-            male = true;
-            female = false;
+            sex = "m";
         }
         else if (isFemale.isOn)
         {
-            Debug.Log("User selected Female");
-            female = true;
-            male = false;
+            sex = "f";
+        }
+        if (isDoc.isOn)
+        {
+            type = "d";
+        }
+        else if (isPat.isOn)
+        {
+            type = "p";
         }
     }
 
@@ -139,7 +145,8 @@ public class ClickButtons : MonoBehaviour
                 return;
             }
             json = "{\"username\":\"" + username + "\",\"password\":\"" + password1 + "\",\"firstname\":\"" 
-                    + firstname + "\",\"lastname\":\""  + lastname + "\",\"email\":\"" + email + "\"}";
+                    + firstname + "\",\"lastname\":\""  + lastname + "\",\"email\":\"" + email + "\",\"sex\":\""
+                    + sex + "\",\"type\":\"" + type + "\"}";
             api = "/api/user/create";
         }
         else if (signInCanvas.enabled == true && createCanvas.enabled == false) {
