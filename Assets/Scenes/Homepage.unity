@@ -5105,6 +5105,8 @@ MonoBehaviour:
   inviteDoc: {fileID: 1822598593}
   checkInvites: {fileID: 2077596843}
   editInfo: {fileID: 986827330}
+  patient: 0
+  doctor: 0
 --- !u!114 &1462001912
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,22 +13,25 @@ public class HomepageButtons : MonoBehaviour {
     public Canvas inviteDoc;
     public Canvas checkInvites;
     public Canvas editInfo;
+    public bool patient;
+    public bool doctor;
 
     //On start, only Homepage is visible
     private void Awake()
     {
-        //IF STATEMENT #FIXME
+        patient = false;
+        doctor = false;
+        patientHomepage.enabled = false;
+        doctorHomepage.enabled = false;
+
         string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
         string api = "/api/user/info";
         StartCoroutine(LoadHomeProfile(json, api));
 
-        patientHomepage.enabled = false;
-        doctorHomepage.enabled = false;
         invitePatient.enabled = false;
         inviteDoc.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = false;
-
     }
 
     private IEnumerator LoadHomeProfile(string json, string api)
@@ -36,10 +39,14 @@ public class HomepageButtons : MonoBehaviour {
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
         yield return www; 
         string[] info = www.text.Split(';');
-        if (info[1] == "d"){
+        if (info[1] == "d")
+        {
+            doctor = true;
             doctorHomepage.enabled = true;
         }
-        else if (info[1] == "p"){
+        else if (info[1] == "p")
+        {
+            patient = true;
             patientHomepage.enabled = true;
         }
     }
@@ -47,11 +54,16 @@ public class HomepageButtons : MonoBehaviour {
     //Used when clicking "Invite Patient/Doctor" from Homepage
     public void InviteOn()
     {
-        //IF STATEMENT #FIXME
+        if (doctor)
+        {
+            invitePatient.enabled = true;
+        }
+        else if (patient)
+        {
+            inviteDoc.enabled = true;
+        }
         patientHomepage.enabled = false;
         doctorHomepage.enabled = false;
-        invitePatient.enabled = true;
-        inviteDoc.enabled = true;
         checkInvites.enabled = false;
         editInfo.enabled = false;
     }
@@ -81,9 +93,14 @@ public class HomepageButtons : MonoBehaviour {
     //Used when clicking "Go Back" from Invite/Check/Edit
     public void GoBackHome()
     {
-        //IF STATEMENT #FIXME
-        patientHomepage.enabled = true;
-        doctorHomepage.enabled = true;
+        if (doctor)
+        {
+            doctorHomepage.enabled = true;
+        }
+        else if (patient)
+        {
+            patientHomepage.enabled = true;
+        }
         invitePatient.enabled = false;
         inviteDoc.enabled = false;
         checkInvites.enabled = false;
