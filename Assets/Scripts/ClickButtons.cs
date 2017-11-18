@@ -106,19 +106,19 @@ public class ClickButtons : MonoBehaviour
     {
         if (isMale.isOn)
         {
-            sex = "m";
+            sex = "M";
         }
         else if (isFemale.isOn)
         {
-            sex = "f";
+            sex = "F";
         }
         if (isDoc.isOn)
         {
-            type = "d";
+            type = "D";
         }
         else if (isPat.isOn)
         {
-            type = "p";
+            type = "P";
         }
     }
 
