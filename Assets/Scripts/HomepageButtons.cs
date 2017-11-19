@@ -23,13 +23,13 @@ public class HomepageButtons : MonoBehaviour {
         patientHomepage.enabled = false;
         doctorHomepage.enabled = false;
 
-        string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
-        string api = "/api/user/info";
-        StartCoroutine(LoadHomeProfile(json, api));
-
         invite.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = false;
+
+        string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
+        string api = "/api/user/info";
+        StartCoroutine(LoadHomeProfile(json, api));
     }
 
     private IEnumerator LoadHomeProfile(string json, string api)

@@ -14,7 +14,7 @@ public class EditInfo : MonoBehaviour {
     //On start, passmatch is not visible
     private void Awake()
     {
-        editInfoCanvas.enabled = true;
+        editInfoCanvas.enabled = false;
         passmatch.enabled = false;
     }
 
