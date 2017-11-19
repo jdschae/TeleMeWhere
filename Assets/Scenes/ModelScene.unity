@@ -155,21 +155,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HostTransform: {fileID: 36266438}
-  MarkerTemplate: {fileID: 0}
+  MarkerTemplateArray:
+  - {fileID: 937439446}
+  - {fileID: 1146585921}
+  - {fileID: 260647343}
+  - {fileID: 281197354}
   IsPlacementEnabled: 0
-  markerMenuCanvas: {fileID: 0}
-  toggleRed: {fileID: 0}
-  toggleBlue: {fileID: 0}
-  toggleGreen: {fileID: 0}
-  toggleOrange: {fileID: 0}
-  togglePurple: {fileID: 0}
-  toggleYellow: {fileID: 0}
-  toggleSphere: {fileID: 0}
-  toggleCube: {fileID: 0}
-  toggleCapsule: {fileID: 0}
-  toggleCylinder: {fileID: 0}
+  markerMenuCanvas: {fileID: 281195290}
+  toggleRed: {fileID: 1491313985}
+  toggleBlue: {fileID: 628116627}
+  toggleGreen: {fileID: 123504993}
+  toggleOrange: {fileID: 1236588502}
+  togglePurple: {fileID: 1526057666}
+  toggleYellow: {fileID: 2021530475}
+  toggleSphere: {fileID: 2129822327}
+  toggleCube: {fileID: 1401834278}
+  toggleCapsule: {fileID: 47515367}
+  toggleCylinder: {fileID: 169330734}
+  material:
+  - {fileID: 2100000, guid: 474f0e0481d4aa14e92a5ada98042f3a, type: 2}
+  - {fileID: 2100000, guid: f3def83674414f24cbebae55883849fd, type: 2}
+  - {fileID: 2100000, guid: 55b2c18c0e4781044b2cf02571bacfaa, type: 2}
+  - {fileID: 2100000, guid: ee15977375aba3849964ce1aae994b30, type: 2}
+  - {fileID: 2100000, guid: 0e1beba91f5d60f488b730883919f5d7, type: 2}
+  - {fileID: 2100000, guid: b2bb4967663b15f499797973c48296b6, type: 2}
   color: 
   shape: 
+  shapeIndex: 0
 --- !u!114 &36266442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HostTransform: {fileID: 36266438}
-  RotationLerpSpeed: 20
+  RotationLerpSpeed: 15
   DistanceScale: 2
   IsRotatingEnabled: 0
 --- !u!114 &36266443
@@ -340,7 +352,7 @@ RectTransform:
   - {fileID: 1215188386}
   - {fileID: 582393637}
   m_Father: {fileID: 578866243}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1841,8 +1853,8 @@ RectTransform:
   - {fileID: 668963263}
   - {fileID: 605793756}
   - {fileID: 2144366199}
-  - {fileID: 1930801824}
   - {fileID: 93404291}
+  - {fileID: 1930801824}
   m_Father: {fileID: 281195291}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5103,7 +5115,7 @@ RectTransform:
   m_Children:
   - {fileID: 1000837527}
   m_Father: {fileID: 578866243}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5849,21 +5861,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HostTransform: {fileID: 2071560711}
-  MarkerTemplate: {fileID: 0}
+  MarkerTemplateArray:
+  - {fileID: 937439446}
+  - {fileID: 1146585921}
+  - {fileID: 260647343}
+  - {fileID: 281197354}
   IsPlacementEnabled: 0
-  markerMenuCanvas: {fileID: 0}
-  toggleRed: {fileID: 0}
-  toggleBlue: {fileID: 0}
-  toggleGreen: {fileID: 0}
-  toggleOrange: {fileID: 0}
-  togglePurple: {fileID: 0}
-  toggleYellow: {fileID: 0}
-  toggleSphere: {fileID: 0}
-  toggleCube: {fileID: 0}
-  toggleCapsule: {fileID: 0}
-  toggleCylinder: {fileID: 0}
+  markerMenuCanvas: {fileID: 281195290}
+  toggleRed: {fileID: 1491313985}
+  toggleBlue: {fileID: 628116627}
+  toggleGreen: {fileID: 123504993}
+  toggleOrange: {fileID: 1236588502}
+  togglePurple: {fileID: 1526057666}
+  toggleYellow: {fileID: 2021530475}
+  toggleSphere: {fileID: 2129822327}
+  toggleCube: {fileID: 1401834278}
+  toggleCapsule: {fileID: 47515367}
+  toggleCylinder: {fileID: 169330734}
+  material:
+  - {fileID: 2100000, guid: 474f0e0481d4aa14e92a5ada98042f3a, type: 2}
+  - {fileID: 2100000, guid: f3def83674414f24cbebae55883849fd, type: 2}
+  - {fileID: 2100000, guid: 55b2c18c0e4781044b2cf02571bacfaa, type: 2}
+  - {fileID: 2100000, guid: ee15977375aba3849964ce1aae994b30, type: 2}
+  - {fileID: 2100000, guid: 0e1beba91f5d60f488b730883919f5d7, type: 2}
+  - {fileID: 2100000, guid: b2bb4967663b15f499797973c48296b6, type: 2}
   color: 
   shape: 
+  shapeIndex: 0
 --- !u!114 &2071560714
 MonoBehaviour:
   m_ObjectHideFlags: 0
