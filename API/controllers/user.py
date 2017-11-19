@@ -68,6 +68,21 @@ def view_user_info_route():
 	result = cur.fetchone()
 	return result['sex'] + ";" + result["type"]
 
+@api_user.route('/api/user/edit', methods = ['POST'])
+def edit_user_info_route():
+	request_json = request.get_json()
+	if ('username' not in request_json or 'firstname' not in request_json
+		or 'lastname' not in request_json or 'email' not in request_json
+		or 'password' not in request_json):
+		return jsonify(errors = [{"message": "not enough info"}]), 422
+	cur = db.cursor()
+	for info in request_json:
+		if (request_json[info] != "" and info != "username"):
+			sql = "UPDATE User SET " + info + " = \"" + request_json[info] + "\" WHERE username = \"" + request_json['username'] + "\""
+			cur.execute(sql)
+	return "success"
+
+
 def encrypt_password(password):
 	m = hashlib.new("sha512")
 	salt = "498"

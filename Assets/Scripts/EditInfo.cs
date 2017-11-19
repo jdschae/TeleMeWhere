@@ -33,32 +33,10 @@ public class EditInfo : MonoBehaviour {
             passmatch.enabled = true;
             return;
         }
-        if (firstname == "")
-        {
-            //firstname = use current first name
-        }
-        if (lastname == "")
-        {
-            //lastname = use current last name
-        }
-        if (password1 == "")
-        {
-            //password1 = use current password
-        }
-        if (email == "")
-        {
-            //email = use current email
-        }
-
-        //sex = current sex
-        string sex = "M";
-        //type = current type
-        string type = "P";
 
         json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"password\":\"" + password1 + "\",\"firstname\":\""
-                + firstname + "\",\"lastname\":\"" + lastname + "\",\"email\":\"" + email + "\",\"sex\":\""
-                + sex + "\",\"type\":\"" + type + "\"}";
-        api = "/api/user/info";
+                + firstname + "\",\"lastname\":\"" + lastname + "\",\"email\":\"" + email + "\"}";
+        api = "/api/user/edit";
 
         // Save the new json string for the user.
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
