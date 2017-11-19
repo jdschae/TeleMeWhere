@@ -7,6 +7,7 @@ public class SceneChanger : MonoBehaviour {
 
     public void OpenHomepage()
     {
+        NetworkUtility.InviteeUsername = "";
         SceneManager.LoadScene(1);
     }
 

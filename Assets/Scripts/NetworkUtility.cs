@@ -7,6 +7,7 @@ using UnityEngine;
 public class NetworkUtility : Singleton<NetworkUtility> {
 
     public static string LoginUsername;
+    public static string InviteeUsername = "";
     public string IPAddress;
     public bool sync_flag;
     // Util method for sending post request

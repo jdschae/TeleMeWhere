@@ -79,14 +79,24 @@ namespace HoloToolkit.Unity.InputModule
 
             GameObject hit = GazeManager.Instance.HitObject;
 
-            if (hit == null || !hit.name.Contains("Marker(Clone)"))
+            if (hit == null || !hit.name.Contains("MarkerTemp(Clone)"))
             {
                 return;
             }
 
             Vector3 markerPosition = hit.transform.position;
 
-            string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"markerid\":\"" + hit.name.Substring(13) + "\"}";
+            string Username;
+            if (NetworkUtility.InviteeUsername == "")
+            {
+                Username = NetworkUtility.LoginUsername;
+            }
+            else
+            {
+                Username = NetworkUtility.InviteeUsername;
+            }
+
+            string json = "{\"username\":\"" + Username + "\",\"markerid\":\"" + hit.name.Split(')')[1] + "\"}";
             string api = "/api/marker/delete";
 
             WWW www = NetworkUtility.Instance.SendPostRequest(json, api);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Invitations : MonoBehaviour {
@@ -57,7 +58,17 @@ public class Invitations : MonoBehaviour {
     //TODO
     public void AcceptInvite()
     {
+        int i;
+        for (i = 1; i < InviteToggleGroup.transform.childCount; ++i)
+        {
+            if (InviteToggleGroup.transform.GetChild(i).GetComponent<Toggle>().isOn)
+            {
+                break;
+            }
+        }
 
+        NetworkUtility.InviteeUsername = InviteToggleGroup.transform.GetChild(i).GetChild(2).GetComponent<Text>().text;
+        SceneManager.LoadScene(2);
     }
 
     void OnEnable () {

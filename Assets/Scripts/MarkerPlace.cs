@@ -41,6 +41,7 @@ namespace HoloToolkit.Unity.InputModule
 
         private IInputSource currentInputSource;
         private uint currentInputSourceId;
+        private string Username;
 
 
         // Use this for initialization
@@ -52,7 +53,16 @@ namespace HoloToolkit.Unity.InputModule
             }
             MarkerLog = new ArrayList();
 
-            string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
+            if (NetworkUtility.InviteeUsername == "")
+            {
+                Username = NetworkUtility.LoginUsername;
+            }
+            else
+            {
+                Username = NetworkUtility.InviteeUsername;
+            }
+
+            string json = "{\"username\":\"" + Username + "\"}";
             string api = "/api/model/view";
 
             NetworkUtility.Instance.sync_flag = true;
@@ -221,7 +231,7 @@ namespace HoloToolkit.Unity.InputModule
             Transform panel = markerMenu.transform.GetChild(0);
             string message = panel.GetChild(3).GetComponent<KeyboardInputField>().text;
 
-            string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y +
+            string json = "{\"username\":\"" + Username + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y +
                         "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + message + "\",\"color\":\"" + color + "\",\"shape\":\"" + shape +
                          "\",\"rw\":\"" + markerRotation.w + "\",\"rx\":\"" + markerRotation.x + "\",\"ry\":\"" + markerRotation.y
                          + "\",\"rz\":\"" + markerRotation.z + "\"}";
@@ -234,43 +244,43 @@ namespace HoloToolkit.Unity.InputModule
 
         public void ActiveToggle()
         {
-            if (toggleRed)
+            if (toggleRed.isOn)
             {
                 color = "0";
             }
-            else if (toggleBlue)
+            else if (toggleBlue.isOn)
             {
                 color = "1";
             }
-            else if (toggleGreen)
+            else if (toggleGreen.isOn)
             {
                 color = "2";
             }
-            else if (toggleOrange)
+            else if (toggleOrange.isOn)
             {
                 color = "3";
             }
-            else if (togglePurple)
+            else if (togglePurple.isOn)
             {
                 color = "4";
             }
-            else if (toggleYellow)
+            else if (toggleYellow.isOn)
             {
                 color = "5";
             }
-            if (toggleSphere)
+            if (toggleSphere.isOn)
             {
                 shape = "0";
             }
-            else if(toggleCube)
+            else if(toggleCube.isOn)
             {
                 shape = "1";
             }
-            else if (toggleCapsule)
+            else if (toggleCapsule.isOn)
             {
                 shape = "2";
             }
-            else if (toggleCylinder)
+            else if (toggleCylinder.isOn)
             {
                 shape = "3";
             }
@@ -286,8 +296,9 @@ namespace HoloToolkit.Unity.InputModule
                 int colorIndex = int.Parse(color);
                 shapeIndex = int.Parse(shape);
 
+                MarkerTemplateArray[shapeIndex].GetComponent<MeshRenderer>().materials[0].SetColor("_SpecColor", Color.green);// = material[colorIndex];
                 GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[shapeIndex], spawnPosition, spawnRotation, HostTransform);
-                tempMarker.GetComponent<Renderer>().material = material[colorIndex];
+                //tempMarker.GetComponent<Renderer>().materials.Length = material[colorIndex];
                 //tempMarker.transform.localScale /= 100;
                 tempMarker.name += www.text;
                 MarkerLog.Add(tempMarker);
