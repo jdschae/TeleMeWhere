@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Threading;
 using UnityEngine.UI;
+using HoloToolkit.UI.Keyboard;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -12,6 +13,7 @@ namespace HoloToolkit.Unity.InputModule
         public bool IsPlacementEnabled = false;
         private ArrayList MarkerLog;
         private bool isGazed;
+        public Canvas markerMenuCanvas;
 
         public Toggle toggleRed;
         public Toggle toggleBlue;
@@ -108,9 +110,7 @@ namespace HoloToolkit.Unity.InputModule
                 yield return new WaitForSeconds(5);
             }
         }
-
-
-
+        
         public void OnFocusEnter()
         {
             if (!IsPlacementEnabled)
@@ -175,10 +175,12 @@ namespace HoloToolkit.Unity.InputModule
             Vector3 markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
 
             ActiveToggle();
+            Transform panel = markerMenuCanvas.transform.GetChild(0);
+            string message = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
 
             //color and shape need to be added
             string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
-                        "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + "message "+"\"}";
+                        "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + message +"\"}";
             string api = "/api/marker/add";
 
             WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
