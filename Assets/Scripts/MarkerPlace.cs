@@ -14,6 +14,7 @@ namespace HoloToolkit.Unity.InputModule
         private ArrayList MarkerLog;
         private bool isGazed;
         public GameObject markerMenu;
+        public GameObject markerInfo;
 
         // Variables for place marker and place marker button
         Vector3 gazeHitPosition;
@@ -199,32 +200,74 @@ namespace HoloToolkit.Unity.InputModule
             {
                 return;
             }
+            GameObject hit = GazeManager.Instance.HitObject;
+            if (hit.name == "M3DMale" || hit.name == "M3DFemale")
+            {
+                gazeHitPosition = GazeManager.Instance.HitInfo.point;
 
-            gazeHitPosition = GazeManager.Instance.HitInfo.point;
-            gazeNormal = GazeManager.Instance.HitInfo.normal;
+                gazeNormal = GazeManager.Instance.HitInfo.normal;
 
-            markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
-            surfaceNormal = HostTransform.InverseTransformDirection(gazeNormal);
+                markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
+                surfaceNormal = HostTransform.InverseTransformDirection(gazeNormal);
 
-            markerRotation = Quaternion.FromToRotation(HostTransform.up, surfaceNormal);
+                markerRotation = Quaternion.FromToRotation(HostTransform.up, surfaceNormal);
+                markerMenu.SetActive(true);
 
-            markerMenu.SetActive(true);
-            /*
-            ActiveToggle();
-            Transform panel = markerMenuCanvas.transform.GetChild(0);
-            string message = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
+            }
+            else if (hit.name.Contains("MarkerTemp(Clone)"))
+            {
+                markerInfo.SetActive(true);
+                string json = "{\"username\":\"" + Username + "\",\"markerid\":\"" + hit.name.Split(')')[1] + "\"}";
+                string api = "/api/marker/view";
+                WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+                StartCoroutine(ProcessMarkerView(www, json, api));
+            }
+        }
 
-            //color and shape need to be added
-            string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y + 
-                        "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + message + "\",\"color\":\"" + color + "\",\"shape\":\"" + shape +
-                         "\",\"rw\":\""  + markerRotation.w + "\",\"rx\":\"" + markerRotation.x + "\",\"ry\":\"" + markerRotation.y
-                         + "\",\"rz\":\"" + markerRotation.z + "\"}";
-            string api = "/api/marker/add";
+        private IEnumerator ProcessMarkerView(WWW www, string json, string api)
+        {
+            yield return www;
+            if (www.error == null)
+            {
+                //int shapeIndex = int.Parse(www.text.Split(';')[0]);
+                //switch (shapeIndex)
+                //{
+                //    case 0:
+                //        toggleSphere.isOn = true;
+                //        toggleCube.isOn = false;
+                //        toggleCapsule.isOn = false;
+                //        toggleCylinder.isOn = false;
+                //        break;
+                //    case 1:
+                //        toggleSphere.isOn = false;
+                //        toggleCube.isOn = true;
+                //        toggleCapsule.isOn = false;
+                //        toggleCylinder.isOn = false;
+                //        break;
+                //    case 2:
+                //        toggleSphere.isOn = false;
+                //        toggleCube.isOn = false;
+                //        toggleCapsule.isOn = true;
+                //        toggleCylinder.isOn = false;
+                //        break;
+                //    case 3:
+                //        toggleSphere.isOn = false;
+                //        toggleCube.isOn = false;
+                //        toggleCapsule.isOn = false;
+                //        toggleCylinder.isOn = true;
+                //        break;
+                //    default:
+                //        print("error: invalid shape index");
+                //        break;
 
-            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+                //}
+                markerInfo.transform.GetChild(0).GetChild(1).GetComponent<KeyboardInputField>().text = www.text.Split(';')[1];
+            }
+            else
+            {
+                print("error: " + www.error);
+            }
 
-            StartCoroutine(ProcessMarkerPlacementRequest(www, gazeHitPosition, Quaternion.FromToRotation(Vector3.up, gazeNormal)));
-            */
         }
 
         public void PlaceMarkerButton()
@@ -232,14 +275,15 @@ namespace HoloToolkit.Unity.InputModule
             if ((Sex == "F" && HostTransform.name == "M3DMale") || (Sex == "M" && HostTransform.name == "M3DFemale")) {
                 return;
             }
+
             ActiveToggle();
             Transform panel = markerMenu.transform.GetChild(0);
             string message = panel.GetChild(3).GetComponent<KeyboardInputField>().text;
 
             string json = "{\"username\":\"" + Username + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y +
                         "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + message + "\",\"color\":\"" + color + "\",\"shape\":\"" + shape +
-                         "\",\"rw\":\"" + markerRotation.w + "\",\"rx\":\"" + markerRotation.x + "\",\"ry\":\"" + markerRotation.y
-                         + "\",\"rz\":\"" + markerRotation.z + "\"}";
+                            "\",\"rw\":\"" + markerRotation.w + "\",\"rx\":\"" + markerRotation.x + "\",\"ry\":\"" + markerRotation.y
+                            + "\",\"rz\":\"" + markerRotation.z + "\"}";
             string api = "/api/marker/add";
 
             WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
@@ -301,7 +345,7 @@ namespace HoloToolkit.Unity.InputModule
                 int colorIndex = int.Parse(color);
                 shapeIndex = int.Parse(shape);
 
-                MarkerTemplateArray[shapeIndex].GetComponent<MeshRenderer>().materials[0].SetColor("_SpecColor", Color.green);// = material[colorIndex];
+                MarkerTemplateArray[shapeIndex].GetComponent<MeshRenderer>().sharedMaterial = material[colorIndex];
                 GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[shapeIndex], spawnPosition, spawnRotation, HostTransform);
                 //tempMarker.GetComponent<Renderer>().materials.Length = material[colorIndex];
                 //tempMarker.transform.localScale /= 100;
