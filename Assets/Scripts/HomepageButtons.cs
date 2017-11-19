@@ -92,7 +92,7 @@ public class HomepageButtons : MonoBehaviour {
         }
         if (invite.enabled)
         {
-            Transform panel = editInfo.transform.GetChild(0);
+            Transform panel = invite.transform.GetChild(0);
             panel.GetChild(2).GetComponent<KeyboardInputField>().text = "";
         }
         if (doctor)

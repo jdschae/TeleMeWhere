@@ -17,7 +17,7 @@ public class EditInfo : MonoBehaviour {
     {
         editInfoCanvas.enabled = false;
         passmatch.enabled = false;
-        changesSavedMessage.enabled = false;
+        //changesSavedMessage.enabled = false;
     }
 
     // When the "Save Changes" button is pressed
@@ -42,7 +42,7 @@ public class EditInfo : MonoBehaviour {
 
         // Save the new json string for the user.
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
-        changesSavedMessage.enabled = true;
+        //changesSavedMessage.enabled = true;
         //StartCoroutine(ProcessSaveChangesRequest(www));
     }
 
