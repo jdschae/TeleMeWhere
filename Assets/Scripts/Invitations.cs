@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Invitations : MonoBehaviour {
 
@@ -65,15 +66,33 @@ public class Invitations : MonoBehaviour {
     public void Refresh()
     {
         string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
-        string api = "/api/getinvitations";
+        string api = "/api/invite/view";
 
         StartCoroutine(ProcessGetInvitations(json, api));
     }
 
     public void SendInvite(GameObject inputField)
     {
-        string username = inputField.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text;
+        Text MessageField = inputField.transform.GetChild(2).GetComponent<Text>();
+        string invitee = inputField.transform.GetChild(1).GetComponent<Text>().text;
+        string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\", \"invitee\":\"" + invitee + "\"}";
+        string api = "/api/invite/add";
 
-        //TODO: Implement api call
+        StartCoroutine(ProcessSendInvitation(MessageField, json, api));
+    }
+
+    private IEnumerator ProcessSendInvitation(Text MessageField, string json, string api)
+    {
+        WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+        yield return www;
+
+        if (www.error == null)
+        {
+            MessageField.text = "Invitation Successful";
+        }
+        else
+        {
+            MessageField.text = "Invitation Unsuccessful";
+        }
     }
 }

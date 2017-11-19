@@ -9,8 +9,7 @@ public class HomepageButtons : MonoBehaviour {
     //Homepage Canvas Screens
     public Canvas patientHomepage;
     public Canvas doctorHomepage;
-    public Canvas invitePatient;
-    public Canvas inviteDoc;
+    public Canvas invite;
     public Canvas checkInvites;
     public Canvas editInfo;
     public bool patient;
@@ -28,8 +27,7 @@ public class HomepageButtons : MonoBehaviour {
         string api = "/api/user/info";
         StartCoroutine(LoadHomeProfile(json, api));
 
-        invitePatient.enabled = false;
-        inviteDoc.enabled = false;
+        invite.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = false;
     }
@@ -54,14 +52,7 @@ public class HomepageButtons : MonoBehaviour {
     //Used when clicking "Invite Patient/Doctor" from Homepage
     public void InviteOn()
     {
-        if (doctor)
-        {
-            invitePatient.enabled = true;
-        }
-        else if (patient)
-        {
-            inviteDoc.enabled = true;
-        }
+        invite.enabled = true;
         patientHomepage.enabled = false;
         doctorHomepage.enabled = false;
         checkInvites.enabled = false;
@@ -73,8 +64,7 @@ public class HomepageButtons : MonoBehaviour {
     {
         patientHomepage.enabled = false;
         doctorHomepage.enabled = false;
-        invitePatient.enabled = false;
-        inviteDoc.enabled = false;
+        invite.enabled = false;
         checkInvites.enabled = true;
         editInfo.enabled = false;
     }
@@ -84,8 +74,7 @@ public class HomepageButtons : MonoBehaviour {
     {
         patientHomepage.enabled = false;
         doctorHomepage.enabled = false;
-        invitePatient.enabled = false;
-        inviteDoc.enabled = false;
+        invite.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = true;
     }
@@ -101,8 +90,7 @@ public class HomepageButtons : MonoBehaviour {
         {
             patientHomepage.enabled = true;
         }
-        invitePatient.enabled = false;
-        inviteDoc.enabled = false;
+        invite.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = false;
     }
