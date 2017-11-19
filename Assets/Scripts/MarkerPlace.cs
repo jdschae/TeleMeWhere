@@ -106,9 +106,12 @@ namespace HoloToolkit.Unity.InputModule
 
                         rend.sharedMaterial = material[0];
 
+                        Quaternion rotation = new Quaternion(float.Parse(Components[7]), float.Parse(Components[8]), float.Parse(Components[9]), float.Parse(Components[6]));
+
                         Vector3 worldPosition = HostTransform.TransformPoint(new Vector3(float.Parse(Components[1]), float.Parse(Components[2]), float.Parse(Components[3])));
-                        MarkerLog.Add(GameObject.Instantiate(MarkerTemplate, worldPosition, Quaternion.identity, HostTransform));
-                        ((GameObject) MarkerLog[MarkerLog.Count - 1]).name += Components[0];
+                        GameObject tempMarker = GameObject.Instantiate(MarkerTemplate, worldPosition, rotation, HostTransform);
+                        tempMarker.name += Components[0];
+                        MarkerLog.Add(tempMarker);
                     }
                 }
                 else
