@@ -67,7 +67,7 @@ public class Invitations : MonoBehaviour {
             }
         }
 
-        NetworkUtility.InviteeUsername = InviteToggleGroup.transform.GetChild(i).GetChild(2).GetComponent<Text>().text;
+        NetworkUtility.InviteeUsername = InviteToggleGroup.transform.GetChild(i).GetChild(1).GetComponent<Text>().text;
         SceneManager.LoadScene(2);
     }
 
