@@ -288,6 +288,7 @@ namespace HoloToolkit.Unity.InputModule
 
                 GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[shapeIndex], spawnPosition, spawnRotation, HostTransform);
                 tempMarker.GetComponent<Renderer>().material = material[colorIndex];
+                //tempMarker.transform.localScale /= 100;
                 tempMarker.name += www.text;
                 MarkerLog.Add(tempMarker);
                 markerMenu.SetActive(false);
