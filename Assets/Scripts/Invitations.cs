@@ -14,7 +14,8 @@ public class Invitations : MonoBehaviour {
     private ArrayList InviteLog;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+        InviteLog = new ArrayList();
         Refresh();
     }
 
@@ -28,7 +29,7 @@ public class Invitations : MonoBehaviour {
             CurrPosition = FirstPosition;
             for (int i = 0; i < InviteLog.Count; ++i)
             {
-                GameObject.Destroy((GameObject) InviteLog[i]);
+                Destroy((GameObject) InviteLog[i]);
             }
             InviteLog.Clear();
 
@@ -36,8 +37,8 @@ public class Invitations : MonoBehaviour {
             for (int i = 0; i < usernames.Length - 1; ++i)
             {
                 GameObject newToggle = Instantiate(ToggleTemplate, InviteToggleGroup.transform);
-                newToggle.GetComponentInChildren<UnityEngine.UI.Text>().text = usernames[i];
-                newToggle.transform.position = CurrPosition;
+                newToggle.GetComponentInChildren<Text>().text = usernames[i];
+                newToggle.transform.position = InviteToggleGroup.transform.TransformPoint(CurrPosition);
 
                 CurrPosition += new Vector3(0, -Spacing, 0);
 
