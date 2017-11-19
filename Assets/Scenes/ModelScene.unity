@@ -161,7 +161,7 @@ MonoBehaviour:
   - {fileID: 260647343}
   - {fileID: 281197354}
   IsPlacementEnabled: 0
-  markerMenuCanvas: {fileID: 281195290}
+  markerMenu: {fileID: 281195284}
   toggleRed: {fileID: 1491313985}
   toggleBlue: {fileID: 628116627}
   toggleGreen: {fileID: 123504993}
@@ -5878,7 +5878,7 @@ MonoBehaviour:
   - {fileID: 260647343}
   - {fileID: 281197354}
   IsPlacementEnabled: 0
-  markerMenuCanvas: {fileID: 281195290}
+  markerMenu: {fileID: 281195284}
   toggleRed: {fileID: 1491313985}
   toggleBlue: {fileID: 628116627}
   toggleGreen: {fileID: 123504993}

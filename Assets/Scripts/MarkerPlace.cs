@@ -13,7 +13,7 @@ namespace HoloToolkit.Unity.InputModule
         public bool IsPlacementEnabled = false;
         private ArrayList MarkerLog;
         private bool isGazed;
-        public Canvas markerMenuCanvas;
+        public GameObject markerMenu;
 
         // Variables for place marker and place marker button
         Vector3 gazeHitPosition;
@@ -57,7 +57,7 @@ namespace HoloToolkit.Unity.InputModule
 
             NetworkUtility.Instance.sync_flag = true;
 
-            markerMenuCanvas.enabled = false;
+            markerMenu.SetActive(false);
 
             StartCoroutine(ProcessAllMarkerRequest(json, api));
         }
@@ -196,7 +196,7 @@ namespace HoloToolkit.Unity.InputModule
 
             markerRotation = Quaternion.FromToRotation(HostTransform.up, surfaceNormal);
 
-            markerMenuCanvas.enabled = true;
+            markerMenu.SetActive(true);
             /*
             ActiveToggle();
             Transform panel = markerMenuCanvas.transform.GetChild(0);
@@ -218,8 +218,8 @@ namespace HoloToolkit.Unity.InputModule
         public void PlaceMarkerButton()
         {
             ActiveToggle();
-            Transform panel = markerMenuCanvas.transform.GetChild(0);
-            string message = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
+            Transform panel = markerMenu.transform.GetChild(0);
+            string message = panel.GetChild(3).GetComponent<KeyboardInputField>().text;
 
             string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y +
                         "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + message + "\",\"color\":\"" + color + "\",\"shape\":\"" + shape +
@@ -288,9 +288,10 @@ namespace HoloToolkit.Unity.InputModule
 
                 GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[shapeIndex], spawnPosition, spawnRotation, HostTransform);
                 tempMarker.GetComponent<Renderer>().material = material[colorIndex];
+                tempMarker.transform.localScale /= 100;
+                tempMarker.name += www.text;
                 MarkerLog.Add(tempMarker);
-                ((GameObject) MarkerLog[MarkerLog.Count - 1]).name += www.text;
-                markerMenuCanvas.enabled = false;
+                markerMenu.SetActive(false);
             }
             else
             {
