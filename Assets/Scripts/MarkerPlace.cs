@@ -26,6 +26,9 @@ namespace HoloToolkit.Unity.InputModule
         public Toggle toggleCapsule;
         public Toggle toggleCylinder;
 
+        public Material[] material;
+        public Renderer rend;
+
         public string color = "";
         public string shape = "";
 
@@ -100,6 +103,8 @@ namespace HoloToolkit.Unity.InputModule
                         string[] Components = markers[i].Split(',');
                         string tempColor = Components[4];
                         string tempShape = Components[5];
+
+                        rend.sharedMaterial = material[0];
 
                         Vector3 worldPosition = HostTransform.TransformPoint(new Vector3(float.Parse(Components[1]), float.Parse(Components[2]), float.Parse(Components[3])));
                         MarkerLog.Add(GameObject.Instantiate(MarkerTemplate, worldPosition, Quaternion.identity, HostTransform));
