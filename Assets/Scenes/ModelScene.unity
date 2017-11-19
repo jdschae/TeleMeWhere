@@ -162,7 +162,7 @@ MonoBehaviour:
   - {fileID: 453433101}
   IsPlacementEnabled: 0
   markerMenu: {fileID: 281195284}
-  markerInfo: {fileID: 0}
+  markerInfo: {fileID: 1035209232}
   toggleRed: {fileID: 1491313985}
   toggleBlue: {fileID: 628116627}
   toggleGreen: {fileID: 123504993}
@@ -7697,7 +7697,7 @@ MonoBehaviour:
   - {fileID: 334862992}
   IsPlacementEnabled: 0
   markerMenu: {fileID: 281195284}
-  markerInfo: {fileID: 0}
+  markerInfo: {fileID: 1035209232}
   toggleRed: {fileID: 1491313985}
   toggleBlue: {fileID: 628116627}
   toggleGreen: {fileID: 123504993}
