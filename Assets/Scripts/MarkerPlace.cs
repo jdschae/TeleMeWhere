@@ -221,7 +221,6 @@ namespace HoloToolkit.Unity.InputModule
             Transform panel = markerMenuCanvas.transform.GetChild(0);
             string message = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
 
-            //color and shape need to be added
             string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y +
                         "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + message + "\",\"color\":\"" + color + "\",\"shape\":\"" + shape +
                          "\",\"rw\":\"" + markerRotation.w + "\",\"rx\":\"" + markerRotation.x + "\",\"ry\":\"" + markerRotation.y
@@ -231,50 +230,49 @@ namespace HoloToolkit.Unity.InputModule
             WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
 
             StartCoroutine(ProcessMarkerPlacementRequest(www, gazeHitPosition, Quaternion.FromToRotation(Vector3.up, gazeNormal)));
-            markerMenuCanvas.enabled = false;
         }
 
         public void ActiveToggle()
         {
             if (toggleRed)
             {
-                color = "red";
+                color = "0";
             }
             else if (toggleBlue)
             {
-                color = "blue";
+                color = "1";
             }
             else if (toggleGreen)
             {
-                color = "green";
+                color = "2";
             }
             else if (toggleOrange)
             {
-                color = "Orange";
+                color = "3";
             }
             else if (togglePurple)
             {
-                color = "purple";
+                color = "4";
             }
             else if (toggleYellow)
             {
-                color = "yellow";
+                color = "5";
             }
             if (toggleSphere)
             {
-                shape = "sphere";
+                shape = "0";
             }
             else if(toggleCube)
             {
-                shape = "cube";
+                shape = "1";
             }
             else if (toggleCapsule)
             {
-                shape = "capsule";
+                shape = "2";
             }
             else if (toggleCylinder)
             {
-                shape = "cylinder";
+                shape = "3";
             }
         }
 
@@ -284,8 +282,15 @@ namespace HoloToolkit.Unity.InputModule
             // check for errors
             if (www.error == null)
             {
-                MarkerLog.Add(GameObject.Instantiate(MarkerTemplateArray[shapeIndex], spawnPosition, spawnRotation, HostTransform));
+                ActiveToggle();
+                int colorIndex = int.Parse(color);
+                shapeIndex = int.Parse(shape);
+
+                GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[shapeIndex], spawnPosition, spawnRotation, HostTransform);
+                tempMarker.GetComponent<Renderer>().material = material[colorIndex];
+                MarkerLog.Add(tempMarker);
                 ((GameObject) MarkerLog[MarkerLog.Count - 1]).name += www.text;
+                markerMenuCanvas.enabled = false;
             }
             else
             {
