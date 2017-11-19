@@ -27,7 +27,7 @@ def view_model_route():
 	results = cur.fetchall()
 	output = ""
 	for result in results:
-		output = output + str(result['markerid']) + "," + str(result['x']) + "," + str(result['y']) + "," + str(result['z']) + ";"
+		output = output + str(result['markerid']) + "," + str(result['x']) + "," + str(result['y']) + "," + str(result['z']) + "," + str(result['color']) + "," + str(result['shape'])  + "," + str(result['rw']) + "," + str(result['rx']) + "," + str(result['ry']) + "," + str(result['rz']) + "," + str(result['message']) + ";"
 	return output
 
 
