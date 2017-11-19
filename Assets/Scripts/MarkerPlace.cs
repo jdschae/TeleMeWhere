@@ -42,6 +42,7 @@ namespace HoloToolkit.Unity.InputModule
         private IInputSource currentInputSource;
         private uint currentInputSourceId;
         private string Username;
+        private string Sex;
 
 
         // Use this for initialization
@@ -80,7 +81,8 @@ namespace HoloToolkit.Unity.InputModule
             if (www.error == null)
             {
                 string[] info = www.text.Split(';');
-                if (info[0] == "F")
+                Sex = info[0];
+                if (Sex == "F")
                 {
                     if (HostTransform.name == "M3DMale")
                     {
@@ -227,6 +229,9 @@ namespace HoloToolkit.Unity.InputModule
 
         public void PlaceMarkerButton()
         {
+            if ((Sex == "F" && HostTransform.name == "M3DMale") || (Sex == "M" && HostTransform.name == "M3DFemale")) {
+                return;
+            }
             ActiveToggle();
             Transform panel = markerMenu.transform.GetChild(0);
             string message = panel.GetChild(3).GetComponent<KeyboardInputField>().text;
