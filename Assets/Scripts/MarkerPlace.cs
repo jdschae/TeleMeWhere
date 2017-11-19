@@ -9,11 +9,18 @@ namespace HoloToolkit.Unity.InputModule
     public class MarkerPlace : MonoBehaviour, IFocusable, IInputHandler//, ISourceStateHandler
     {
         public Transform HostTransform;
-        public GameObject MarkerTemplate;
+        public GameObject[] MarkerTemplateArray;
         public bool IsPlacementEnabled = false;
         private ArrayList MarkerLog;
         private bool isGazed;
         public Canvas markerMenuCanvas;
+
+        // Variables for place marker and place marker button
+        Vector3 gazeHitPosition;
+        Vector3 gazeNormal;
+        Vector3 markerPosition;
+        Vector3 surfaceNormal;
+        Quaternion markerRotation;
 
         public Toggle toggleRed;
         public Toggle toggleBlue;
@@ -27,10 +34,10 @@ namespace HoloToolkit.Unity.InputModule
         public Toggle toggleCylinder;
 
         public Material[] material;
-        public Renderer rend;
 
         public string color = "";
         public string shape = "";
+        public int shapeIndex;
 
         private IInputSource currentInputSource;
         private uint currentInputSourceId;
@@ -50,7 +57,7 @@ namespace HoloToolkit.Unity.InputModule
 
             NetworkUtility.Instance.sync_flag = true;
 
-
+            markerMenuCanvas.enabled = false;
 
             StartCoroutine(ProcessAllMarkerRequest(json, api));
         }
@@ -101,16 +108,16 @@ namespace HoloToolkit.Unity.InputModule
                     for (int i = 0; i < markers.Length - 1; ++i)
                     {
                         string[] Components = markers[i].Split(',');
-                        string tempColor = Components[4];
-                        string tempShape = Components[5];
 
-                        rend.sharedMaterial = material[0];
+                        int colorIndex = int.Parse(Components[4]);
+                        shapeIndex = int.Parse(Components[5]);
 
                         Quaternion rotation = new Quaternion(float.Parse(Components[7]), float.Parse(Components[8]), float.Parse(Components[9]), float.Parse(Components[6]));
 
                         Vector3 worldPosition = HostTransform.TransformPoint(new Vector3(float.Parse(Components[1]), float.Parse(Components[2]), float.Parse(Components[3])));
-                        GameObject tempMarker = GameObject.Instantiate(MarkerTemplate, worldPosition, rotation, HostTransform);
+                        GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[shapeIndex], worldPosition, rotation, HostTransform);
                         tempMarker.name += Components[0];
+                        tempMarker.GetComponent<Renderer>().material = material[colorIndex];
                         MarkerLog.Add(tempMarker);
                     }
                 }
@@ -181,14 +188,16 @@ namespace HoloToolkit.Unity.InputModule
                 return;
             }
 
-            Vector3 gazeHitPosition = GazeManager.Instance.HitInfo.point;
-            Vector3 gazeNormal = GazeManager.Instance.HitInfo.normal;
+            gazeHitPosition = GazeManager.Instance.HitInfo.point;
+            gazeNormal = GazeManager.Instance.HitInfo.normal;
 
-            Vector3 markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
-            Vector3 surfaceNormal = HostTransform.InverseTransformDirection(gazeNormal);
+            markerPosition = HostTransform.InverseTransformPoint(gazeHitPosition);
+            surfaceNormal = HostTransform.InverseTransformDirection(gazeNormal);
 
-            Quaternion markerRotation = Quaternion.FromToRotation(HostTransform.up, surfaceNormal);
+            markerRotation = Quaternion.FromToRotation(HostTransform.up, surfaceNormal);
 
+            markerMenuCanvas.enabled = true;
+            /*
             ActiveToggle();
             Transform panel = markerMenuCanvas.transform.GetChild(0);
             string message = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
@@ -203,6 +212,26 @@ namespace HoloToolkit.Unity.InputModule
             WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
 
             StartCoroutine(ProcessMarkerPlacementRequest(www, gazeHitPosition, Quaternion.FromToRotation(Vector3.up, gazeNormal)));
+            */
+        }
+
+        public void PlaceMarkerButton()
+        {
+            ActiveToggle();
+            Transform panel = markerMenuCanvas.transform.GetChild(0);
+            string message = panel.GetChild(4).GetComponent<KeyboardInputField>().text;
+
+            //color and shape need to be added
+            string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\",\"x\":\"" + markerPosition.x + "\",\"y\":\"" + markerPosition.y +
+                        "\",\"z\":\"" + markerPosition.z + "\",\"message\":\"" + message + "\",\"color\":\"" + color + "\",\"shape\":\"" + shape +
+                         "\",\"rw\":\"" + markerRotation.w + "\",\"rx\":\"" + markerRotation.x + "\",\"ry\":\"" + markerRotation.y
+                         + "\",\"rz\":\"" + markerRotation.z + "\"}";
+            string api = "/api/marker/add";
+
+            WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+
+            StartCoroutine(ProcessMarkerPlacementRequest(www, gazeHitPosition, Quaternion.FromToRotation(Vector3.up, gazeNormal)));
+            markerMenuCanvas.enabled = false;
         }
 
         public void ActiveToggle()
@@ -255,7 +284,7 @@ namespace HoloToolkit.Unity.InputModule
             // check for errors
             if (www.error == null)
             {
-                MarkerLog.Add(GameObject.Instantiate(MarkerTemplate, spawnPosition, spawnRotation, HostTransform));
+                MarkerLog.Add(GameObject.Instantiate(MarkerTemplateArray[shapeIndex], spawnPosition, spawnRotation, HostTransform));
                 ((GameObject) MarkerLog[MarkerLog.Count - 1]).name += www.text;
             }
             else
