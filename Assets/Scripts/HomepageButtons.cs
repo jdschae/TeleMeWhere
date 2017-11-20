@@ -90,6 +90,11 @@ public class HomepageButtons : MonoBehaviour {
                 panel.GetChild(i).GetComponent<KeyboardInputField>().text = "";
             }
         }
+        if (invite.enabled)
+        {
+            Transform panel = editInfo.transform.GetChild(0);
+            panel.GetChild(2).GetComponent<KeyboardInputField>().text = "";
+        }
         if (doctor)
         {
             doctorHomepage.enabled = true;

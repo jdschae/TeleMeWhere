@@ -8391,7 +8391,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
-  KeyboardSpawnPoint: {fileID: 0}
+  KeyboardSpawnPoint: {fileID: 1822598594}
   KeyboardLayout: 0
 --- !u!114 &1789685943
 MonoBehaviour:
