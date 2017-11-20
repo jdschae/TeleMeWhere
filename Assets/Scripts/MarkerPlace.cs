@@ -70,6 +70,7 @@ namespace HoloToolkit.Unity.InputModule
             NetworkUtility.Instance.sync_flag = true;
 
             markerMenu.SetActive(false);
+            markerInfo.SetActive(false);
 
             StartCoroutine(ProcessAllMarkerRequest(json, api));
         }
