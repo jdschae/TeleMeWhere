@@ -291,6 +291,20 @@ namespace HoloToolkit.Unity.InputModule
             StartCoroutine(ProcessMarkerPlacementRequest(www, gazeHitPosition, Quaternion.FromToRotation(Vector3.up, gazeNormal)));
         }
 
+        public void CancelButton()
+        {
+            Transform panel = markerMenu.transform.GetChild(0);
+            panel.GetChild(3).GetComponent<KeyboardInputField>().text = "";
+            markerInfo.SetActive(false);
+            markerMenu.SetActive(false);
+        }
+
+        public void CloseButton()
+        {
+            markerInfo.SetActive(false);
+            markerMenu.SetActive(false);
+        }
+
         public void ActiveToggle()
         {
             if (toggleRed.isOn)
@@ -352,6 +366,7 @@ namespace HoloToolkit.Unity.InputModule
                 tempMarker.name += www.text;
                 MarkerLog.Add(tempMarker);
                 markerMenu.SetActive(false);
+                markerInfo.SetActive(false);
             }
             else
             {
