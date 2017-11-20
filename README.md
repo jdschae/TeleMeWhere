@@ -20,12 +20,13 @@
 8. Find out the local IP address of the computer and input into hololens.
 
 ### App Deployment:
+NOTE: If the Unity Editor asks you to upgrade MCS from 1.0 to 1.6, click "Cancel, do NOT install."
 1. Open project in Unity
 2. In the Project window, expland the Scenes folder and then double-click MainMenuScene
 3. In the Hierarchy window, select Managers.
 4. In the Inspector window, enter the IP address you saved from earlier into the field under Network Utility
 5. Go back to the Project and double-click on ModelScene under Scenes
-6. Repeat steps 3-4 for ModelScene
+6. Repeat steps 3-5 for ModelScene and Homepage
 7. In the upper tabs, go to Mixed Reality Toolkit > Build Window
 8. Connect your Hololens vis USB
 9. Set "Build Configuration" to "Release" and "Build Platform" to "x86"
