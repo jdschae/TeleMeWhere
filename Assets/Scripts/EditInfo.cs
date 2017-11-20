@@ -10,12 +10,14 @@ public class EditInfo : MonoBehaviour {
     // Canvases used in this
     public Canvas editInfoCanvas;
     public Canvas passmatch;
+    public Canvas changesSavedMessage;
 
     //On start, passmatch is not visible
-    private void Awake()
+    private void Start()
     {
         editInfoCanvas.enabled = false;
         passmatch.enabled = false;
+        changesSavedMessage.enabled = false;
     }
 
     // When the "Save Changes" button is pressed
@@ -40,6 +42,7 @@ public class EditInfo : MonoBehaviour {
 
         // Save the new json string for the user.
         WWW www = NetworkUtility.Instance.SendPostRequest(json, api);
+        changesSavedMessage.enabled = true;
         //StartCoroutine(ProcessSaveChangesRequest(www));
     }
 

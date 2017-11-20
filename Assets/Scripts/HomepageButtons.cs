@@ -82,6 +82,14 @@ public class HomepageButtons : MonoBehaviour {
     //Used when clicking "Go Back" from Invite/Check/Edit
     public void GoBackHome()
     {
+        if (editInfo.enabled)
+        {
+            Transform panel = editInfo.transform.GetChild(0);
+            for (int i = 3; i < 7; ++i)
+            {
+                panel.GetChild(i).GetComponent<KeyboardInputField>().text = "";
+            }
+        }
         if (doctor)
         {
             doctorHomepage.enabled = true;
