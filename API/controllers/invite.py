@@ -18,6 +18,9 @@ def add_invite_route():
 	cur.execute("SELECT * FROM User WHERE username = %s", request.json['invitee'])
 	if not cur.fetchone():
 		return jsonify(errors = [{"message": "Invitee doesn't exist"}]), 422
+	cur.execute("SELECT * FROM Invite WHERE username = %s AND invitee = %s", (request.json['username'], request.json['invitee']))	
+	if cur.fetchone():
+		return "invite already exists"
 	cur.execute("INSERT INTO Invite (username, invitee, access) VALUES (%s, %s, 0)",
 	 (request.json['username'], request.json['invitee']))
 	return jsonify(invitee = request.json['invitee'])

@@ -26,11 +26,21 @@ def add_marker_route():
 	result = cur.fetchone()
 	return str(result['LAST_INSERT_ID()'])
 
+@api_marker.route('/api/marker/view', methods = ['POST'])
+def view_marker_route():
+	if ('markerid' not in request.json or 'username' not in request.json):
+		return jsonify(errors = [{"message": "missing field"}]), 422
+	cur = db.cursor()
+	cur.execute("SELECT * FROM Model WHERE username = %s", request.json['username'])
+	modelid = cur.fetchone()['modelid']
+	cur.execute("SELECT * FROM Marker WHERE modelid = %s AND markerid = %s", (modelid, request.json['markerid']))
+	result = cur.fetchone()
+	data = str(result['shape']) + ";" + result['message']
+	return data
 
 @api_marker.route('/api/marker/edit', methods = ['POST'])
 def edit_marker_route():
-	if ( 'x' not in request.json or 'y' not in request.json or 'z' not in request.json
-		or 'message' not in request.json or 'username' not in request.json):
+	if ('message' not in request.json or 'username' not in request.json or 'shape' not in request.json):
 		return jsonify(errors = [{"message": "missing field"}]), 422
 	if (request.json['username'] == ""):
 		return jsonify(errors = [{"message": "not logged in"}]), 422
@@ -44,9 +54,8 @@ def edit_marker_route():
 		return jsonify(errors = [{'message': "This marker doesn't exist"}]), 401
 
 	cur = db.cursor()
-	cur.execute("UPDATE Marker SET x = %s, y =%s, z = %s, message = %s WHERE markerid = %s", 
-		(request.json['x'], request.json['y'], request.json['z'],
-		 request.json['message'], request.json['markerid']))
+	cur.execute("UPDATE Marker SET  message = %s, shape = %s WHERE markerid = %s", 
+		(request.json['message'], request.json['shape'], request.json['markerid']))
 	return jsonify(markerid = request.json['markerid'])
 
 @api_marker.route('/api/marker/delete', methods = ['POST'])
