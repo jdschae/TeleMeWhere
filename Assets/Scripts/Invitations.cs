@@ -9,7 +9,7 @@ public class Invitations : MonoBehaviour {
 
     public GameObject InviteToggleGroup;
     public GameObject ToggleTemplate;
-    public Canvas editInfo;
+    public Canvas inviteUser;
     public Vector3 FirstPosition;
     public float Spacing;
 
@@ -93,7 +93,7 @@ public class Invitations : MonoBehaviour {
         string api = "/api/invite/add";
 
         StartCoroutine(ProcessSendInvitation(MessageField, json, api));
-        Transform panel = editInfo.transform.GetChild(0);
+        Transform panel = inviteUser.transform.GetChild(0);
         panel.GetChild(2).GetComponent<KeyboardInputField>().text = "";
     }
 

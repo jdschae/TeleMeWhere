@@ -10,7 +10,7 @@ public class EditInfo : MonoBehaviour {
     // Canvases used in this
     public Canvas editInfoCanvas;
     public Canvas passmatch;
-    public Canvas changesSavedMessage;
+    //public Canvas changesSavedMessage;
 
     //On start, passmatch is not visible
     private void Start()
