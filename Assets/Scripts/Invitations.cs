@@ -91,6 +91,8 @@ public class Invitations : MonoBehaviour {
         string api = "/api/invite/add";
 
         StartCoroutine(ProcessSendInvitation(MessageField, json, api));
+        Transform panel = editInfo.transform.GetChild(0);
+        panel.GetChild(2).GetComponent<KeyboardInputField>().text = "";
     }
 
     private IEnumerator ProcessSendInvitation(Text MessageField, string json, string api)
