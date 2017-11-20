@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using HoloToolkit.UI.Keyboard;
 
 public class Invitations : MonoBehaviour {
 
     public GameObject InviteToggleGroup;
     public GameObject ToggleTemplate;
+    public Canvas editInfo;
     public Vector3 FirstPosition;
     public float Spacing;
 
