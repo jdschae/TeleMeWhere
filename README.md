@@ -39,11 +39,20 @@ NOTE: If the Unity Editor asks you to upgrade MCS from 1.0 to 1.6, click "Cancel
 
 ## Usage:
 
-* Users can either create an account or sign in. The tapping gesture can be used to click buttons on the screen. Tapping input fields bring up the keyboard which in turn can tapped to enter letters into the fields. 
-* NOTE: The backspace button is currently buggy and will be fixed in a later release. For now, go back to the main menu and then return to your previous menu to clear the input fields.
-* After signing in or creating an account, the user will be brought to the model scene.
-* Currently, the model is a rectangular prism used to test the functionality of marker placing and manipulation. In the next release, this will be changed to a human body.
-* There are several options for interacting with the model as well as a sign out button. By default, it is set to drag. All of these options are employ the use of the pinching/tapping gesture. Pinching and holding is for rotating and dragging while tapping is used for the marker interactions.
-* The user must have the cursor on a marker in order for the removal to work.
-* Marker placements and removals are saved in the database so when the user signs out and then signs back in, the markers will still be in the same place.
-
+* In the first menu, users can either create an account or sign in. The tapping gesture can be used to click buttons on the screen. Tapping input fields brings up the keyboard which in turn can be tapped to enter letters into the fields. 
+* NOTE: The backspace button is currently buggy and will be fixed in a later release. For now, hit the go back button (or equivalent) to return to your previous menu to clear the input fields.
+* In the account creation page, there is the option to choose sex and whether you are a patient or a doctor. Sex will affect the type of model for that user.
+* After signing in or creating an account, the user will be brought to the homepage.
+* In the homepage, there are 5 options:
+  * The user can edit their account information. Blank input fields will not be changed when the submit button is clicked, but valid input will change the information for the corresponding fields in the database.
+  * The user can send invites. Simply type in the username of the desired invitee and hit the button for sending it.
+  * The user can check and accept invites. In this page, there will be a list of users that have invited you to view their model. Select the corresponding checkbox and hit "Accept Invite" to go to that session. There is also a "Refresh" button to load any new invites.
+  * The user can sign out and return to the Create Account/Sign In page.
+  * The user can go to view their own model
+* When viewing your own model or another user's the options are the same.
+* In a model session, there are several options according to the pressed button on the action menu:
+  * Dragging the model: this is the default interaction. Using the pinching and dragging gesture, the model can be moved with the hand.
+  * Rotating the model: Using the pinching and dragging gesture the model can be rotated according to how far the hand is from straight in front of you. Currently, the pivot is at the feet of the model which will change for the Omega Release.
+  * Removing a marker: Using the pinching gesture when the cursor is on a marker will delete the marker from the model and the database. This removal will be seen by all users viewing the model.
+  * Placing marker or viewing notes: Pressing this button will allow two options. If the user selects a point on the model using their gaze and pinching gesture, a menu will pop up that allows the user to select the shape of the marker and the notes to add to it. Pressing "Place Marker" will add the marker to the spot previously selected on the model with the corresponding shape. These markers are added to the database and seen by every user viewing the session. Selecting a marker will cause a different window to open up that displays the notes were added to that marker.
+* The user also has the option to return the homepage with a "Homepage" button.
