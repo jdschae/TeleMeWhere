@@ -26,6 +26,7 @@ namespace HoloToolkit.Unity.InputModule
         public Toggle toggleRed;
         public Toggle toggleBlue;
         public Toggle toggleGreen;
+        public Toggle toggleSphere;
         public Toggle toggleCube;
         public Toggle toggleCapsule;
         public Toggle toggleCylinder;
@@ -316,18 +317,6 @@ namespace HoloToolkit.Unity.InputModule
             else if (toggleGreen.isOn)
             {
                 color = "2";
-            }
-            else if (toggleOrange.isOn)
-            {
-                color = "3";
-            }
-            else if (togglePurple.isOn)
-            {
-                color = "4";
-            }
-            else if (toggleYellow.isOn)
-            {
-                color = "5";
             }
             if (toggleSphere.isOn)
             {

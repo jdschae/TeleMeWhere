@@ -11,9 +11,6 @@ public class CapsuleColor : MonoBehaviour
     public Toggle toggleRed;
     public Toggle toggleBlue;
     public Toggle toggleGreen;
-    public Toggle toggleOrange;
-    public Toggle togglePurple;
-    public Toggle toggleYellow;
 
     public Renderer rend;
 
@@ -38,18 +35,6 @@ public class CapsuleColor : MonoBehaviour
         else if (toggleGreen.isOn)
         {
             rend.sharedMaterial = material[2];
-        }
-        else if (toggleOrange.isOn)
-        {
-            rend.sharedMaterial = material[3];
-        }
-        else if (togglePurple.isOn)
-        {
-            rend.sharedMaterial = material[4];
-        }
-        else if (toggleYellow.isOn)
-        {
-            rend.sharedMaterial = material[5];
         }
     }
 
