@@ -125,11 +125,12 @@ namespace HoloToolkit.Unity.InputModule
 
                         int colorIndex = int.Parse(Components[4]);
                         shapeIndex = int.Parse(Components[5]);
+                        int objIndex = colorIndex * 4 + shapeIndex;
 
                         Quaternion rotation = new Quaternion(float.Parse(Components[7]), float.Parse(Components[8]), float.Parse(Components[9]), float.Parse(Components[6]));
 
                         Vector3 worldPosition = HostTransform.TransformPoint(new Vector3(float.Parse(Components[1]), float.Parse(Components[2]), float.Parse(Components[3])));
-                        GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[shapeIndex], worldPosition, rotation, HostTransform);
+                        GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[objIndex], worldPosition, rotation, HostTransform);
                         tempMarker.name += Components[0];
                         tempMarker.GetComponent<Renderer>().material = material[colorIndex];
                         MarkerLog.Add(tempMarker);
@@ -359,9 +360,10 @@ namespace HoloToolkit.Unity.InputModule
                 ActiveToggle();
                 int colorIndex = int.Parse(color);
                 shapeIndex = int.Parse(shape);
+                int objIndex = colorIndex * 4 + shapeIndex;
 
                 MarkerTemplateArray[shapeIndex].GetComponent<MeshRenderer>().sharedMaterial = material[colorIndex];
-                GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[shapeIndex], spawnPosition, spawnRotation, HostTransform);
+                GameObject tempMarker = GameObject.Instantiate(MarkerTemplateArray[objIndex], spawnPosition, spawnRotation, HostTransform);
                 //tempMarker.GetComponent<Renderer>().materials.Length = material[colorIndex];
                 //tempMarker.transform.localScale /= 100;
                 tempMarker.name += www.text;
