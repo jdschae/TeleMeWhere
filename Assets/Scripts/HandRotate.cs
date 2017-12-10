@@ -36,6 +36,7 @@ namespace HoloToolkit.Unity.InputModule
         private Quaternion gazeAngularOffset;
         private float handRefDistance;
         private Vector3 objRefGrabPoint;
+        private Vector3 initialHandPosition;
 
         private Vector3 rotatingPosition;
         private Quaternion rsotation;
@@ -96,11 +97,10 @@ namespace HoloToolkit.Unity.InputModule
 
             Vector3 gazeHitPosition = GazeManager.Instance.HitInfo.point;
             Transform cameraTransform = CameraCache.Main.transform;
-            Vector3 handPosition;
-            currentInputSource.TryGetPosition(currentInputSourceId, out handPosition);
+            currentInputSource.TryGetPosition(currentInputSourceId, out initialHandPosition);
 
             Vector3 pivotPosition = GetHandPivotPosition(cameraTransform);
-            handRefDistance = Vector3.Magnitude(handPosition - pivotPosition);
+            handRefDistance = Vector3.Magnitude(initialHandPosition - pivotPosition);
             objRefDistance = Vector3.Magnitude(gazeHitPosition - pivotPosition);
 
             Quaternion objRotation = HostTransform.localRotation;
@@ -108,7 +108,7 @@ namespace HoloToolkit.Unity.InputModule
             objRefGrabPoint = cameraTransform.InverseTransformDirection(HostTransform.position - gazeHitPosition);
 
             Vector3 objDirection = Vector3.Normalize(gazeHitPosition - pivotPosition);
-            Vector3 handDirection = Vector3.Normalize(handPosition - pivotPosition);
+            Vector3 handDirection = Vector3.Normalize(initialHandPosition - pivotPosition);
             
             //objforward = cameratransform.inversetransformdirection(objforward);       // in camera space
             //objup = cameratransform.inversetransformdirection(objup);                 // in camera space
@@ -180,7 +180,7 @@ namespace HoloToolkit.Unity.InputModule
 
             rotatingPosition = pivotPosition + (targetDirection * targetDistance);
 
-            Vector3 handOffset = targetDirection - Vector3.Project(newHandPosition - pivotPosition, targetDirection);
+            Vector3 handOffset = initialHandPosition - pivotPosition - Vector3.Project(newHandPosition - pivotPosition, initialHandPosition - pivotPosition);
 
             //if (rotationmode == rotationmodeenum.orienttowarduser || rotationmode == rotationmodeenum.orienttowarduserandkeepupright)
             //{
@@ -201,8 +201,8 @@ namespace HoloToolkit.Unity.InputModule
             //HostTransform.position = Vector3.Lerp(HostTransform.position, rotatingPosition + cameraTransform.TransformDirection(objRefGrabPoint), PositionLerpSpeed);
             // Apply Final Rotation
             //transform.Rotate(new Vector3(RotationLerpSpeed * handOffset.y, -RotationLerpSpeed * handOffset.x, 0));
-            transform.RotateAround(transform.position, Vector3.up, -RotationLerpSpeed * handOffset.x);
-            transform.RotateAround(transform.position, Vector3.Cross(Vector3.up, targetDirection), RotationLerpSpeed * handOffset.y);
+            transform.RotateAround(transform.TransformPoint(new Vector3(0, 1.15f, 0)), Vector3.up, -RotationLerpSpeed * handOffset.x);
+            transform.RotateAround(transform.TransformPoint(new Vector3(0, 1.15f, 0)), Vector3.Cross(Vector3.up, targetDirection), RotationLerpSpeed * handOffset.y);
             //if (RotationMode == RotationModeEnum.OrientTowardUserAndKeepUpright)
             //{
             //    Quaternion upRotation = Quaternion.FromToRotation(HostTransform.up, Vector3.up);
