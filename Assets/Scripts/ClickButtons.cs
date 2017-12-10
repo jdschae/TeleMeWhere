@@ -10,10 +10,11 @@ using System.Text;
 public class ClickButtons : MonoBehaviour
 {
 
-    //Three main Canvas Screens before logging in
+    //Four main Canvas Screens before logging in
     public Canvas mainCanvas;
     public Canvas signInCanvas;
     public Canvas createCanvas;
+    public Canvas tutorialCanvas;
 
     //For Invalid Username/Password/Toggle/Email
     public Canvas invalid;
@@ -37,6 +38,7 @@ public class ClickButtons : MonoBehaviour
         createCanvas.enabled = false;
         invalid.enabled = false;
         passmatch.enabled = false;
+        tutorialCanvas.enabled = false;
     }
 
     //Used when clicking "Sign In" from Main Menu
@@ -46,6 +48,7 @@ public class ClickButtons : MonoBehaviour
         mainCanvas.enabled = false;
         createCanvas.enabled = false;
         invalid.enabled = false;
+        tutorialCanvas.enabled = false;
     }
 
     //Used when clicking "Create Account" from Main Menu
@@ -55,6 +58,17 @@ public class ClickButtons : MonoBehaviour
         mainCanvas.enabled = false;
         createCanvas.enabled = true;
         passmatch.enabled = false;
+        tutorialCanvas.enabled = false;
+    }
+
+    //Used when clicking "Tutorial" from Main Menu
+    public void TutorialOn()
+    {
+        signInCanvas.enabled = false;
+        mainCanvas.enabled = false;
+        createCanvas.enabled = false;
+        passmatch.enabled = false;
+        tutorialCanvas.enabled = true;
     }
 
     //Regex code snippet
@@ -100,6 +114,7 @@ public class ClickButtons : MonoBehaviour
         mainCanvas.enabled = true;
         invalid.enabled = false;
         passmatch.enabled = false;
+        tutorialCanvas.enabled = false;
     }
 
     public void ActiveToggle()

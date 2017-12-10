@@ -12,6 +12,7 @@ public class HomepageButtons : MonoBehaviour {
     public Canvas invite;
     public Canvas checkInvites;
     public Canvas editInfo;
+    public Canvas tutorialCanvas;
     public bool patient;
     public bool doctor;
 
@@ -26,6 +27,7 @@ public class HomepageButtons : MonoBehaviour {
         invite.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = false;
+        tutorialCanvas.enabled = false;
 
         string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\"}";
         string api = "/api/user/info";
@@ -57,6 +59,7 @@ public class HomepageButtons : MonoBehaviour {
         doctorHomepage.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = false;
+        tutorialCanvas.enabled = false;
     }
 
     //Used when clicking "Check Invites" from Homepage
@@ -67,6 +70,7 @@ public class HomepageButtons : MonoBehaviour {
         invite.enabled = false;
         checkInvites.enabled = true;
         editInfo.enabled = false;
+        tutorialCanvas.enabled = false;
     }
 
     //Used when clicking "Edit Info" from Homepage
@@ -77,6 +81,18 @@ public class HomepageButtons : MonoBehaviour {
         invite.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = true;
+        tutorialCanvas.enabled = false;
+    }
+
+    //Used when clicking "Tutorial" from Homepage
+    public void TutorialOn()
+    {
+        patientHomepage.enabled = false;
+        doctorHomepage.enabled = false;
+        invite.enabled = false;
+        checkInvites.enabled = false;
+        editInfo.enabled = false;
+        tutorialCanvas.enabled = true;
     }
 
     //Used when clicking "Go Back" from Invite/Check/Edit
@@ -106,5 +122,6 @@ public class HomepageButtons : MonoBehaviour {
         invite.enabled = false;
         checkInvites.enabled = false;
         editInfo.enabled = false;
+        tutorialCanvas.enabled = false;
     }
 }
