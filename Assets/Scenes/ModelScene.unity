@@ -2802,7 +2802,7 @@ MonoBehaviour:
   m_Script: {fileID: -1184210157, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 1
+  m_AllowSwitchOff: 0
 --- !u!1 &614740998
 GameObject:
   m_ObjectHideFlags: 0
@@ -5465,8 +5465,6 @@ GameObject:
   - component: {fileID: 1187859740}
   - component: {fileID: 1187859739}
   - component: {fileID: 1187859738}
-  - component: {fileID: 1187859737}
-  - component: {fileID: 1187859736}
   m_Layer: 5
   m_Name: Tutorial
   m_TagString: Untagged
@@ -5474,42 +5472,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1187859736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1187859735}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb69de839bd015f4099b5bd2c45e53e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnscaledTime: 1
-  PositionPerSecond: 30
-  RotationDegreesPerSecond: 720
-  RotationSpeedScaler: 0
-  ScalePerSecond: 5
-  SmoothLerpToTarget: 0
-  SmoothPositionLerpRatio: 0.5
-  SmoothRotationLerpRatio: 0.5
-  SmoothScaleLerpRatio: 0.5
---- !u!114 &1187859737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1187859735}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TagalongDistance: 2.1
-  EnforceDistance: 1
-  PositionUpdateSpeed: 9.8
-  SmoothMotion: 1
-  SmoothingFactor: 0.75
 --- !u!114 &1187859738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7216,8 +7178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eee9c6a1fc57e448867d3a074a204a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectAction: {fileID: 0}
-  tutorial: {fileID: 0}
+  selectAction: {fileID: 2012477739}
+  tutorial: {fileID: 1187859742}
 --- !u!1 &1786817466
 GameObject:
   m_ObjectHideFlags: 0
@@ -8750,7 +8712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2144366199
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8786,4 +8748,4 @@ MonoBehaviour:
   m_Script: {fileID: -1184210157, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 1
+  m_AllowSwitchOff: 0
