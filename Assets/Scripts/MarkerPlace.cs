@@ -26,10 +26,6 @@ namespace HoloToolkit.Unity.InputModule
         public Toggle toggleRed;
         public Toggle toggleBlue;
         public Toggle toggleGreen;
-        public Toggle toggleOrange;
-        public Toggle togglePurple;
-        public Toggle toggleYellow;
-        public Toggle toggleSphere;
         public Toggle toggleCube;
         public Toggle toggleCapsule;
         public Toggle toggleCylinder;
