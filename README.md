@@ -56,3 +56,5 @@ NOTE: If the Unity Editor asks you to upgrade MCS from 1.0 to 1.6, click "Cancel
   * Removing a marker: Using the pinching gesture when the cursor is on a marker will delete the marker from the model and the database. This removal will be seen by all users viewing the model.
   * Placing marker or viewing notes: Pressing this button will allow two options. If the user selects a point on the model using their gaze and pinching gesture, a menu will pop up that allows the user to select the shape of the marker and the notes to add to it. Pressing "Place Marker" will add the marker to the spot previously selected on the model with the corresponding shape. These markers are added to the database and seen by every user viewing the session. Selecting a marker will cause a different window to open up that displays the notes were added to that marker.
 * The user also has the option to return the homepage with a "Homepage" button.
+
+For more info on usage, view Tutorial.pdf.
