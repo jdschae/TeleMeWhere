@@ -88,7 +88,7 @@ public class Invitations : MonoBehaviour {
     public void SendInvite(GameObject inputField)
     {
         Text MessageField = inputField.transform.GetChild(2).GetComponent<Text>();
-        string invitee = inputField.transform.GetChild(1).GetComponent<Text>().text;
+        string invitee = inputField.transform.GetComponent<KeyboardInputField>().text;
         string json = "{\"username\":\"" + NetworkUtility.LoginUsername + "\", \"invitee\":\"" + invitee + "\"}";
         string api = "/api/invite/add";
 
