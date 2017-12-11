@@ -20,7 +20,6 @@ public class ClickButtons : MonoBehaviour
     //For Invalid Username/Password/Toggle/Email
     public Canvas invalid;
     public Canvas passmatch;
-    public Canvas emailvalid;
 
     public static string ipAddress;
 
@@ -166,7 +165,7 @@ public class ClickButtons : MonoBehaviour
             Match match = regex.Match(email);
             if (!match.Success)
             {
-                emailvalid.enabled = true;
+                invalid.enabled = true;
                 return;
             }
                
