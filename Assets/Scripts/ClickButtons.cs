@@ -6,6 +6,7 @@ using HoloToolkit.UI.Keyboard;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.Net;
 
 public class ClickButtons : MonoBehaviour
 {
@@ -160,6 +161,15 @@ public class ClickButtons : MonoBehaviour
                 passmatch.enabled = true;
                 return;
             }
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (!match.Success)
+            {
+                invalid.enabled = true;
+                return;
+            }
+               
+
             json = "{\"username\":\"" + username + "\",\"password\":\"" + password1 + "\",\"firstname\":\"" 
                     + firstname + "\",\"lastname\":\""  + lastname + "\",\"email\":\"" + email + "\",\"sex\":\""
                     + sex + "\",\"type\":\"" + type + "\"}";
