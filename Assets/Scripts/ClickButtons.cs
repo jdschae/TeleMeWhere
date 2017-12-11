@@ -71,6 +71,13 @@ public class ClickButtons : MonoBehaviour
         tutorialCanvas.enabled = true;
     }
 
+    public void BackspaceUser()
+    {
+        Transform panel = signInCanvas.transform.GetChild(0);
+        string username = panel.GetChild(3).GetComponent<KeyboardInputField>().text;
+        panel.GetChild(3).GetComponent<KeyboardInputField>().text = username.Substring(0, username.Length - 1);
+    }
+
     //Regex code snippet
     /*
     public static void emas(string text)
