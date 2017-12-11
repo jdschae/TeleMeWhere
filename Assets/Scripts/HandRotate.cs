@@ -182,7 +182,7 @@ namespace HoloToolkit.Unity.InputModule
 
             rotatingPosition = pivotPosition + (targetDirection * targetDistance);
 
-            Vector3 handOffset = initialHandRefPosition - Vector3.Project(newHandPosition - pivotPosition, initialHandRefPosition);
+            Vector3 handOffset = newHandPosition - pivotPosition - Vector3.Project(newHandPosition - pivotPosition, initialHandRefPosition);
 
             //if (rotationmode == rotationmodeenum.orienttowarduser || rotationmode == rotationmodeenum.orienttowarduserandkeepupright)
             //{
@@ -202,7 +202,7 @@ namespace HoloToolkit.Unity.InputModule
             // Apply Final Position
             //HostTransform.position = Vector3.Lerp(HostTransform.position, rotatingPosition + cameraTransform.TransformDirection(objRefGrabPoint), PositionLerpSpeed);
             // Apply Final Rotation
-            //transform.Rotate(new Vector3(RotationLerpSpeed * handOffset.y, -RotationLerpSpeed * handOffset.x, 0));
+            //transform.Rotate(new Vector3(0, -RotationLerpSpeed * handOffset.x, 0));
             if (Math.Abs(handOffset.x) > Math.Abs(handOffset.y))
             {
                 transform.RotateAround(transform.TransformPoint(new Vector3(0, 1.15f, 0)), Vector3.up, -RotationLerpSpeed * handOffset.x);
